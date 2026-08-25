@@ -9,59 +9,75 @@
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#fff;color:var(--ink);font-family:Arial,Helvetica,sans-serif}
 nav{height:88px;border-bottom:1px solid #eee;display:flex;align-items:center;justify-content:space-between;padding:0 3.5vw;background:#fff;position:sticky;top:0;z-index:10}
 .logo{font-family:Georgia,'Times New Roman',serif;font-weight:700;font-size:50px;line-height:1;color:var(--red);letter-spacing:-2px}.logo .gold{color:var(--gold)}
-.navlinks{display:flex;gap:54px;align-items:center;font-size:15px;font-weight:600}.navlinks a{color:#222;text-decoration:none}.navright{display:flex;align-items:center;gap:30px}.login{color:#222;text-decoration:none;font-weight:600}.start{border:0;background:var(--red);color:#fff;border-radius:10px;padding:15px 21px;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 6px 14px rgba(180,22,22,.18)}
+.navlinks{display:flex;gap:42px;align-items:center;font-size:15px;font-weight:600}.navlinks a{color:#222;text-decoration:none}.navright{display:flex;align-items:center;gap:20px}.login{color:#222;text-decoration:none;font-weight:600}.start{border:0;background:var(--red);color:#fff;border-radius:10px;padding:15px 21px;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 6px 14px rgba(180,22,22,.18)}
+.lang{display:flex;align-items:center;border:1px solid #e6e2dc;border-radius:999px;padding:4px;background:#fff}.lang button{border:0;background:transparent;border-radius:999px;padding:7px 10px;font-weight:800;font-size:12px;color:#999;cursor:pointer}.lang button.active{background:#fff1ed;color:var(--red)}
 .hero{padding:48px 7vw 44px;text-align:center;background:#fff}.eyebrow{font-size:14px;letter-spacing:.09em;text-transform:uppercase;font-weight:800;color:var(--red);margin:0 0 18px}.eyebrow:after{content:' •';color:var(--gold)}
 .hero h1{font-family:Georgia,'Times New Roman',serif;font-weight:700;font-size:72px;line-height:1.03;letter-spacing:-2.4px;margin:0 auto 18px;max-width:900px;color:var(--red)}.hero h1 .gold{color:var(--gold)}
-.hero-sub{color:#666;font-size:21px;line-height:1.45;margin:0 auto 30px;max-width:600px}
+.hero-sub{color:#666;font-size:21px;line-height:1.45;margin:0 auto 30px;max-width:650px}
 .prompt{width:min(620px,88vw);margin:0 auto;border:1px solid #e7e5e1;border-radius:36px;height:78px;padding:9px 10px 9px 28px;display:flex;align-items:center;box-shadow:0 12px 30px rgba(0,0,0,.08);background:#fff}.prompt input{flex:1;border:0;outline:0;font-size:17px;color:#333}.prompt input::placeholder{color:#8b8b8b}.go{width:58px;height:58px;border-radius:50%;border:0;background:var(--red);color:#fff;font-size:25px;cursor:pointer;box-shadow:0 7px 16px rgba(180,22,22,.23)}
 .quick-wrap{width:min(1050px,90vw);margin:40px auto 0;text-align:left}.quick-title{font-weight:800;font-size:16px;margin-bottom:14px}.quick{display:grid;grid-template-columns:repeat(6,1fr);gap:15px}.chip{background:#fff;border:1px solid #e8e5e0;border-radius:15px;min-height:66px;padding:0 18px;display:flex;align-items:center;gap:12px;font-weight:700;color:#222;cursor:pointer;box-shadow:0 7px 14px rgba(0,0,0,.06)}.chip svg{width:25px;height:25px;stroke:var(--gold);stroke-width:1.9;fill:none}.chip.event svg,.chip.newyear svg{stroke:var(--red)}
 .value{margin:12px 1.5vw 0;background:linear-gradient(180deg,#fcfaf6,#faf7f1);border-radius:22px;padding:30px 5vw 24px}.value h2{font-family:Georgia,'Times New Roman',serif;font-size:35px;text-align:center;margin:0 0 24px}.benefits{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.benefit{background:#fff;border:1px solid #ebe7e0;border-radius:16px;padding:24px;display:flex;gap:16px;align-items:flex-start;box-shadow:0 7px 16px rgba(0,0,0,.045)}.icon{width:48px;height:48px;border-radius:50%;background:#fff6ed;display:grid;place-items:center;flex:none}.icon svg{width:27px;height:27px;stroke:var(--red);fill:none;stroke-width:1.8}.benefit:nth-child(2) .icon svg,.benefit:nth-child(4) .icon svg{stroke:var(--gold)}.benefit b{font-size:16px}.benefit p{font-size:13px;line-height:1.55;color:#666;margin:8px 0 0}.trusted{text-align:center;padding:24px 20px 35px;color:#777}.trusted small{display:block;margin-bottom:20px;color:#555}.logos{display:flex;justify-content:center;align-items:center;gap:50px;flex-wrap:wrap;color:#8b8b8b;font-weight:700;font-size:22px}.logos span{opacity:.85}
-.prototype-note{display:none}
 @media(max-width:1050px){.quick{grid-template-columns:repeat(3,1fr)}.benefits{grid-template-columns:repeat(2,1fr)}.navlinks{gap:24px}}
-@media(max-width:760px){nav{height:72px;padding:0 20px}.logo{font-size:38px}.navlinks{display:none}.login{display:none}.hero{padding:42px 18px 30px}.hero h1{font-size:45px;letter-spacing:-1.2px}.hero-sub{font-size:17px}.quick-wrap{margin-top:28px}.quick{grid-template-columns:repeat(2,1fr)}.benefits{grid-template-columns:1fr}.value{margin:6px 12px}.logos{gap:22px;font-size:18px}}
+@media(max-width:760px){nav{height:72px;padding:0 20px}.logo{font-size:38px}.navlinks{display:none}.login{display:none}.hero{padding:42px 18px 30px}.hero h1{font-size:45px;letter-spacing:-1.2px}.hero-sub{font-size:17px}.quick-wrap{margin-top:28px}.quick{grid-template-columns:repeat(2,1fr)}.benefits{grid-template-columns:1fr}.value{margin:6px 12px}.logos{gap:22px;font-size:18px}.navright{gap:10px}.start{padding:12px 14px}}
 </style>
 </head>
 <body>
 <nav>
   <div class="logo">Ru<span class="gold">kà</span></div>
-  <div class="navlinks"><a href="#solutions">Solutions</a><a href="#explore">Explore</a><a href="#how">How it works</a><a href="#about">About</a></div>
-  <div class="navright"><a class="login" href="#">Log in</a><button class="start" onclick="startProject()">Start Project&nbsp;&nbsp; →</button></div>
+  <div class="navlinks">
+    <a href="#solutions" data-i18n="navSolutions">โซลูชัน</a>
+    <a href="#explore" data-i18n="navExplore">ไอเดีย</a>
+    <a href="#how" data-i18n="navHow">วิธีการทำงาน</a>
+    <a href="#about" data-i18n="navAbout">เกี่ยวกับเรา</a>
+  </div>
+  <div class="navright">
+    <div class="lang"><button id="thBtn" class="active" onclick="setLang('th')">TH</button><button id="enBtn" onclick="setLang('en')">EN</button></div>
+    <a class="login" href="#" data-i18n="login">เข้าสู่ระบบ</a>
+    <button class="start" onclick="startProject()"><span data-i18n="startProject">เริ่มโปรเจกต์</span>&nbsp;&nbsp;→</button>
+  </div>
 </nav>
 
 <section class="hero">
-  <div class="eyebrow">NAV + HERO</div>
-  <h1>Corporate gifting<br>starts with <span class="gold">an idea.</span></h1>
-  <p class="hero-sub">Tell RUKA what you’re creating.<br>We’ll help you build the rest.</p>
-  <div class="prompt"><input id="idea" placeholder="Tell RUKA what you’re creating..."><button class="go" onclick="startProject()">→</button></div>
+  <div class="eyebrow">RUKA CORPORATE GIFTING</div>
+  <h1 data-i18n-html="heroTitle">ของขวัญองค์กรที่ดี<br>เริ่มจาก <span class="gold">ไอเดีย.</span></h1>
+  <p class="hero-sub" data-i18n-html="heroSub">บอก RUKA ว่าคุณกำลังสร้างอะไร<br>แล้วเราจะช่วยคุณต่อให้ครบ</p>
+  <div class="prompt"><input id="idea" data-i18n-placeholder="prompt" placeholder="วันนี้คุณอยากสร้างอะไรให้แบรนด์?"><button class="go" onclick="startProject()">→</button></div>
 
   <div class="quick-wrap">
-    <div class="quick-title">Quick Start</div>
+    <div class="quick-title" data-i18n="quickStart">เริ่มแบบเร็ว</div>
     <div class="quick">
-      <button class="chip event" onclick="pick('Event')"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18M8 14h2M14 14h2M8 18h2M14 18h2"/></svg>Event</button>
-      <button class="chip" onclick="pick('Employee')"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-4 2.5-6 6-6s6 2 6 6M14 15c3.5 0 6 1.8 6 5"/></svg>Employee</button>
-      <button class="chip" onclick="pick('Campaign')"><svg viewBox="0 0 24 24"><path d="M4 11v4l4 1 9 4V6L8 10l-4 1zM17 9c1.5.5 2.5 1.7 2.5 3.5S18.5 15.5 17 16"/></svg>Campaign</button>
-      <button class="chip" onclick="pick('VIP')"><svg viewBox="0 0 24 24"><path d="M3 8l4 4 5-7 5 7 4-4-2 11H5L3 8zM5 21h14"/></svg>VIP</button>
-      <button class="chip newyear" onclick="pick('New Year')"><svg viewBox="0 0 24 24"><path d="M4 20l10-10M14 5l5 5M3 9l3 1-1 3M11 2l1 3 3-1M16 15l3 1-1 3"/></svg>New Year</button>
-      <button class="chip" onclick="pick('Not sure yet')"><svg viewBox="0 0 24 24"><circle cx="8" cy="6" r="3"/><circle cx="16" cy="12" r="3"/><circle cx="8" cy="18" r="3"/></svg>Not sure yet</button>
+      <button class="chip event" onclick="pick('Event')"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18M8 14h2M14 14h2M8 18h2M14 18h2"/></svg><span data-i18n="event">อีเวนต์</span></button>
+      <button class="chip" onclick="pick('Employee')"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-4 2.5-6 6-6s6 2 6 6M14 15c3.5 0 6 1.8 6 5"/></svg><span data-i18n="employee">พนักงาน</span></button>
+      <button class="chip" onclick="pick('Campaign')"><svg viewBox="0 0 24 24"><path d="M4 11v4l4 1 9 4V6L8 10l-4 1zM17 9c1.5.5 2.5 1.7 2.5 3.5S18.5 15.5 17 16"/></svg><span data-i18n="campaign">แคมเปญ</span></button>
+      <button class="chip" onclick="pick('VIP')"><svg viewBox="0 0 24 24"><path d="M3 8l4 4 5-7 5 7 4-4-2 11H5L3 8zM5 21h14"/></svg><span data-i18n="vip">VIP</span></button>
+      <button class="chip newyear" onclick="pick('New Year')"><svg viewBox="0 0 24 24"><path d="M4 20l10-10M14 5l5 5M3 9l3 1-1 3M11 2l1 3 3-1M16 15l3 1-1 3"/></svg><span data-i18n="newyear">ปีใหม่</span></button>
+      <button class="chip" onclick="pick('Not sure yet')"><svg viewBox="0 0 24 24"><circle cx="8" cy="6" r="3"/><circle cx="16" cy="12" r="3"/><circle cx="8" cy="18" r="3"/></svg><span data-i18n="unsure">ยังไม่แน่ใจ</span></button>
     </div>
   </div>
 </section>
 
 <section class="value" id="solutions">
-  <h2>Everything you need. In one place.</h2>
+  <h2 data-i18n="allInOne">ทุกอย่างที่ต้องใช้ อยู่ในที่เดียว</h2>
   <div class="benefits">
-    <div class="benefit"><div class="icon"><svg viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="12" rx="1"/><path d="M12 8v12M4 12h16M8 8c-3-2-2-5 0-5 2 0 4 5 4 5M16 8c3-2 2-5 0-5-2 0-4 5-4 5"/></svg></div><div><b>Curated Solutions</b><p>Handpicked gifts and experiences that make an impact.</p></div></div>
-    <div class="benefit"><div class="icon"><svg viewBox="0 0 24 24"><path d="M4 16c-2-2-2-6 0-9 3-4 10-5 14-2 4 3 4 9 0 12-3 2-8 2-11 0l-4 2 1-3z"/><circle cx="8" cy="11" r="1"/><circle cx="12" cy="11" r="1"/><circle cx="16" cy="11" r="1"/></svg></div><div><b>RUKA AI Partner</b><p>Get smart recommendations and ideas in seconds.</p></div></div>
-    <div class="benefit"><div class="icon"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z"/><path d="M8 12l3 3 5-6"/></svg></div><div><b>Trusted Quality</b><p>Vetted suppliers, premium quality, delivered with care.</p></div></div>
-    <div class="benefit"><div class="icon"><svg viewBox="0 0 24 24"><path d="M4 18l6-6 4 4 6-9M15 7h5v5"/></svg></div><div><b>Easy Management</b><p>Track, manage and report every project with ease.</p></div></div>
+    <div class="benefit"><div class="icon"><svg viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="12" rx="1"/><path d="M12 8v12M4 12h16M8 8c-3-2-2-5 0-5 2 0 4 5 4 5M16 8c3-2 2-5 0-5-2 0-4 5-4 5"/></svg></div><div><b data-i18n="curatedTitle">คัดสรรให้ตรงโจทย์</b><p data-i18n="curatedText">ของขวัญและไอเดียที่เลือกให้เหมาะกับเป้าหมายของแบรนด์คุณ</p></div></div>
+    <div class="benefit"><div class="icon"><svg viewBox="0 0 24 24"><path d="M4 16c-2-2-2-6 0-9 3-4 10-5 14-2 4 3 4 9 0 12-3 2-8 2-11 0l-4 2 1-3z"/><circle cx="8" cy="11" r="1"/><circle cx="12" cy="11" r="1"/><circle cx="16" cy="11" r="1"/></svg></div><div><b>RUKA AI Partner</b><p data-i18n="aiText">ช่วยคิดทิศทาง แนะนำสินค้า และต่อยอดไอเดียได้เร็วขึ้น</p></div></div>
+    <div class="benefit"><div class="icon"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z"/><path d="M8 12l3 3 5-6"/></svg></div><div><b data-i18n="qualityTitle">คุณภาพที่ไว้ใจได้</b><p data-i18n="qualityText">คัด Supplier และควบคุมคุณภาพก่อนส่งมอบจริง</p></div></div>
+    <div class="benefit"><div class="icon"><svg viewBox="0 0 24 24"><path d="M4 18l6-6 4 4 6-9M15 7h5v5"/></svg></div><div><b data-i18n="manageTitle">จัดการงานง่าย</b><p data-i18n="manageText">ติดตามโปรเจกต์ อนุมัติงาน และดูสถานะได้ในที่เดียว</p></div></div>
   </div>
 </section>
 
-<section class="trusted"><small>Trusted by leading organizations</small><div class="logos"><span>Google</span><span>Microsoft</span><span>Grab</span><span>SCB</span><span>LINE</span><span>bitkub</span><span>CENTRALGROUP</span></div></section>
+<section class="trusted"><small data-i18n="trusted">แบรนด์และองค์กรที่ไว้วางใจเรา</small><div class="logos"><span>Google</span><span>Microsoft</span><span>Grab</span><span>SCB</span><span>LINE</span><span>bitkub</span><span>CENTRALGROUP</span></div></section>
 
 <script>
+const copy={
+  th:{navSolutions:'โซลูชัน',navExplore:'ไอเดีย',navHow:'วิธีการทำงาน',navAbout:'เกี่ยวกับเรา',login:'เข้าสู่ระบบ',startProject:'เริ่มโปรเจกต์',heroTitle:'ของขวัญองค์กรที่ดี<br>เริ่มจาก <span class="gold">ไอเดีย.</span>',heroSub:'บอก RUKA ว่าคุณกำลังสร้างอะไร<br>แล้วเราจะช่วยคุณต่อให้ครบ',prompt:'วันนี้คุณอยากสร้างอะไรให้แบรนด์?',quickStart:'เริ่มแบบเร็ว',event:'อีเวนต์',employee:'พนักงาน',campaign:'แคมเปญ',vip:'VIP',newyear:'ปีใหม่',unsure:'ยังไม่แน่ใจ',allInOne:'ทุกอย่างที่ต้องใช้ อยู่ในที่เดียว',curatedTitle:'คัดสรรให้ตรงโจทย์',curatedText:'ของขวัญและไอเดียที่เลือกให้เหมาะกับเป้าหมายของแบรนด์คุณ',aiText:'ช่วยคิดทิศทาง แนะนำสินค้า และต่อยอดไอเดียได้เร็วขึ้น',qualityTitle:'คุณภาพที่ไว้ใจได้',qualityText:'คัด Supplier และควบคุมคุณภาพก่อนส่งมอบจริง',manageTitle:'จัดการงานง่าย',manageText:'ติดตามโปรเจกต์ อนุมัติงาน และดูสถานะได้ในที่เดียว',trusted:'แบรนด์และองค์กรที่ไว้วางใจเรา'},
+  en:{navSolutions:'Solutions',navExplore:'Explore',navHow:'How it works',navAbout:'About',login:'Log in',startProject:'Start Project',heroTitle:'Corporate gifting<br>starts with <span class="gold">an idea.</span>',heroSub:'Tell RUKA what you’re creating.<br>We’ll help you build the rest.',prompt:'Tell RUKA what you’re creating...',quickStart:'Quick Start',event:'Event',employee:'Employee',campaign:'Campaign',vip:'VIP',newyear:'New Year',unsure:'Not sure yet',allInOne:'Everything you need. In one place.',curatedTitle:'Curated Solutions',curatedText:'Handpicked gifts and experiences that make an impact.',aiText:'Get smart recommendations and ideas in seconds.',qualityTitle:'Trusted Quality',qualityText:'Vetted suppliers, premium quality, delivered with care.',manageTitle:'Easy Management',manageText:'Track, manage and report every project with ease.',trusted:'Trusted by leading organizations'}
+};
+let currentLang='th';
+function setLang(lang){currentLang=lang;document.documentElement.lang=lang;document.getElementById('thBtn').classList.toggle('active',lang==='th');document.getElementById('enBtn').classList.toggle('active',lang==='en');document.querySelectorAll('[data-i18n]').forEach(el=>{el.textContent=copy[lang][el.dataset.i18n]});document.querySelectorAll('[data-i18n-html]').forEach(el=>{el.innerHTML=copy[lang][el.dataset.i18nHtml]});document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{el.placeholder=copy[lang][el.dataset.i18nPlaceholder]});localStorage.setItem('ruka-lang',lang)}
 function pick(v){document.getElementById('idea').value=v}
-function startProject(){const v=document.getElementById('idea').value||'your project';alert('RUKA Prototype\n\nNext: Project Brief for “'+v+'”')}
+function startProject(){const v=document.getElementById('idea').value|| (currentLang==='th'?'โปรเจกต์ของคุณ':'your project');alert(currentLang==='th'?'RUKA Prototype\n\nหน้าถัดไป: Project Brief สำหรับ “'+v+'”':'RUKA Prototype\n\nNext: Project Brief for “'+v+'”')}
+setLang(localStorage.getItem('ruka-lang')||'th');
 </script>
 </body>
 </html>
