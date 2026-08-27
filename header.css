@@ -1,0 +1,113 @@
+:root {
+  --ruka-header-red: #b41616;
+  --ruka-header-gold: #e8a51d;
+  --ruka-header-line: #e9e1d7;
+}
+
+body > nav {
+  height: 92px;
+  padding: 0 5vw;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 20;
+}
+
+body > nav .navLeft,
+body > nav .navRight {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+body > nav .navRight {
+  justify-content: flex-end;
+}
+
+body > nav .navLeft a,
+body > nav .navRight a {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  color: #9d1519;
+  text-decoration: none;
+}
+
+body > nav .logo {
+  margin: 0;
+  font: 700 52px/1 Georgia, serif;
+  color: var(--ruka-header-red);
+  letter-spacing: -2px;
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+}
+
+body > nav .logo .red {
+  color: var(--ruka-header-red);
+}
+
+body > nav .logo .gold {
+  color: var(--ruka-header-gold);
+}
+
+body > nav .logo .adot {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--ruka-header-red);
+  right: 2px;
+  top: -1px;
+  animation: rukaBounceDot 1.8s ease-in-out infinite;
+  box-shadow: 0 4px 10px #b4161630;
+}
+
+@keyframes rukaBounceDot {
+  0%, 100% { transform: translateY(0) scale(1); }
+  45% { transform: translateY(-8px) scale(1.08); }
+  60% { transform: translateY(-5px) scale(.96); }
+}
+
+body > nav .searchBtn {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid var(--ruka-header-line);
+  border-radius: 50%;
+  background: #fff;
+  color: var(--ruka-header-red);
+  font: 900 14px Arial, sans-serif;
+}
+
+body > nav .quote {
+  border: 0;
+  border-radius: 24px;
+  padding: 12px 18px;
+  background: var(--ruka-header-red);
+  color: #fff;
+  font: 900 11px Arial, sans-serif;
+  letter-spacing: .08em;
+}
+
+@media (max-width: 1050px) {
+  body > nav .navLeft,
+  body > nav .navRight { gap: 18px; }
+  body > nav .navLeft a:nth-child(2),
+  body > nav .navRight a:first-child { display: none; }
+}
+
+@media (max-width: 760px) {
+  body > nav {
+    height: 74px;
+    padding: 0 16px;
+  }
+  body > nav .navLeft a,
+  body > nav .navRight a,
+  body > nav .searchBtn { display: none; }
+  body > nav .logo { font-size: 41px; }
+}
