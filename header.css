@@ -6,7 +6,7 @@
 
 body > nav {
   height: 92px;
-  padding: 0 5vw;
+  padding: 0 max(5vw, calc((100vw - 1240px) / 2));
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
@@ -21,7 +21,7 @@ body > nav .navLeft,
 body > nav .navRight {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 36px;
 }
 
 body > nav .navRight {
@@ -31,7 +31,7 @@ body > nav .navRight {
 body > nav .navLeft a,
 body > nav .navRight a {
   font-family: Arial, sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 800;
   color: #9d1519;
   text-decoration: none;
@@ -39,9 +39,9 @@ body > nav .navRight a {
 
 body > nav .logo {
   margin: 0;
-  font: 700 52px/1 Georgia, serif;
+  font: 700 54px/.92 Didot, "Bodoni 72", "Bodoni MT", Georgia, serif;
   color: var(--ruka-header-red);
-  letter-spacing: -2px;
+  letter-spacing: -3px;
   position: relative;
   display: inline-block;
   text-decoration: none;
@@ -61,8 +61,8 @@ body > nav .logo .adot {
   height: 9px;
   border-radius: 50%;
   background: var(--ruka-header-red);
-  right: 2px;
-  top: -1px;
+  right: -1px;
+  top: -4px;
   animation: rukaBounceDot 1.8s ease-in-out infinite;
   box-shadow: 0 4px 10px #b4161630;
 }
@@ -96,7 +96,7 @@ body > nav .quote {
 
 @media (max-width: 1050px) {
   body > nav .navLeft,
-  body > nav .navRight { gap: 18px; }
+  body > nav .navRight { gap: 22px; }
   body > nav .navLeft a:nth-child(2),
   body > nav .navRight a:first-child { display: none; }
 }
@@ -109,5 +109,5 @@ body > nav .quote {
   body > nav .navLeft a,
   body > nav .navRight a,
   body > nav .searchBtn { display: none; }
-  body > nav .logo { font-size: 41px; }
+  body > nav .logo { font-size: 43px; }
 }
