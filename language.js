@@ -1,0 +1,52 @@
+(() => {
+  const translations = {
+    'สินค้า':'Products','บริการ':'Services','เกี่ยวกับ':'About','ติดต่อ':'Contact','ค้นหา':'Search',
+    'ของขวัญองค์กรที่ดี':'Corporate gifts that matter','เริ่มจาก':'start with','ไอเดีย.':'an idea.',
+    'ไม่ต้องเริ่มจากการเปิดแคตตาล็อก':'You don’t have to start with a catalogue',
+    'บอกเราว่าคุณกำลังสร้างอะไร แล้ว RUKA จะช่วยต่อให้ครบ':'Tell us what you’re creating, and RUKA will help shape the rest.',
+    'เริ่มจากโอกาสของคุณ':'Start with your occasion','อีเวนต์':'Event','พนักงาน':'Employees','แคมเปญ':'Campaign','ปีใหม่':'New Year','ยังไม่แน่ใจ':'Not sure yet',
+    'Ruka คือสตูดิโอที่คิด ออกแบบ และผลิต — เพื่อสร้างประสบการณ์แบรนด์ที่ครบทุกสัมผัส':'Ruka is a creative studio that thinks, designs and produces complete brand experiences.',
+    'ดีไซน์ไปด้วยกัน':'Design together','บรีฟสั้นๆ ทีมดีไซน์คิดต่อให้ แก้ได้จนใช่':'Share a short brief. Our design team develops it with you until it feels right.',
+    'ติดตามเรียลไทม์':'Track in real time','อัปเดตอัตโนมัติ เห็นรูป QC ก่อนส่งจริง':'Get automatic updates and review QC photos before delivery.',
+    'ขั้นต่ำยืดหยุ่น':'Flexible minimums','เริ่มต้น 50 ชิ้น ปรับได้ ผลิตทันงาน':'Start from 50 pieces, with flexible production built around your timeline.',
+    'ดูแลเหมือนเพื่อน':'Here like a friend','หลังส่งมอบยังอยู่กับคุณ ซัพพอร์ตไม่มีหมด':'We stay with you after delivery, with support whenever you need it.',
+    'พื้นที่สำหรับผลงานและองค์กรที่เคยร่วมงานกับ RUKA':'A space for RUKA projects and partner organisations',
+    'คุณกำลังสร้างของขวัญ':'What are you creating a gift','สำหรับโอกาสไหน?':'for?','ยังไม่ต้องเลือกสินค้า เลือกสิ่งที่ใกล้กับโจทย์ของคุณที่สุดก่อน แล้ว RUKA จะพาไปต่อทีละขั้น':'No need to choose a product yet. Start with the occasion closest to your brief, and RUKA will guide you step by step.',
+    'พนักงาน & ทีม':'Employees & Teams','ลูกค้า & VIP':'Clients & VIPs','เทศกาล & ปีใหม่':'Festive & New Year','ยังไม่แน่ใจ / Open Brief':'Not sure / Open Brief',
+    'เลือกตามโอกาส':'Shop by occasion','ไอเดีย':'Ideas','ผลงาน':'Work','วิธีการทำงาน':'How it works','เกี่ยวกับ RUKA':'About RUKA','เริ่มโปรเจกต์ →':'Start a project →','ให้ RUKA ช่วยคิด →':'Let RUKA help →',
+    'สินค้าทั้งหมด':'All products','ค้นหาสินค้า':'Search products','เริ่มจากโจทย์ของคุณ →':'Start with your brief →',
+    'เล่าโจทย์ให้เรารู้':'Tell us about your brief','เท่าที่จำเป็นก็พอ':'Only what matters','กำลังเตรียม Brief':'Preparing your brief',
+    'ต้องการประมาณกี่ชุด?':'Approximately how many sets do you need?','อยากให้งบต่อชุดอยู่ประมาณไหน?':'What is your approximate budget per set?','ต้องการรับสินค้าภายในวันที่?':'When do you need the products?','อยากให้ของออกมาใน mood แบบไหน?':'What mood should the gift express?',
+    'ขอราคาและเริ่มโปรเจกต์':'Get a quote and start','คุยกับทีม RUKA':'Talk to RUKA','กลับหน้าแรก':'Back to home','กลับไปดูสินค้าทั้งหมด':'Back to all products',
+    'ทำอะไรกับแบรนด์คุณได้บ้าง?':'How can this work with your brand?','เพิ่มสินค้านี้เข้าโปรเจกต์':'Add this product to your project','บันทึกไว้':'Save',
+    'เราไม่ได้หาของให้คุณ':'We don’t simply source products','เราออกแบบ':'We design a','Direction ให้':'direction for you','3 Directions for your project':'3 directions for your project',
+    'ถูกใจชุดนี้แล้ว?':'Ready with this set?','ขอราคาและเริ่มโปรเจกต์ →':'Get a quote and start →'
+  };
+  const originals = new WeakMap();
+  const textNodes = root => {
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode(node) {
+        if (!node.nodeValue.trim() || /^(SCRIPT|STYLE|NOSCRIPT)$/.test(node.parentElement?.tagName || '')) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    const nodes=[]; while(walker.nextNode()) nodes.push(walker.currentNode); return nodes;
+  };
+  function applyLanguage(lang) {
+    document.documentElement.lang = lang === 'en' ? 'en' : 'th';
+    textNodes(document.body).forEach(node => {
+      if (!originals.has(node)) originals.set(node, node.nodeValue);
+      const original = originals.get(node);
+      if (lang === 'th') { node.nodeValue = original; return; }
+      const lead = original.match(/^\s*/)?.[0] || '', tail = original.match(/\s*$/)?.[0] || '', key = original.trim();
+      if (translations[key]) node.nodeValue = lead + translations[key] + tail;
+    });
+    document.querySelectorAll('[data-lang]').forEach(button => button.classList.toggle('active', button.dataset.lang === lang));
+    localStorage.setItem('rukaLanguage', lang);
+  }
+  window.setRukaLanguage = applyLanguage;
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('[data-lang]').forEach(button => button.addEventListener('click', () => applyLanguage(button.dataset.lang)));
+    applyLanguage(localStorage.getItem('rukaLanguage') === 'en' ? 'en' : 'th');
+  });
+})();

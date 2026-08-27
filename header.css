@@ -84,6 +84,34 @@ body > nav .searchBtn {
   font: 900 14px Arial, sans-serif;
 }
 
+body > nav .languageSwitch {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--ruka-header-line);
+  border-radius: 999px;
+  background: #fff;
+}
+
+body > nav .languageSwitch button {
+  min-width: 31px;
+  height: 28px;
+  padding: 0 7px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #9b7773;
+  font: 800 10px Arial, sans-serif;
+  letter-spacing: .05em;
+  cursor: pointer;
+}
+
+body > nav .languageSwitch button.active {
+  background: var(--ruka-header-red);
+  color: #fff;
+}
+
 body > nav .quote {
   border: 0;
   border-radius: 24px;
@@ -109,5 +137,8 @@ body > nav .quote {
   body > nav .navLeft a,
   body > nav .navRight a,
   body > nav .searchBtn { display: none; }
+  body > nav .languageSwitch { margin-left: auto; }
+  body > nav .languageSwitch button { min-width: 28px; padding: 0 5px; }
+  body > nav .quote { padding: 11px 13px; }
   body > nav .logo { font-size: 43px; }
 }
