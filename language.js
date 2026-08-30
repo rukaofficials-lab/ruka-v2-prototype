@@ -23,37 +23,12 @@
     'ถูกใจชุดนี้แล้ว?':'Ready with this set?','ขอราคาและเริ่มโปรเจกต์ →':'Get a quote and start →'
   };
   const originals = new WeakMap();
-  const textNodes = root => {
-    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
-      acceptNode(node) {
-        if (!node.nodeValue.trim() || /^(SCRIPT|STYLE|NOSCRIPT)$/.test(node.parentElement?.tagName || '')) return NodeFilter.FILTER_REJECT;
-        return NodeFilter.FILTER_ACCEPT;
-      }
-    });
-    const nodes=[]; while(walker.nextNode()) nodes.push(walker.currentNode); return nodes;
-  };
-  function applyLanguage(lang) {
-    document.documentElement.lang = lang === 'en' ? 'en' : 'th';
-    textNodes(document.body).forEach(node => {
-      if (!originals.has(node)) originals.set(node, node.nodeValue);
-      const original = originals.get(node);
-      if (lang === 'th') { node.nodeValue = original; return; }
-      const lead = original.match(/^\s*/)?.[0] || '', tail = original.match(/\s*$/)?.[0] || '', key = original.trim();
-      if (translations[key]) node.nodeValue = lead + translations[key] + tail;
-    });
-    document.querySelectorAll('[data-lang]').forEach(button => button.classList.toggle('active', button.dataset.lang === lang));
-    localStorage.setItem('rukaLanguage', lang);
-  }
-  window.setRukaLanguage = applyLanguage;
-  document.addEventListener('DOMContentLoaded', () => {
-    const trust = document.querySelector('.trust');
-    if (trust) {
-      trust.innerHTML = '<div class="trustEyebrow">BRANDS THAT TRUST US</div><h2 class="trustTitle">แบรนด์และองค์กรที่ไว้วางใจ RUKA</h2><div class="trustBoard"><img src="assets/brands/brands-board.jpg?v=20260830" alt="องค์กรและแบรนด์ลูกค้า RUKA"></div>';
-      const style = document.createElement('style');
-      style.textContent = '.trust{padding:54px 5vw 64px;background:#fff;color:#171717}.trustEyebrow{font-size:11px;font-weight:900;letter-spacing:.18em;color:#b41616;margin-bottom:10px}.trustTitle{font:700 34px Georgia;margin:0 0 28px}.trustBoard{max-width:1180px;margin:auto;border-top:1px solid #eee;border-bottom:1px solid #eee;padding:22px 0}.trustBoard img{display:block;width:100%;height:auto;mix-blend-mode:multiply}@media(max-width:760px){.trust{padding:40px 18px 48px}.trustTitle{font-size:28px}.trustBoard{overflow:hidden}.trustBoard img{width:160%;max-width:none;transform:translateX(-18%)}}';
-      document.head.appendChild(style);
-    }
-    document.querySelectorAll('[data-lang]').forEach(button => button.addEventListener('click', () => applyLanguage(button.dataset.lang)));
-    applyLanguage(localStorage.getItem('rukaLanguage') === 'en' ? 'en' : 'th');
+  const textNodes = root => { const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode(node){if(!node.nodeValue.trim()||/^(SCRIPT|STYLE|NOSCRIPT)$/.test(node.parentElement?.tagName||''))return NodeFilter.FILTER_REJECT;return NodeFilter.FILTER_ACCEPT}});const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);return nodes };
+  function applyLanguage(lang){document.documentElement.lang=lang==='en'?'en':'th';textNodes(document.body).forEach(node=>{if(!originals.has(node))originals.set(node,node.nodeValue);const original=originals.get(node);if(lang==='th'){node.nodeValue=original;return}const lead=original.match(/^\s*/)?.[0]||'',tail=original.match(/\s*$/)?.[0]||'',key=original.trim();if(translations[key])node.nodeValue=lead+translations[key]+tail});document.querySelectorAll('[data-lang]').forEach(button=>button.classList.toggle('active',button.dataset.lang===lang));localStorage.setItem('rukaLanguage',lang)}
+  function markCurrentPage(){const page=(location.pathname.split('/').pop()||'index.html').toLowerCase();document.querySelectorAll('body > nav a[href]').forEach(a=>{const href=(a.getAttribute('href')||'').split('?')[0].split('#')[0].toLowerCase();let active=false;if(page==='index.html'||page===''){active=href==='index.html'||href==='./'||href==='' }else if(page==='products.html'){active=href==='products.html'}else if(page==='occasion.html'){active=href==='occasion.html'}else if(page==='ideas.html'){active=href==='ideas.html'}else if(page==='about.html'){active=href==='about.html'}if(active&&!a.classList.contains('logo')){a.classList.add('active');a.setAttribute('aria-current','page')}})}
+  window.setRukaLanguage=applyLanguage;
+  document.addEventListener('DOMContentLoaded',()=>{
+    const trust=document.querySelector('.trust');if(trust){trust.innerHTML='<div class="trustEyebrow">BRANDS THAT TRUST US</div><h2 class="trustTitle">แบรนด์และองค์กรที่ไว้วางใจ RUKA</h2><div class="trustBoard"><img src="assets/brands/brands-board.jpg?v=20260830" alt="องค์กรและแบรนด์ลูกค้า RUKA"></div>';const style=document.createElement('style');style.textContent='.trust{padding:54px 5vw 64px;background:#fff;color:#171717}.trustEyebrow{font-size:11px;font-weight:900;letter-spacing:.18em;color:#b41616;margin-bottom:10px}.trustTitle{font:700 34px Georgia;margin:0 0 28px}.trustBoard{max-width:1180px;margin:auto;border-top:1px solid #eee;border-bottom:1px solid #eee;padding:22px 0}.trustBoard img{display:block;width:100%;height:auto;mix-blend-mode:multiply}@media(max-width:760px){.trust{padding:40px 18px 48px}.trustTitle{font-size:28px}.trustBoard{overflow:hidden}.trustBoard img{width:160%;max-width:none;transform:translateX(-18%)}}';document.head.appendChild(style)}
+    markCurrentPage();document.querySelectorAll('[data-lang]').forEach(button=>button.addEventListener('click',()=>applyLanguage(button.dataset.lang)));applyLanguage(localStorage.getItem('rukaLanguage')==='en'?'en':'th');
   });
 })();
