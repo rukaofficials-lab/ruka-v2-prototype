@@ -3,24 +3,24 @@
   --ruka-header-gold:#e8a51d;
   --ruka-header-line:#e9e1d7;
 }
-body > nav{height:78px;padding:0 clamp(22px,3.8vw,58px);display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;border-bottom:1px solid #eee;position:sticky;top:0;background:#fff;z-index:20}
-body > nav .navLeft,body > nav .navRight{display:flex;align-items:center;min-width:0}
-body > nav .navLeft{gap:clamp(22px,2vw,34px);justify-content:flex-start}
-body > nav .navRight{gap:clamp(13px,1.35vw,21px);justify-content:flex-end}
+body > nav{height:76px;padding:0 24px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid #eee;position:sticky;top:0;background:#fff;z-index:20}
+body > nav .navLeft,body > nav .navRight{display:flex;align-items:center;position:absolute;top:0;height:76px;min-width:0}
+body > nav .navLeft{left:50%;transform:translateX(-485px);gap:34px;justify-content:flex-start}
+body > nav .navRight{left:50%;transform:translateX(205px);gap:17px;justify-content:flex-start}
 body > nav .navLeft a,body > nav .navRight a{font-family:Arial,sans-serif;font-size:15px;font-weight:800;color:#2b2522;text-decoration:none;position:relative;padding:27px 0 24px;transition:color .18s ease;white-space:nowrap}
 body > nav .navLeft a:hover,body > nav .navRight a:hover{color:var(--ruka-header-red)}
 body > nav .navLeft a.active,body > nav .navRight a.active{color:var(--ruka-header-red)}
-body > nav .navLeft a.active::after,body > nav .navRight a.active::after{content:"";position:absolute;left:50%;bottom:13px;width:24px;height:2px;border-radius:2px;background:var(--ruka-header-red);transform:translateX(-50%)}
-body > nav .logo{margin:0;font-family:Georgia,"Times New Roman",serif;font-size:58px;font-weight:700;line-height:.88;color:var(--ruka-header-red);letter-spacing:-4.1px;position:relative;display:inline-block;text-decoration:none;transform:scaleX(.95);transform-origin:center}
-body > nav .logo .red{color:var(--ruka-header-red)}
-body > nav .logo .gold{color:var(--ruka-header-gold)}
-body > nav .logo .adot{position:absolute;width:9px;height:9px;border-radius:50%;background:var(--ruka-header-red);right:-1px;top:-6px;animation:rukaBounceDot 1.8s ease-in-out infinite;box-shadow:0 4px 10px #b4161630}
+body > nav .navLeft a.active::after,body > nav .navRight a.active::after{content:"";position:absolute;left:50%;bottom:11px;width:26px;height:2px;border-radius:2px;background:var(--ruka-header-red);transform:translateX(-50%)}
+body > nav .logo{margin:0;font-family:Didot,"Bodoni 72","Bodoni MT",Georgia,"Times New Roman",serif;font-size:62px;font-weight:700;line-height:.82;color:var(--ruka-header-red);letter-spacing:-5.2px;position:relative;display:inline-block;text-decoration:none;transform:scaleX(.92);transform-origin:center;text-shadow:none!important;background:transparent!important;filter:none!important}
+body > nav .logo .red{color:var(--ruka-header-red)!important}
+body > nav .logo .gold{color:var(--ruka-header-gold)!important}
+body > nav .logo .adot{position:absolute;width:9px;height:9px;border-radius:50%;background:var(--ruka-header-red);right:-1px;top:-9px;animation:rukaBounceDot 1.8s ease-in-out infinite;box-shadow:none}
 @keyframes rukaBounceDot{0%,100%{transform:translateY(0) scale(1)}45%{transform:translateY(-7px) scale(1.08)}60%{transform:translateY(-4px) scale(.96)}}
-body > nav .searchBtn{width:38px;height:38px;padding:0;border:1px solid var(--ruka-header-line);border-radius:50%;background:#fff;color:var(--ruka-header-red);font:900 14px Arial,sans-serif;flex:0 0 auto}
-body > nav .languageSwitch{display:flex;align-items:center;gap:6px;padding:0;border:0;background:transparent;flex:0 0 auto}
-body > nav .languageSwitch button{min-width:23px;height:30px;padding:0;border:0;border-radius:999px;background:transparent;color:#a58b87;font:800 12px Arial,sans-serif;letter-spacing:.04em;cursor:pointer}
+body > nav .searchBtn{width:38px;height:38px;padding:0;border:1px solid var(--ruka-header-line);border-radius:50%;background:#fff;color:var(--ruka-header-red);font:900 14px Arial,sans-serif;flex:0 0 auto;box-shadow:none}
+body > nav .languageSwitch{display:flex;align-items:center;gap:5px;padding:0;border:0;background:transparent;flex:0 0 auto}
+body > nav .languageSwitch button{min-width:22px;height:30px;padding:0;border:0;border-radius:999px;background:transparent;color:#a58b87;font:800 12px Arial,sans-serif;letter-spacing:.04em;cursor:pointer}
 body > nav .languageSwitch button.active{background:transparent;color:var(--ruka-header-red);box-shadow:inset 0 -2px 0 var(--ruka-header-red)}
 body > nav .quote{border:0;border-radius:24px;padding:13px 20px;background:var(--ruka-header-red);color:#fff;font:900 11px Arial,sans-serif;letter-spacing:.08em;white-space:nowrap;flex:0 0 auto}
-@media(max-width:1200px){body > nav{padding:0 26px}body > nav .navLeft{gap:22px}body > nav .navRight{gap:14px}body > nav .navLeft a,body > nav .navRight a{font-size:14px}body > nav .logo{font-size:54px}}
-@media(max-width:1050px){body > nav{padding:0 22px}body > nav .navLeft,body > nav .navRight{gap:16px}body > nav .navLeft a:nth-child(2),body > nav .navRight a:first-child{display:none}}
-@media(max-width:760px){body > nav{height:70px;padding:0 16px}body > nav .navLeft{gap:18px}body > nav .navLeft a,body > nav .navRight a,body > nav .searchBtn{display:none}body > nav .languageSwitch{margin-left:auto}body > nav .languageSwitch button{min-width:28px;padding:0 5px}body > nav .quote{padding:11px 13px}body > nav .logo{font-size:44px}}
+@media(max-width:1220px){body > nav .navLeft{transform:translateX(-430px);gap:24px}body > nav .navRight{transform:translateX(170px);gap:13px}body > nav .navLeft a,body > nav .navRight a{font-size:14px}body > nav .logo{font-size:58px}}
+@media(max-width:1050px){body > nav{justify-content:flex-start;padding:0 22px}body > nav .logo{position:absolute;left:50%;transform:translateX(-50%) scaleX(.92)}body > nav .navLeft{position:static;transform:none;height:auto;gap:18px}body > nav .navRight{position:static;transform:none;height:auto;margin-left:auto;gap:14px}body > nav .navLeft a:nth-child(2),body > nav .navRight a:first-child{display:none}}
+@media(max-width:760px){body > nav{height:70px;padding:0 16px}body > nav .navLeft a,body > nav .navRight a,body > nav .searchBtn{display:none}body > nav .languageSwitch{margin-left:auto}body > nav .languageSwitch button{min-width:28px;padding:0 5px}body > nav .quote{padding:11px 13px}body > nav .logo{font-size:46px}}
