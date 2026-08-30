@@ -10,7 +10,7 @@
     'ติดตามเรียลไทม์':'Track in real time','อัปเดตอัตโนมัติ เห็นรูป QC ก่อนส่งจริง':'Get automatic updates and review QC photos before delivery.',
     'ขั้นต่ำยืดหยุ่น':'Flexible minimums','เริ่มต้น 50 ชิ้น ปรับได้ ผลิตทันงาน':'Start from 50 pieces, with flexible production built around your timeline.',
     'ดูแลเหมือนเพื่อน':'Here like a friend','หลังส่งมอบยังอยู่กับคุณ ซัพพอร์ตไม่มีหมด':'We stay with you after delivery, with support whenever you need it.',
-    'พื้นที่สำหรับผลงานและองค์กรที่เคยร่วมงานกับ RUKA':'A space for RUKA projects and partner organisations',
+    'แบรนด์และองค์กรที่ไว้วางใจ RUKA':'Brands and organisations that trust RUKA',
     'คุณกำลังสร้างของขวัญ':'What are you creating a gift','สำหรับโอกาสไหน?':'for?','ยังไม่ต้องเลือกสินค้า เลือกสิ่งที่ใกล้กับโจทย์ของคุณที่สุดก่อน แล้ว RUKA จะพาไปต่อทีละขั้น':'No need to choose a product yet. Start with the occasion closest to your brief, and RUKA will guide you step by step.',
     'พนักงาน & ทีม':'Employees & Teams','ลูกค้า & VIP':'Clients & VIPs','เทศกาล & ปีใหม่':'Festive & New Year','ยังไม่แน่ใจ / Open Brief':'Not sure / Open Brief',
     'เลือกตามโอกาส':'Shop by occasion','ไอเดีย':'Ideas','ผลงาน':'Work','วิธีการทำงาน':'How it works','เกี่ยวกับ RUKA':'About RUKA','เริ่มโปรเจกต์ →':'Start a project →','ให้ RUKA ช่วยคิด →':'Let RUKA help →',
@@ -46,6 +46,13 @@
   }
   window.setRukaLanguage = applyLanguage;
   document.addEventListener('DOMContentLoaded', () => {
+    const trust = document.querySelector('.trust');
+    if (trust) {
+      trust.innerHTML = '<div class="trustEyebrow">BRANDS THAT TRUST US</div><h2 class="trustTitle">แบรนด์และองค์กรที่ไว้วางใจ RUKA</h2><div class="trustBoard"><img src="assets/brands/brands-board.jpg?v=20260830" alt="องค์กรและแบรนด์ลูกค้า RUKA"></div>';
+      const style = document.createElement('style');
+      style.textContent = '.trust{padding:54px 5vw 64px;background:#fff;color:#171717}.trustEyebrow{font-size:11px;font-weight:900;letter-spacing:.18em;color:#b41616;margin-bottom:10px}.trustTitle{font:700 34px Georgia;margin:0 0 28px}.trustBoard{max-width:1180px;margin:auto;border-top:1px solid #eee;border-bottom:1px solid #eee;padding:22px 0}.trustBoard img{display:block;width:100%;height:auto;mix-blend-mode:multiply}@media(max-width:760px){.trust{padding:40px 18px 48px}.trustTitle{font-size:28px}.trustBoard{overflow:hidden}.trustBoard img{width:160%;max-width:none;transform:translateX(-18%)}}';
+      document.head.appendChild(style);
+    }
     document.querySelectorAll('[data-lang]').forEach(button => button.addEventListener('click', () => applyLanguage(button.dataset.lang)));
     applyLanguage(localStorage.getItem('rukaLanguage') === 'en' ? 'en' : 'th');
   });
