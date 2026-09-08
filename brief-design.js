@@ -41,5 +41,13 @@ const budgetStart=new URLSearchParams(location.search).get('budgetStart');
 const startingBudgets={under300:'ต่ำกว่า 300 บาท','300to599':'300–599 บาท'};
 if(startingBudgets[budgetStart]){data.budget=startingBudgets[budgetStart];document.querySelectorAll('.budgetcard').forEach(b=>b.classList.toggle('selected',b.getAttribute('onclick').includes(data.budget)));sync()}
 if(budgetStart==='600plus'){data.budget='';document.querySelectorAll('.budgetcard').forEach(b=>b.classList.remove('selected'));document.querySelectorAll('.budgetcard').forEach(b=>{if(b.getAttribute('onclick').includes('ต่ำกว่า')||b.getAttribute('onclick').includes('300–599'))b.hidden=true});sync();const hint=document.createElement('p');hint.className='brief-summary-note';hint.textContent='เริ่มจากงบ 600 บาทขึ้นไป — เลือกช่วงงบที่เหมาะในขั้นที่ 3';summary.prepend(hint)}
+const packageKey=new URLSearchParams(location.search).get('package');
+const packagePlans={starter:{name:'RUKA STARTER',total:20000,quantity:100,budget:'ต่ำกว่า 300 บาท'},plus:{name:'RUKA PLUS',total:50000,quantity:100,budget:'300–599 บาท'}};
+if(packagePlans[packageKey]){
+ const plan=packagePlans[packageKey];data.qty=String(plan.quantity);qty.value=data.qty;data.budget=plan.budget;
+ const packageNote=document.createElement('p');packageNote.className='brief-summary-note';packageNote.textContent=plan.name+' · งบรวมตั้งต้น '+plan.total.toLocaleString('th-TH')+' บาท / '+plan.quantity+' ชุด (ปรับได้)';summary.prepend(packageNote);
+ const beforePackageSync=sync;sync=function(){beforePackageSync();const brief=flowRead('rukaBrief');brief.packageName=plan.name;brief.totalBudget=plan.total;localStorage.setItem('rukaBrief',JSON.stringify(brief))};sync();
+ const originalPackageNext=next;next=function(){originalPackageNext();sync()};
+}
 show();refresh();
 })();
