@@ -30,9 +30,32 @@
   document.addEventListener('DOMContentLoaded',()=>{
     const trust=document.querySelector('.trust');
     if(trust){
-      trust.innerHTML='<div class="trustEyebrow">BRANDS THAT TRUST US</div><h2 class="trustTitle">แบรนด์และองค์กรที่ไว้วางใจ RUKA</h2><div class="trustMarquee" aria-label="โลโก้ลูกค้า RUKA"><div class="trustTrack"><div class="trustStrip"><img src="assets/brands/brands-board.jpg?v=20260830" alt="โลโก้ลูกค้า RUKA"></div><div class="trustStrip" aria-hidden="true"><img src="assets/brands/brands-board.jpg?v=20260830" alt=""></div></div></div>';
+      const partners = [
+        ['generali.jpg', 'Generali'], ['jll.png', 'JLL'],
+        ['medyceles.jpg', 'Medyceles'], ['toeklom.jpg', 'TOEKLOM'],
+        ['unilever.jpg', 'Unilever'], ['unicef.jpg', 'UNICEF'],
+        ['pathe.jpg', 'ปาเต๊ะ Pathé'], ['theval.jpg', 'The Val'],
+        ['superrich.jpg', 'SuperRich'], ['muzikmove.jpg', 'Muzik Move']
+      ];
+      const strip = partners.map(([file, name]) =>
+        `<div class="trustLogo"><img src="assets/brands/partners/${file}" alt="${name}" width="144" height="80"></div>`
+      ).join('');
+      trust.innerHTML='<div class="trustEyebrow">BRANDS THAT TRUST US</div><h2 class="trustTitle">แบรนด์และองค์กรที่ไว้วางใจ RUKA</h2><div class="trustMarquee" aria-label="โลโก้ลูกค้า RUKA"><div class="trustTrack"><div class="trustStrip">'+strip+'</div><div class="trustStrip" aria-hidden="true">'+strip+'</div></div></div>';
       const style=document.createElement('style');
-      style.textContent='.trust{padding:54px 0 64px;background:#fff;color:#171717;overflow:hidden}.trustEyebrow{text-align:center;font-size:11px;font-weight:900;letter-spacing:.18em;color:#b41616;margin-bottom:10px}.trustTitle{text-align:center;font:700 34px Georgia;margin:0 0 28px}.trustMarquee{width:100%;overflow:hidden;border-top:1px solid #eee;border-bottom:1px solid #eee;background:#fff;padding:18px 0}.trustTrack{display:flex;width:max-content;animation:rukaLogoMarquee 28s linear infinite;will-change:transform}.trustStrip{width:1180px;height:96px;overflow:hidden;flex:0 0 auto;background:#fff}.trustStrip img{display:block;width:1180px;height:auto;transform:translateY(-54px);mix-blend-mode:multiply}.trustMarquee:hover .trustTrack{animation-play-state:paused}@keyframes rukaLogoMarquee{from{transform:translateX(0)}to{transform:translateX(-1180px)}}@media(prefers-reduced-motion:reduce){.trustTrack{animation:none}}@media(max-width:760px){.trust{padding:40px 0 48px}.trustTitle{font-size:28px;padding:0 18px}.trustStrip{width:900px;height:82px}.trustStrip img{width:900px;transform:translateY(-42px)}@keyframes rukaLogoMarquee{from{transform:translateX(0)}to{transform:translateX(-900px)}}}';
+      style.textContent=`
+        .trust{padding:54px 0 64px;background:#fff;color:#171717;overflow:hidden}
+        .trustEyebrow{text-align:center;font-size:11px;font-weight:900;letter-spacing:.18em;color:#b41616;margin-bottom:10px}
+        .trustTitle{text-align:center;font:700 34px Georgia;margin:0 0 28px}
+        .trustMarquee{width:100%;overflow:hidden;border-top:1px solid #eee;border-bottom:1px solid #eee;background:#fff;padding:18px 0}
+        .trustTrack{display:flex;width:max-content;animation:rukaLogoMarquee 40s linear infinite}
+        .trustStrip{display:flex;align-items:center;flex:0 0 auto;background:#fff}
+        .trustLogo{display:flex;align-items:center;justify-content:center;width:192px;height:96px;flex:0 0 192px}
+        .trustLogo img{display:block;width:144px;height:80px;object-fit:contain;transform:none}
+        .trustMarquee:hover .trustTrack{animation-play-state:paused}
+        @keyframes rukaLogoMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+        @media(prefers-reduced-motion:reduce){.trustTrack{animation:none}.trustMarquee{overflow-x:auto}}
+        @media(max-width:760px){.trust{padding:40px 0 48px}.trustTitle{font-size:28px;padding:0 18px}.trustLogo{width:152px;flex-basis:152px;height:82px}.trustLogo img{width:112px;height:68px}}
+      `;
       document.head.appendChild(style)
     }
     markCurrentPage();document.querySelectorAll('[data-lang]').forEach(button=>button.addEventListener('click',()=>applyLanguage(button.dataset.lang)));applyLanguage(localStorage.getItem('rukaLanguage')==='en'?'en':'th');
