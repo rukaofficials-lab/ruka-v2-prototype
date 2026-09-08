@@ -65,3 +65,26 @@ body > nav .navLeft a.active,body > nav .navRight a.active{color:#fff}
 body > nav .navLeft a.active::after,body > nav .navRight a.active::after{content:"";position:absolute;z-index:-1;inset:50% -12px auto;transform:translateY(-50%);width:auto;height:34px;border-radius:999px;background:var(--ruka-header-red)}
 body > nav .mobile-menu a.active{background:var(--ruka-header-red);color:#fff;border-radius:999px}
 body > nav a:focus-visible{outline:2px solid var(--ruka-header-red);outline-offset:5px}
+/* More generous desktop header, with the wordmark on the true center line. */
+@media(min-width:1051px){
+ body > nav{height:96px;column-gap:42px;padding:0 max(36px,calc((100% - 1280px)/2))}
+ body > nav .logo{font-size:58px !important}
+ body > nav .navLeft{gap:46px}
+ body > nav .navRight{gap:26px}
+ body > nav .navLeft a,body > nav .navRight a{font-size:17px;letter-spacing:.035em;padding:30px 0}
+ body > nav .navLeft a.active::after,body > nav .navRight a.active::after{height:40px;left:-14px;right:-14px}
+ body > nav .searchBtn{width:40px;height:40px}
+ body > nav .quote{font-size:12px;padding:15px 22px;letter-spacing:.08em}
+ body > nav .languageSwitch button{font-size:12px;min-width:22px}
+}
+@media(min-width:1051px) and (max-width:1250px){
+ body > nav{column-gap:24px;padding:0 30px;height:90px}
+ body > nav .logo{font-size:52px !important}
+ body > nav .navLeft{gap:32px}
+ body > nav .navRight{gap:20px}
+ body > nav .navLeft a,body > nav .navRight a{font-size:16px;letter-spacing:0}
+ body > nav .quote{font-size:11px;padding:14px 17px}
+ body > nav .searchBtn{width:36px;height:36px}
+ body > nav .navLeft a.active::after,body > nav .navRight a.active::after{left:-10px;right:-10px}
+}
+@media(min-width:1051px){body > nav .navLeft{justify-content:space-between;gap:24px;width:100%;max-width:370px}}
