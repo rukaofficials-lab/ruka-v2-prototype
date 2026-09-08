@@ -34,5 +34,8 @@ mood.addEventListener('input',refresh);
 qty.setAttribute('aria-label','จำนวนชุด');date.setAttribute('aria-label','วันที่ต้องการรับสินค้า');mood.setAttribute('aria-label','รูปแบบหรือความรู้สึกที่ต้องการ');
 const moodLabel=document.createElement('p');moodLabel.className='qlead';moodLabel.textContent='เลือกแนวที่ชอบ หรือเล่าไอเดียเพิ่มเติมได้เลย';mood.before(moodLabel);
 const moods=document.createElement('div');moods.className='brief-moods';['✨ เรียบหรู','🌿 ธรรมชาติ','🎨 สดใส','🤍 อบอุ่น'].forEach(text=>{const b=document.createElement('button');b.type='button';b.textContent=text;b.onclick=()=>{mood.value=text.slice(text.indexOf(' ')+1);sync()};moods.append(b)});mood.before(moods);
+const chosenStyle=new URLSearchParams(location.search).get('style');
+const styleLabels={everyday:'เรียบง่าย ใช้ได้ทุกวัน',premium:'พรีเมียม น่าประทับใจ',playful:'สนุก จดจำแบรนด์ได้'};
+if(styleLabels[chosenStyle]){mood.value=styleLabels[chosenStyle];sync()}
 show();refresh();
 })();
