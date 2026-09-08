@@ -1,5 +1,18 @@
 /* Shared navigation and handoff for the prototype. No message is sent automatically. */
 const flowRead=(key,fallback={})=>{try{return JSON.parse(localStorage.getItem(key))||fallback}catch{return fallback}};
+function flowFilterIntent() {
+ const filters=flowRead('rukaFilters');
+ return {
+  quantity:[null,50,100,300,500][filters.selects?.[0]||0],
+  budget:['ต่ำกว่า 300 บาท','300–599 บาท','600–999 บาท','1,000+ บาท'][filters.budget]||'',
+  delivery:['','ภายใน 2–3 สัปดาห์','ภายใน 1 เดือน','มากกว่า 1 เดือน'][filters.selects?.[1]||0]
+ };
+}
+function flowSelectProduct(name) {
+ localStorage.setItem('rukaProduct',name);
+ localStorage.setItem('rukaFilterIntent',JSON.stringify(flowFilterIntent()));
+ location.href='brief.html';
+}
 const flowPage=location.pathname.split('/').pop()||'index.html';
 const flowNav=document.querySelector('body>nav');
 if(flowNav){
@@ -25,7 +38,7 @@ if(flowPage==='products.html'){
  };
  budgetInputs.forEach(x=>x.onchange=()=>render());selects.forEach(x=>x.onchange=()=>render());
  const reset=document.createElement('button');reset.className='filter-reset';reset.textContent='ล้างตัวกรอง';reset.onclick=()=>{budgetInputs.forEach(x=>x.checked=false);selects.forEach(x=>x.selectedIndex=0);render('all')};document.querySelector('.filters').append(reset);
- add=function(name){localStorage.setItem('rukaProduct',name);localStorage.setItem('rukaFilterIntent',JSON.stringify({quantity:[null,50,100,300,500][selects[0].selectedIndex],budget:['ต่ำกว่า 300 บาท','300–599 บาท','600–999 บาท','1,000+ บาท'][budgetInputs.findIndex(x=>x.checked)]||''}));location.href='brief.html'};
+ add=flowSelectProduct;
  detail=function(name){location.href='product.html?product='+encodeURIComponent(name)};
  preset=function(type){if(type==='easy'){location.href='occasion.html';return}budgetInputs.forEach(x=>x.checked=false);selects.forEach(s=>s.selectedIndex=0);if(type==='budget')budgetInputs[0].checked=true;if(type==='premium')budgetInputs[2].checked=true;if(type==='fast')selects[1].selectedIndex=2;render('all');document.querySelector('.filters').scrollIntoView({block:'center'})};
  document.getElementById('q').addEventListener('keydown',e=>{if(e.key==='Enter')smartSearch()});render();if(location.search.includes('search=1'))document.getElementById('q').focus();
@@ -33,7 +46,7 @@ if(flowPage==='products.html'){
 if(flowPage==='brief.html'){
  const filtered=flowRead('rukaFilterIntent');localStorage.removeItem('rukaFilterIntent');
  const draft=flowRead('rukaDraft');if(draft.data){Object.assign(data,draft.data);if(draft.occasion!==occ)data.detail='';mood.value=draft.mood||'';date.value=draft.exactDate||'';qty.value=data.qty||''}
- if(filtered.quantity)data.qty=String(filtered.quantity);if(filtered.budget)data.budget=filtered.budget;
+ if(filtered.quantity)data.qty=String(filtered.quantity);if(filtered.budget)data.budget=filtered.budget;if(filtered.delivery){data.dateLabel=filtered.delivery;date.value=''}
  const intent=localStorage.getItem('rukaSearchIntent')||'',idea=localStorage.getItem('rukaIdea')||'';
  if(idea&&draft.idea!==idea)mood.value=localStorage.getItem('rukaIdeaMood')||'';
  const context=document.createElement('p');context.className='flow-context';context.textContent=[product&&'สินค้า: '+product,intent&&'โจทย์: '+intent,idea&&'ไอเดีย: '+idea,idea&&'งบอ้างอิง: '+(localStorage.getItem('rukaIdeaBudget')||'')].filter(Boolean).join('\n');if(context.textContent)document.querySelector('.sub').after(context);
@@ -45,7 +58,7 @@ if(flowPage==='brief.html'){
 if(flowPage==='concept.html'){
  const saved=flowRead('rukaConcept');const chosen=localStorage.getItem('rukaProduct');if(chosen){document.getElementById('n0').textContent=chosen;document.getElementById('e0').textContent='🎁'}if(saved.direction===(localStorage.getItem('rukaDirection')||'')&&saved.sourceProduct===(chosen||'')){(saved.items||[]).forEach((item,i)=>{document.getElementById('n'+i).textContent=item.name;document.getElementById('e'+i).textContent=item.emoji});if(saved.packaging)packName.textContent=saved.packaging}
  const persist=()=>localStorage.setItem('rukaConcept',JSON.stringify({sourceProduct:chosen||'',direction:localStorage.getItem('rukaDirection')||'',items:[0,1,2].map(i=>({name:document.getElementById('n'+i).textContent,emoji:document.getElementById('e'+i).textContent})),packaging:packName.textContent}));
- const originalChoose=chooseProduct;chooseProduct=function(e,n){originalChoose(e,n);persist()};openContact=function(){persist();location.href='contact.html'};
+ const originalChoose=chooseProduct;chooseProduct=function(e,n){originalChoose(e,n);persist()};openContact=function(){persist();location.href='contact.html'};flowNav.querySelector('.quote').onclick=()=>openContact();
 }
 if(flowPage==='contact.html'){
  const b=flowRead('rukaBrief'),draft=flowRead('rukaDraft'),concept=flowRead('rukaConcept');const current=draft.data?{...b,occasion:draft.occasion,detail:draft.data.detail,quantity:draft.data.qty,budget:draft.data.budget,date:draft.data.dateLabel,mood:draft.mood}:b;
@@ -60,5 +73,6 @@ if(flowPage==='ideas.html'){
 }
 
 if(flowPage==='product.html'){
+ addToProject=function(){flowSelectProduct(selected)};
  const save=document.querySelector('button[onclick^="alert("]');if(save){save.onclick=()=>{localStorage.setItem('rukaProduct',selected);save.textContent='✓ บันทึกแล้ว';save.setAttribute('aria-pressed','true')};if(localStorage.getItem('rukaProduct')===selected)save.textContent='✓ บันทึกแล้ว'}
 }
