@@ -1,0 +1,17 @@
+/* Equal 40px sprite cells yield approximately 28px optical icon sizes. */
+.chip .occasion-icon {
+  display: block;
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
+  margin: 0 8px 0 0;
+  background-image: url('assets/icons/occasions-clay.png');
+  background-repeat: no-repeat;
+  background-size: 300% 200%;
+}
+.occasion-icon--event { background-position: 0 0; }
+.occasion-icon--employee { background-position: 50% 0; }
+.occasion-icon--campaign { background-position: 100% 0; }
+.occasion-icon--vip { background-position: 0 100%; }
+.occasion-icon--new-year { background-position: 50% 100%; }
+.occasion-icon--unsure { background-position: 100% 100%; }
