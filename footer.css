@@ -21,3 +21,18 @@ body > nav .logo .adot{width:.15em;height:.15em;right:.10em;top:.22em;animation:
 .footer-bottom{border-top:1px solid #ffffff25;padding:22px max(24px,calc((100% - 1200px)/2));display:flex;justify-content:space-between;gap:20px;font-size:12px;color:#f0cccc}
 @media(max-width:1000px){.footer-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:40px;padding:48px 28px}.footer-cta h2{font-size:32px}}
 @media(max-width:560px){.footer-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 20px;padding:40px 22px}.footer-brand,.footer-cta{grid-column:1/-1}.footer-logo{font-size:48px}.footer-links h2{font-size:20px}.footer-links a{font-size:14px}.footer-bottom{flex-direction:column;gap:5px}.site-footer{margin-top:24px}}
+/* One wordmark size and alignment across every page. */
+body > nav .logo {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 46px !important;
+  font-weight: 900;
+  letter-spacing: -.01em !important;
+  line-height: 1;
+  transform: none !important;
+  flex: 0 0 auto;
+}
+.footer-logo {font-size:46px;letter-spacing:-.01em;line-height:1}
+@media(max-width:1050px){
+  body > nav .logo{position:relative !important;left:auto !important;top:auto !important;margin-left:16px;font-size:38px !important}
+}
+@media(max-width:560px){body > nav .logo{font-size:34px !important}.footer-logo{font-size:38px}}
