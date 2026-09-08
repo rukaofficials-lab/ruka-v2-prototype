@@ -68,11 +68,17 @@ if(flowPage==='contact.html'){
 }
 
 if(flowPage==='ideas.html'){
- const cards=[...document.querySelectorAll('article')];const facets=[['employee',500,700],['client',900,1200],['event',350,550],['employee',450,650],['client',750,1000]];
- pick=function(el){const index=[...document.querySelectorAll('.filter')].indexOf(el);document.querySelectorAll('.filter').forEach(x=>x.classList.toggle('on',x===el));cards.forEach((card,i)=>{const [occasion,low,high]=facets[i];card.hidden=!(index===0||(index===1&&occasion==='employee')||(index===2&&occasion==='client')||((index===3||index===4)&&occasion==='event')||(index===5&&low<500)||(index===6&&low<=1000&&high>=500)||(index===7&&high>=1000))})};
+ const initialFilter=document.querySelector('.filter.on');if(initialFilter)pick(initialFilter);
 }
 
 if(flowPage==='product.html'){
  addToProject=function(){flowSelectProduct(selected)};
  const save=document.querySelector('button[onclick^="alert("]');if(save){save.onclick=()=>{localStorage.setItem('rukaProduct',selected);save.textContent='✓ บันทึกแล้ว';save.setAttribute('aria-pressed','true')};if(localStorage.getItem('rukaProduct')===selected)save.textContent='✓ บันทึกแล้ว'}
+}
+
+if(flowPage==='product.html'){
+ const saveButton=document.querySelector('.secondary');
+ const readSaved=()=>{try{const value=JSON.parse(localStorage.getItem('rukaSavedProducts')||'[]');return Array.isArray(value)?value.filter(x=>typeof x==='string'):[]}catch{return []}};
+ const paintSaved=()=>{const saved=readSaved().includes(selected);saveButton.textContent=saved?'♥ บันทึกแล้ว':'♡ บันทึกไว้';saveButton.setAttribute('aria-pressed',String(saved));saveButton.setAttribute('aria-label',(saved?'ยกเลิกบันทึก ':'บันทึก ')+selected)};
+ if(saveButton){saveButton.onclick=()=>{const saved=readSaved();try{localStorage.setItem('rukaSavedProducts',JSON.stringify(saved.includes(selected)?saved.filter(name=>name!==selected):[...saved,selected]));paintSaved()}catch{saveButton.textContent='ลองบันทึกอีกครั้ง';saveButton.setAttribute('aria-label','บันทึกไม่สำเร็จ ลองอีกครั้ง')}};paintSaved()}
 }
