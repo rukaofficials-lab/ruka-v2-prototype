@@ -25,7 +25,18 @@
   const originals = new WeakMap();
   const textNodes = root => { const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode(node){if(!node.nodeValue.trim()||/^(SCRIPT|STYLE|NOSCRIPT)$/.test(node.parentElement?.tagName||''))return NodeFilter.FILTER_REJECT;return NodeFilter.FILTER_ACCEPT}});const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);return nodes };
   function applyLanguage(lang){document.documentElement.lang=lang==='en'?'en':'th';textNodes(document.body).forEach(node=>{if(!originals.has(node))originals.set(node,node.nodeValue);const original=originals.get(node);if(lang==='th'){node.nodeValue=original;return}const lead=original.match(/^\s*/)?.[0]||'',tail=original.match(/\s*$/)?.[0]||'',key=original.trim();if(translations[key])node.nodeValue=lead+translations[key]+tail});document.querySelectorAll('[data-lang]').forEach(button=>button.classList.toggle('active',button.dataset.lang===lang));localStorage.setItem('rukaLanguage',lang)}
-  function markCurrentPage(){const page=(location.pathname.split('/').pop()||'index.html').toLowerCase();document.querySelectorAll('body > nav a[href]').forEach(a=>{const href=(a.getAttribute('href')||'').split('?')[0].split('#')[0].toLowerCase();let active=false;if(page==='index.html'||page===''){active=href==='index.html'||href==='./'||href==='' }else if(page==='products.html'){active=href==='products.html'}else if(page==='occasion.html'){active=href==='occasion.html'}else if(page==='ideas.html'){active=href==='ideas.html'}else if(page==='about.html'){active=href==='about.html'}if(active&&!a.classList.contains('logo')){a.classList.add('active');a.setAttribute('aria-current','page')}})}
+  function markCurrentPage(){
+    const page=(location.pathname.split('/').pop()||'index.html').toLowerCase();
+    const section={'product.html':'products.html','brief.html':'occasion.html','recommendations.html':'occasion.html','concept.html':'occasion.html','how.html':'occasion.html'}[page]||page;
+    document.querySelectorAll('body > nav a[href]').forEach(a=>{
+      if(a.classList.contains('logo'))return;
+      const target=new URL(a.href,location.href).pathname.split('/').pop()||'index.html';
+      const current=target===page;
+      const active=current||(target===section&&(!a.closest('.mobile-menu')||page!=='how.html'));
+      a.classList.toggle('active',active);
+      if(active)a.setAttribute('aria-current',current?'page':'true');else a.removeAttribute('aria-current');
+    });
+  }
   window.setRukaLanguage=applyLanguage;
   document.addEventListener('DOMContentLoaded',()=>{
     const trust=document.querySelector('.trust');

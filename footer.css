@@ -58,3 +58,10 @@ body > nav .logo .adot,.footer-dot{animation:rukaWordmarkDot 1.8s ease-in-out in
  body > nav .languageSwitch button{min-width:22px;font-size:12px}
 }
 @media(min-width:1051px) and (max-width:1190px){body > nav{column-gap:30px;padding:0 30px}body > nav .navLeft{gap:28px}body > nav .navRight{gap:14px}}
+
+/* Selected navigation stays in place and receives a rounded red background. */
+body > nav .navLeft a,body > nav .navRight a{color:var(--ruka-header-red);isolation:isolate}
+body > nav .navLeft a.active,body > nav .navRight a.active{color:#fff}
+body > nav .navLeft a.active::after,body > nav .navRight a.active::after{content:"";position:absolute;z-index:-1;inset:50% -12px auto;transform:translateY(-50%);width:auto;height:34px;border-radius:999px;background:var(--ruka-header-red)}
+body > nav .mobile-menu a.active{background:var(--ruka-header-red);color:#fff;border-radius:999px}
+body > nav a:focus-visible{outline:2px solid var(--ruka-header-red);outline-offset:5px}
