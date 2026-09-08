@@ -37,5 +37,9 @@ const moods=document.createElement('div');moods.className='brief-moods';['✨ �
 const chosenStyle=new URLSearchParams(location.search).get('style');
 const styleLabels={everyday:'เรียบง่าย ใช้ได้ทุกวัน',premium:'พรีเมียม น่าประทับใจ',playful:'สนุก จดจำแบรนด์ได้'};
 if(styleLabels[chosenStyle]){mood.value=styleLabels[chosenStyle];sync()}
+const budgetStart=new URLSearchParams(location.search).get('budgetStart');
+const startingBudgets={under300:'ต่ำกว่า 300 บาท','300to599':'300–599 บาท'};
+if(startingBudgets[budgetStart]){data.budget=startingBudgets[budgetStart];document.querySelectorAll('.budgetcard').forEach(b=>b.classList.toggle('selected',b.getAttribute('onclick').includes(data.budget)));sync()}
+if(budgetStart==='600plus'){data.budget='';document.querySelectorAll('.budgetcard').forEach(b=>b.classList.remove('selected'));document.querySelectorAll('.budgetcard').forEach(b=>{if(b.getAttribute('onclick').includes('ต่ำกว่า')||b.getAttribute('onclick').includes('300–599'))b.hidden=true});sync();const hint=document.createElement('p');hint.className='brief-summary-note';hint.textContent='เริ่มจากงบ 600 บาทขึ้นไป — เลือกช่วงงบที่เหมาะในขั้นที่ 3';summary.prepend(hint)}
 show();refresh();
 })();
