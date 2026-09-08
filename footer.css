@@ -36,3 +36,11 @@ body > nav .logo {
   body > nav .logo{position:relative !important;left:auto !important;top:auto !important;margin-left:16px;font-size:38px !important}
 }
 @media(max-width:560px){body > nav .logo{font-size:34px !important}.footer-logo{font-size:38px}}
+/* Keep the decorative dot animated independently of the wordmark. */
+body > nav .logo .adot,.footer-dot{animation:rukaWordmarkDot 1.8s ease-in-out infinite}
+@keyframes rukaWordmarkDot{
+  0%,100%{transform:translateY(0) scale(1)}
+  45%{transform:translateY(-7px) scale(1.08)}
+  65%{transform:translateY(-2px) scale(.96)}
+}
+@media(prefers-reduced-motion:reduce){body > nav .logo .adot,.footer-dot{animation:none}}
