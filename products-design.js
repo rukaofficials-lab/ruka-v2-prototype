@@ -1,0 +1,35 @@
+(()=>{
+const categories=['ทั้งหมด','แก้วและกระบอกน้ำ','กระเป๋า','อุปกรณ์ไอที','ของใช้ประจำวัน','เสื้อผ้าและหมวก','รักษ์โลก','บรรจุภัณฑ์'];
+document.querySelectorAll('.cat').forEach((el,i)=>el.textContent=categories[i]);
+document.querySelector('.hero h1').textContent='เลือกของที่ใช่ ให้แบรนด์คุณ';
+document.querySelector('.hero p').textContent='เลือกดูสินค้า หรือบอกไอเดียให้เราช่วยหา';
+q.setAttribute('aria-label','บอกสินค้าหรือไอเดียที่ต้องการ');
+q.placeholder='เช่น กระบอกน้ำ 300 ใบ งบไม่เกิน 500 บาท';
+document.querySelector('.ask').textContent='ให้ RUKA ช่วยหา →';
+const quick=document.querySelector('.quick');quick.replaceChildren();
+[['fast','⚡ ผลิตภายใน 1 เดือน'],['premium','✨ งบ 600–999 บาท']].forEach(([type,label])=>{const b=document.createElement('button');b.textContent=label;b.type='button';b.onclick=()=>preset(type);quick.append(b)});
+const help=document.createElement('a');help.href='occasion.html';help.textContent='ยังไม่มีไอเดีย? เริ่มตรงนี้ →';quick.append(help);
+const filter=document.querySelector('.filters');
+filter.querySelector('h3').textContent='เลือกเงื่อนไข';
+filter.querySelector('select').options[0].textContent='ทุกจำนวนขั้นต่ำ';
+const toggler=document.createElement('button');toggler.type='button';toggler.className='products-filter-toggle';toggler.textContent='ตัวกรอง';toggler.setAttribute('aria-expanded','false');filter.id='products-filters';toggler.setAttribute('aria-controls',filter.id);toggler.onclick=()=>{const open=toggler.getAttribute('aria-expanded')!=='true';toggler.setAttribute('aria-expanded',String(open));filter.classList.toggle('is-open',open)};
+document.querySelector('.bar').after(toggler);
+const chips=document.createElement('div');chips.className='products-applied';chips.setAttribute('aria-label','เงื่อนไขที่เลือก');document.querySelector('.topline').after(chips);
+const radios=[...filter.querySelectorAll('input[name=budget]')],selects=[...filter.querySelectorAll('select')];
+const savedRender=render;
+render=function(...args){savedRender(...args);
+ document.querySelectorAll('#grid .card').forEach(card=>{
+  card.querySelector('.add').remove();card.querySelector('.custom').remove();
+  const button=card.querySelector('.view');button.textContent='ดูสินค้า →';button.setAttribute('aria-label','ดูสินค้า '+card.querySelector('h3').textContent);
+  const photo=card.querySelector('.photo');photo.setAttribute('aria-hidden','true');
+  card.querySelector('.meta').textContent=card.querySelector('.meta').textContent.replace('MOQ ','ขั้นต่ำ ');
+ });
+ document.querySelectorAll('.cat').forEach(b=>b.setAttribute('aria-pressed',String(b.classList.contains('active'))));
+ chips.replaceChildren();
+ const addChip=(text,remove)=>{const b=document.createElement('button');b.type='button';b.textContent=text+' ×';b.setAttribute('aria-label','ยกเลิก '+text);b.onclick=remove;chips.append(b)};
+ radios.forEach(r=>{if(r.checked)addChip(r.parentElement.textContent.trim(),()=>{r.checked=false;render()})});
+ selects.forEach((s,i)=>{if(s.selectedIndex)addChip((i===0?'จำนวน: ':'รับสินค้า: ')+s.selectedOptions[0].textContent,()=>{s.selectedIndex=0;render()})});
+ chips.hidden=!chips.children.length;
+};
+render();
+})();
