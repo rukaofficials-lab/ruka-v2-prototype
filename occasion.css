@@ -1,0 +1,38 @@
+body{background:#fbf8f3}
+.occasion-page{max-width:1180px;margin:auto;padding:52px 30px 48px}
+.occasion-intro{text-align:center;margin-bottom:34px}
+.occasion-eyebrow{display:inline-block;background:white;border:1px solid #eee4da;border-radius:30px;padding:8px 15px;font-size:10px;font-weight:700;letter-spacing:.16em;color:#b41616}
+.occasion-intro h1{font-size:clamp(30px,3.4vw,46px);line-height:1.45;margin:15px 0 10px;letter-spacing:-.035em;color:#252321}
+.occasion-intro h1 span{color:#b41616;position:relative;display:inline-block}
+.occasion-intro h1 span:after{content:"";position:absolute;bottom:1px;left:5%;width:90%;height:3px;border-radius:50%;background:#e8ad30;transform:rotate(-2deg)}
+.occasion-intro p{color:#77716a;font-size:16px;line-height:1.7;margin:0}
+.occasion-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.occasion-card{display:flex;flex-direction:column;border:1px solid #e9e3da;border-radius:22px;background:#fff;padding:24px;box-shadow:0 6px 18px #59381304;transition:transform .18s,box-shadow .18s,border-color .18s}
+.occasion-card:hover{transform:translateY(-3px);border-color:#d5b68b;box-shadow:0 10px 24px #5938130c}
+.occasion-card:focus-visible{outline:3px solid #b41616;outline-offset:4px}
+.occasion-card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:17px}
+.occasion-disc{width:64px;height:64px;border-radius:50%;background:#fff1de;display:grid;place-items:center}
+.occasion-art{display:block;width:64px;height:64px;background-image:url('assets/icons/occasions-clay.png');background-size:300% 200%;background-repeat:no-repeat}
+.occasion-number{font-size:12px;color:#b7aaa0;letter-spacing:.08em;padding-top:5px}
+.occasion-card--employee .occasion-art{background-position:50% 0}
+.occasion-card--client .occasion-art{background-position:0 100%}
+.occasion-card--event .occasion-art{background-position:0 0}
+.occasion-card--campaign .occasion-art{background-position:100% 0}
+.occasion-card--seasonal .occasion-art{background-position:50% 100%}
+.occasion-card--unsure .occasion-art{background-position:100% 100%}
+.occasion-card--client .occasion-disc{background:#fff5d8}
+.occasion-card--event .occasion-disc{background:#ffeae5}
+.occasion-card--campaign .occasion-disc{background:#e9f3f7}
+.occasion-card--seasonal .occasion-disc{background:#faeae5}
+.occasion-card--unsure{background:#fff9e9}
+.occasion-card--unsure .occasion-disc{background:#f3edda}
+.occasion-card h2{font-size:22px;line-height:1.5;margin:0 0 6px;color:#292522}
+.occasion-card p{font-size:14px;line-height:1.75;color:#79716a;margin:0 0 20px}
+.occasion-card-bottom{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:auto}
+.occasion-tag{font-size:11px;color:#8c7b6c;background:#f8f4ef;border-radius:20px;padding:6px 10px}
+.occasion-next{display:grid;place-items:center;border:1px solid #eadbd0;border-radius:50%;width:30px;height:30px;color:#b41616;font-size:19px;flex-shrink:0}
+.occasion-help{text-align:center;margin-top:26px;font-size:13px;color:#898178;line-height:1.8}
+.occasion-help p{margin:0 0 7px}.occasion-help p span{color:#b41616;margin-left:5px}.occasion-help>a{color:#8a6b51;text-decoration:underline;text-underline-offset:4px}
+@media(max-width:850px){.occasion-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.occasion-page{padding:35px 24px}.occasion-card{padding:22px}}
+@media(max-width:540px){.occasion-grid{grid-template-columns:1fr;gap:14px}.occasion-page{padding:30px 18px}.occasion-intro{margin-bottom:25px}.occasion-intro p{font-size:14px}.occasion-card{padding:20px}.occasion-card-top{margin-bottom:12px}.occasion-disc,.occasion-art{width:56px;height:56px}.occasion-card h2{font-size:21px}.occasion-card p{margin-bottom:15px}}
+@media(prefers-reduced-motion:reduce){.occasion-card{transition:none}.occasion-card:hover{transform:none}}
