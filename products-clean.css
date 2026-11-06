@@ -176,7 +176,7 @@ html body .info .price span{font-size:inherit;color:inherit;font-weight:inherit}
 html body{background:#fff}
 html body .hero p,html body .quick{display:none}
 html body .hero h1{margin:0}
-@media(min-width:861px){html body .hero{padding-top:34px;padding-bottom:26px}html body .hero h1{grid-row:1;align-self:center}html body .hero .search{grid-row:1}}
+@media(min-width:861px){html body .hero{padding-top:34px;padding-bottom:18px}html body .hero h1{grid-row:1;align-self:center}html body .hero .search{grid-row:1}}
 html body .hero .search{border-color:#ece8e1;background:#fff}
 .shop-bar{--bg:#fff;box-shadow:none;clip-path:none;z-index:30}
 .group-panel{position:relative;margin:0 0 52px;padding:0 0 52px;border-radius:0;border-bottom:1px solid #eeeae4;background:none;box-shadow:none}
@@ -219,4 +219,12 @@ html body .bar .cat{font-size:26px}
 html body #grid .card .photo img{transform:translate(var(--x,0),var(--y,0)) scale(var(--s,1))}
 html body #grid .card:hover .photo img,html body #grid .card:focus-within .photo img{transform:translate(var(--x,0),var(--y,0)) scale(calc(var(--s,1)*1.05))}
 @media(min-width:1240px){.panel-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:26px 14px}}
+
+
+/* Budget planner entry closes the category list. */
+html body .cat-plan{flex-shrink:0;display:inline-flex;align-items:center;height:38px;padding:0 14px;border:1px solid #b41616;border-radius:999px;color:#b41616;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap}
+@media(min-width:1051px){
+ html body .cat-plan{height:auto;margin-top:12px;padding:0;border:0;border-radius:0;font:500 16px/1.4 "IBM Plex Sans Thai",Arial,sans-serif;transition:color .2s}
+ html body .cat-plan:hover{color:#1f1512}
+}
 

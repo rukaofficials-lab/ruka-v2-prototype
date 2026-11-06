@@ -100,6 +100,8 @@
   Object.assign(translations,{"คิดจากแก่นแบรนด์":"Think from the heart of the brand","ผลิตของที่ใช้ได้จริง":"Make things people truly use","ดูแลจนงานจบ":"Care until the job is done"});
   Object.assign(translations,{"สิ่งที่เรายึดถือทุกชิ้นงาน":"What we hold to on every job","เริ่มจากแบรนด์":"Start from the brand","ออกแบบจากแก่นแบรนด์เป็นอันดับแรก ไม่ใช่แค่ให้สวย":"Design from the heart of the brand, not just for looks","คุยตรงไปตรงมา":"Straight talk","ชัดเจนกันตั้งแต่บรีฟจนถึงวันส่งของ":"Clear from the brief to delivery day","ใช้ได้จริง":"Truly useful","เลือกของที่มีประโยชน์ ไม่ผลิตของเก็บฝุ่น":"Choose useful things, not things that gather dust","ลองสิ่งใหม่เสมอ":"Always trying new things","ใส่ใจทั้งหน้าตาและการใช้งานของทุกชิ้น":"Care for how every piece looks and works","ใส่ใจทุกสัมผัส":"Care in every touch","ตั้งแต่แพ็กเกจจนถึงตอนเปิดกล่อง":"From the packaging to the unboxing"});
   Object.assign(translations,{"ขั้นตอน":"How","การทำงาน":"we work","จากไอเดียจนถึงวันส่งของ และหลังจากนั้น":"From idea to delivery day, and beyond"});
+  Object.assign(translations,{"มีงบในใจ? จัดของขวัญตามงบ →":"Have a budget? Plan by budget →","จัดของขวัญ":"Plan your gift","ตามงบของคุณ":"by budget","ใส่งบกับจำนวน แล้วดูว่าได้ของแบบไหน":"Enter your budget and quantity to see what you can get"});
+  translations["จัดของขวัญตามงบ →"]="Plan by budget →";
   const textNodes = root => { const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode(node){if(!node.nodeValue.trim()||/^(SCRIPT|STYLE|NOSCRIPT)$/.test(node.parentElement?.tagName||''))return NodeFilter.FILTER_REJECT;return NodeFilter.FILTER_ACCEPT}});const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);return nodes };
   const placeholders = new WeakMap();
   const patterns = [

@@ -8,12 +8,12 @@ q.placeholder='ค้นหาสินค้า เช่น กระบอก
 document.querySelector('.ask').textContent='ค้นหา';
 const quick=document.querySelector('.quick');quick.replaceChildren();
 [['fast','ผลิตภายใน 1 เดือน'],['premium','งบ 600–999 บาท']].forEach(([type,label])=>{const b=document.createElement('button');b.textContent=label;b.type='button';b.onclick=()=>preset(type);quick.append(b)});
-const help=document.createElement('a');help.href='occasion.html';help.textContent='ยังไม่มีไอเดีย? เริ่มตรงนี้ →';quick.append(help);
+
 const filter=document.querySelector('.filters');
 filter.querySelector('h3').textContent='เลือกเงื่อนไข';
 filter.querySelector('select').options[0].textContent='ทุกจำนวนขั้นต่ำ';
 const toggler=document.createElement('button');toggler.type='button';toggler.className='products-filter-toggle';toggler.textContent='ตัวกรอง';toggler.setAttribute('aria-expanded','false');filter.id='products-filters';toggler.setAttribute('aria-controls',filter.id);toggler.onclick=()=>{const open=toggler.getAttribute('aria-expanded')!=='true';toggler.setAttribute('aria-expanded',String(open));filter.classList.toggle('is-open',open)};
-const shopBar=document.createElement('div');shopBar.className='shop-bar';const bar=document.querySelector('.bar');bar.before(shopBar);shopBar.append(bar,toggler,filter);document.addEventListener('click',e=>{if(filter.classList.contains('is-open')&&!filter.contains(e.target)&&!toggler.contains(e.target))toggler.click()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&filter.classList.contains('is-open'))toggler.click()});
+const shopBar=document.createElement('div');shopBar.className='shop-bar';const bar=document.querySelector('.bar');bar.before(shopBar);shopBar.append(bar,toggler,filter);const planLink=document.createElement('a');planLink.className='cat-plan';planLink.href='gift-planner.html';planLink.textContent='จัดของขวัญตามงบ →';bar.append(planLink);document.addEventListener('click',e=>{if(filter.classList.contains('is-open')&&!filter.contains(e.target)&&!toggler.contains(e.target))toggler.click()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&filter.classList.contains('is-open'))toggler.click()});
 const chips=document.createElement('div');chips.className='products-applied';chips.setAttribute('aria-label','เงื่อนไขที่เลือก');document.querySelector('.topline').after(chips);
 const radios=[...filter.querySelectorAll('input[name=budget]')],selects=[...filter.querySelectorAll('select')];
 const groups=[...document.querySelectorAll('.cat')].map((el,i)=>[el.getAttribute('onclick').match(/"([a-z]+)"/)[1],categories[i]]).filter(([id])=>id!=='all');
