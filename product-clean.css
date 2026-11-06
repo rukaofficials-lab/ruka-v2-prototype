@@ -37,7 +37,6 @@ html body .secondary{height:52px;padding:0 20px;border:1px solid #efe7da;border-
 html body .note{margin-top:10px;color:#8a7f78;font-size:12.5px;line-height:1.5}
 html body .section{max-width:1200px;padding:36px 20px 0}
 html body .section h2{margin:0 0 20px;font:500 clamp(24px,2.8vw,34px)/1.3 "IBM Plex Sans Thai",Arial,sans-serif;color:#1f1512}
-html body .section h2 br{display:none}
 html body .ideas{gap:clamp(12px,1.6vw,20px)}
 html body .idea{border:0;border-radius:0;overflow:visible}
 html body .ideaVisual{height:auto;aspect-ratio:1/.72;overflow:hidden;padding:5%;border-radius:20px;background:#faf8f4;box-sizing:border-box}
@@ -62,3 +61,49 @@ html body .bottom button{flex-shrink:0;height:46px;margin-left:auto;padding:0 22
 html body .mainimg #emoji,html body .thumb img{mix-blend-mode:multiply}
 html body .ideaVisual{position:relative}
 html body .ideaVisual img{position:absolute;inset:6%;width:88%;height:88%}
+
+/* Decision-first layout: price and specs up top, the call to action stays on the first screen. */
+html body{background:#fff}
+html body .hero{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);max-width:1240px;align-items:start;padding-top:clamp(20px,3.4vh,34px)}
+html body .gallery{position:sticky;top:92px;grid-template-columns:64px 1fr;align-self:start}
+html body .thumb{width:64px;height:64px;border-color:transparent;background:#f6f5f2;cursor:pointer;transition:box-shadow .2s}
+html body .thumb.active{border-color:transparent;box-shadow:0 0 0 2px #1f1512}
+html body .mainimg{height:auto;max-height:calc(100vh - 124px);padding:0;border-radius:24px;background:#f6f5f2}
+html body .mainimg #emoji{object-fit:contain;transition:transform .7s cubic-bezier(.16,1,.3,1)}
+html body .mainimg:hover #emoji{transform:scale(1.04)}
+html body .details{display:flex;flex-direction:column}
+html body .details h1{order:1}
+html body .details .price{order:2;margin:8px 0 0}
+html body .lead{order:3;margin:10px 0 0}
+html body .erp-specs{order:4}
+html body .facts{order:5}
+html body .custom{order:6}
+html body .ctaRow{order:7}
+html body .note{order:8;margin-top:8px}
+html body .erp-specs,html body .facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 18px;border:0}
+html body .erp-specs{margin-top:16px;padding-top:14px;border-top:1px solid #eeeae4}
+html body .facts{padding-bottom:14px;border-bottom:1px solid #eeeae4}
+html body .erp-specs .row,html body .fact{display:block;padding:0 0 10px;border:0}
+html body .erp-specs .row.wide{grid-column:1/-1}
+html body .erp-specs .k,html body .fact small{display:block;margin:0 0 1px;color:#7a6f68;font:400 13px/1.4 "IBM Plex Sans Thai",Arial,sans-serif}
+html body .erp-specs .v,html body .fact b{display:block;color:#1f1512;font:500 15px/1.4 "IBM Plex Sans Thai",Arial,sans-serif}
+html body .custom{margin-top:14px}
+html body .custom h3{font-size:16px;margin-bottom:2px}
+html body .erp-tech-hint{margin-bottom:8px}
+html body .branding-note{display:none}
+html body .ctaRow{margin-top:16px}
+html body .primary{flex:1;transition:background .2s}
+html body .primary:hover{background:#1f1512}
+html body .bottom{max-width:1200px;background:#f6f5f2;border:0}
+html body .section{max-width:1240px}
+.related[hidden]{display:none}
+.related-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px 14px}
+.related-card{display:block;color:#1f1512;text-decoration:none}
+.related-card i{display:block;overflow:hidden;aspect-ratio:1;border-radius:18px;background:#f6f5f2}
+.related-card img{display:block;width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply;transition:transform .7s cubic-bezier(.16,1,.3,1)}
+.related-card:hover img{transform:scale(1.05)}
+.related-card b{display:block;margin-top:10px;font:500 15.5px/1.4 "IBM Plex Sans Thai",Arial,sans-serif}
+.related-card span{display:block;margin-top:2px;color:#7a6f68;font-size:14px}
+@media(max-width:860px){html body .hero{grid-template-columns:1fr}html body .gallery{position:static;grid-template-columns:1fr}html body .mainimg{max-height:none}.related-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(prefers-reduced-motion:reduce){html body .mainimg #emoji,.related-card img{transition:none}}
+

@@ -28,6 +28,17 @@
     }
     if (!p) throw new Error('Product not found');
     selected = clean(p.name) + (p.code ? ' (' + p.code + ')' : '');
+    // Same-category picks replace the old mood mock-ups; hidden when the category has nothing else.
+    const relatedBox = document.getElementById('related');
+    const relatedItems = items.filter((x) => x.category === p.category && x.code !== p.code && x.image).slice(0, 4);
+    if (relatedBox && relatedItems.length) {
+      relatedBox.innerHTML = relatedItems.map((x) => {
+        const cost = x.price ? `<span>฿${esc(x.price)}${x.priceMax && x.priceMax > x.price ? '–' + esc(x.priceMax) : ''} / ชิ้น</span>` : '';
+        return `<a class="related-card" href="product.html?product=${encodeURIComponent(x.code)}"><i><img src="${attr(rukaCatalog.thumb(rukaCatalog.cover(x), 520))}" alt="" loading="lazy" decoding="async"></i><b>${esc(rukaCatalog.name(x))}</b>${cost}</a>`;
+      }).join('');
+      document.getElementById('relatedSection').hidden = false;
+    }
+
     const saveButton = document.querySelector('.secondary');
     if (saveButton) saveButton.setAttribute('aria-label', 'บันทึก ' + selected);
 
@@ -91,7 +102,13 @@
       }
     }
 
-    if (p.image) document.querySelectorAll('.ideaVisual').forEach((v) => { v.innerHTML = `<img src="${attr(rukaCatalog.thumb(p.image, 520))}" alt="" loading="lazy" decoding="async">`; });
+    // Thumbnails mark the active photo and fade the main image in.
+    document.querySelector('.thumbs')?.addEventListener('click', (e) => {
+      const thumb = e.target.closest('.thumb');
+      if (!thumb) return;
+      document.querySelectorAll('.thumb').forEach((b) => b.classList.toggle('active', b === thumb));
+      document.getElementById('emoji')?.animate?.([{ opacity: 0.2 }, { opacity: 1 }], { duration: 320, easing: 'ease-out' });
+    });
 
     // ── ราคาช่วง (target ต่ำสุด–สูงสุด) ──
     const price = document.getElementById('price');
@@ -133,7 +150,7 @@
         lead.insertAdjacentHTML('afterend',
           '<div class="erp-specs">' +
           specs.map(([ic, k, v]) =>
-            `<div class="row"><span class="ic">${ic}</span><span class="k">${esc(k)}</span><span class="v">${esc(v)}</span></div>`
+            `<div class="row${k === 'สีที่ผลิตได้' ? ' wide' : ''}"><span class="ic">${ic}</span><span class="k">${esc(k)}</span><span class="v">${esc(v)}</span></div>`
           ).join('') +
           '</div>');
       }
@@ -157,7 +174,7 @@
         picked = picked.filter((t) => techs.includes(t)); save();
         const hint = document.createElement('p');
         hint.className = 'erp-tech-hint';
-        hint.textContent = 'แตะเลือกเทคนิคที่สนใจได้ (ไม่บังคับ) — ราคาขึ้นกับเทคนิค (ปักมักสูงกว่าสกรีน) ทีมยืนยันราคาตามงานจริง';
+        hint.textContent = 'เลือกเทคนิคที่สนใจได้ ทีมจะยืนยันวิธีที่เหมาะกับรุ่นนี้และราคาจริงให้';
         chips.before(hint);
         chips.replaceChildren();
         techs.forEach((t) => {
