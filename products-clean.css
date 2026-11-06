@@ -51,7 +51,7 @@ html body .actions .view{position:static;width:auto;height:auto;margin-top:6px;p
 html body .actions .view::after{content:"";position:absolute;inset:0;z-index:3}
 html body #grid .card .photo{background:#faf8f4}
 html body #grid .card:hover .photo,html body #grid .card:focus-within .photo{background:var(--tint)}
-html body .card:hover html body #grid .card:hover .photo img,html body #grid .card:focus-within .photo img{transform:scale(1.03)}
+html body #grid .card:hover .photo img,html body #grid .card:focus-within .photo img{transform:scale(1.03)}
 html body .card:hover .actions .view,html body .card:focus-within .actions .view{color:#b41616}
 html body .helper{display:flex;align-items:center;gap:16px;margin-top:44px;padding:22px 24px;border:1px solid #efe7da;border-radius:24px;background:#faf8f4;box-shadow:none}
 html body .helper>div:first-child:empty{display:none}
@@ -60,7 +60,7 @@ html body .helper p{margin:2px 0 0;color:#7a6f68;font-size:14px}
 html body .helper button{margin-left:auto;height:44px;padding:0 20px;border:0;border-radius:999px;background:#b41616;color:#fff;font-weight:700;white-space:nowrap}
 html body .products-filter-toggle{display:none}
 html body .products-applied{margin:0 0 12px}
-@media(prefers-reduced-motion:reduce){html body .card .photo,html body #grid .card .photo img,@media(max-width:1050px){html body .grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:1050px){html body .grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:760px){
  html body .hero{padding:22px 16px 12px}
  html body .hero p{font-size:14px;margin-bottom:12px}
@@ -84,3 +84,139 @@ html body .products-applied{margin:0 0 12px}
 html body #grid .card .photo img{mix-blend-mode:multiply}
 html body #grid .card .photo,html body #grid .card:hover .photo,html body #grid .card:focus-within .photo{border-radius:14px;background:#fff}
 html body .card:hover,html body .card:focus-within{box-shadow:0 12px 28px #2b242018;transform:translateY(-3px)}
+
+/* Compact header: title beside search so products land on the first screen. */
+@media(min-width:861px){
+ html body .hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);column-gap:48px;align-items:center;padding-top:30px;padding-bottom:14px}
+ html body .hero h1{grid-column:1;grid-row:1;align-self:end}
+ html body .hero p{grid-column:1;grid-row:2;margin:0;align-self:start}
+ html body .hero .search{grid-column:2;grid-row:1/3}
+ html body .quick{grid-column:2;grid-row:3;justify-content:flex-end;margin-top:6px}
+}
+html body .quick button{display:none}
+html body .quick a{margin-left:0}
+
+/* Sticky shop bar: categories stay reachable, filters tuck behind one button. */
+.shop-bar{--bg:#f7f6f3;position:sticky;top:72px;z-index:20;display:flex;align-items:center;gap:12px;margin:0 0 16px;padding:10px 0;background:var(--bg);box-shadow:0 0 0 100vmax var(--bg);clip-path:inset(0 -100vmax)}
+html body .shop-bar .bar{flex:1;min-width:0;flex-wrap:nowrap;overflow-x:auto;margin:0;scrollbar-width:none}
+html body .shop-bar .bar::-webkit-scrollbar{display:none}
+html body .bar .cat{flex-shrink:0;transition:background .2s,color .2s,border-color .2s}
+html body .products-filter-toggle{display:inline-flex;flex-shrink:0;align-items:center;gap:8px;height:42px;margin:0;padding:0 16px;border:1px solid #efe7da;border-radius:999px;background:#fff;color:#1f1512;font-size:14px;font-weight:700;cursor:pointer;transition:border-color .2s}
+html body .products-filter-toggle::before{content:"";width:16px;height:16px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231f1512' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M4 7h10M18 7h2M4 17h2M10 17h10'/%3E%3Ccircle cx='16' cy='7' r='2'/%3E%3Ccircle cx='8' cy='17' r='2'/%3E%3C/svg%3E") center/contain no-repeat}
+html body .products-filter-toggle:hover,html body .products-filter-toggle[aria-expanded=true]{border-color:#1f1512}
+html body .filters{display:none}
+html body .filters.is-open{display:flex;animation:filtersIn .25s ease both}
+@keyframes filtersIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+
+/* Cards: the photo is the card; text sits quietly underneath. */
+html body .grid{gap:30px 18px}
+html body .card{padding:0;overflow:visible;border-radius:0;background:none;box-shadow:none}
+html body .card:hover,html body .card:focus-within{box-shadow:none;transform:none}
+html body #grid .card .photo,html body #grid .card:hover .photo,html body #grid .card:focus-within .photo{border-radius:18px;background:#fff;box-shadow:0 1px 2px #2b24200a;transition:box-shadow .3s ease,transform .3s cubic-bezier(.2,.8,.2,1)}
+html body #grid .card:hover .photo,html body #grid .card:focus-within .photo{box-shadow:0 16px 34px #2b24201c;transform:translateY(-4px)}
+html body #grid .card .photo img{padding:5%;transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+html body #grid .card:hover .photo img,html body #grid .card:focus-within .photo img{transform:scale(1.05)}
+html body #grid .card .photo::after{content:"\2192";position:absolute;right:12px;bottom:12px;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#b41616;color:#fff;font:400 18px/1 Arial,sans-serif;opacity:0;transform:translateY(8px);transition:opacity .2s,transform .28s cubic-bezier(.2,.8,.2,1)}
+html body #grid .card:hover .photo::after,html body #grid .card:focus-within .photo::after{opacity:1;transform:none}
+html body #grid .card .erp-code-tag{opacity:0;transition:opacity .2s}
+html body #grid .card:hover .erp-code-tag,html body #grid .card:focus-within .erp-code-tag{opacity:1}
+html body .info{display:flex;flex-direction:column;padding:12px 4px 0}
+html body .info h3{order:1}
+html body .card-size{order:2}
+html body .info .meta{order:3;margin:1px 0 0;display:flex;gap:6px}
+html body .info .price{order:4;margin:6px 0 0;font-size:15.5px;font-weight:700}
+html body .info .price span{color:#7a6f68;font-weight:400;font-size:13px}
+html body .actions{order:5;height:0}
+html body .actions .view{display:block;height:0;margin:0;font-size:0;line-height:0;overflow:visible}
+html body .actions .view:focus-visible{outline:none}
+html body .actions .view:focus-visible::after{outline:2px solid #b41616;outline-offset:3px;border-radius:18px}
+
+@media(max-width:1050px){.shop-bar{top:76px}}
+@media(max-width:760px){
+ .shop-bar{top:70px;padding:8px 0;margin:0 -16px 12px;padding-left:16px;padding-right:16px;gap:8px}
+ html body .shop-bar .bar{padding:0}
+ html body .products-filter-toggle{width:42px;height:38px;justify-content:center;padding:0;font-size:0;gap:0}
+ html body #grid .card .photo::after{display:none}
+ html body .grid{gap:22px 12px}
+}
+@media(prefers-reduced-motion:reduce){html body #grid .card .photo,html body #grid .card .photo img,html body .filters.is-open{transition:none;animation:none}}
+
+/* Side list + one continuous scroll of category panels. */
+html body .topline{display:none}
+html body .bar .cat[onclick*='"all"']{display:none}
+html body #grid{display:block}
+.group-panel{margin:0 0 26px;padding:clamp(18px,2.4vw,32px);border-radius:32px;background:#fff;box-shadow:0 0 0 6px #ffffff8c,0 18px 50px #2b24200a}
+.panel-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px 16px}
+html body .group-head{margin:0 0 20px;font:500 clamp(22px,2.1vw,30px)/1.3 "IBM Plex Sans Thai",Arial,sans-serif;letter-spacing:-.01em;color:#1f1512}
+html body .group-head span{margin-left:6px;color:#b3a99f;font-size:.55em;font-weight:400}
+html body #grid .card .photo,html body #grid .card:hover .photo,html body #grid .card:focus-within .photo{border-radius:18px;background:#f4f3ef;box-shadow:none;transform:none}
+html body #grid .card .photo img{padding:0;object-fit:cover;transition:transform .7s cubic-bezier(.16,1,.3,1)}
+html body #grid .card:hover .photo img,html body #grid .card:focus-within .photo img{transform:scale(1.05)}
+html body .info{padding:11px 2px 0}
+html body .info .meta{display:none}
+html body .info .price{margin-top:4px;font-size:15px;font-weight:500}
+html body .info .price span{font-size:inherit;color:inherit;font-weight:inherit}
+@media(prefers-reduced-motion:no-preference){@supports(animation-timeline:view()){
+ .group-panel{animation:panelIn linear both;animation-timeline:view();animation-range:entry 0% entry 26%}
+ @keyframes panelIn{from{opacity:.25;transform:translateY(46px) scale(.975)}to{opacity:1;transform:none}}
+}}
+@media(min-width:1051px){
+ html body .wrap{display:grid;grid-template-columns:272px minmax(0,1fr);column-gap:32px;align-items:start;padding-top:18px}
+ .shop-bar{position:sticky;top:calc(50vh - 150px);flex-direction:column;align-items:flex-start;gap:14px;margin:0;padding:0;background:none;box-shadow:none;clip-path:none}
+ html body .shop-bar .bar{flex-direction:column;align-items:flex-start;gap:0;overflow:visible}
+ html body .bar .cat{height:auto;padding:5px 0;border:0;border-radius:0;background:none;color:#b3a99f;font:500 30px/1.35 "IBM Plex Sans Thai",Arial,sans-serif;text-align:left;white-space:nowrap;cursor:pointer;transform:scale(.72);transform-origin:left center;transition:transform .5s cubic-bezier(.16,1,.3,1),color .35s ease}
+ html body .bar .cat:hover{color:#1f1512;background:none}
+ html body .bar .cat.active{background:none;color:#1f1512;transform:none}
+ html body .products-filter-toggle{height:40px;margin-top:6px}
+ html body .content{min-width:0}
+}
+@media(max-width:760px){.panel-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 10px}.group-panel{margin-bottom:16px;border-radius:24px}}
+
+/* Quieter layout: white page, one header line, side list is the only category label. */
+html body{background:#fff}
+html body .hero p,html body .quick{display:none}
+html body .hero h1{margin:0}
+@media(min-width:861px){html body .hero{padding-top:34px;padding-bottom:26px}html body .hero h1{grid-row:1;align-self:center}html body .hero .search{grid-row:1}}
+html body .hero .search{border-color:#ece8e1;background:#fff}
+.shop-bar{--bg:#fff;box-shadow:none;clip-path:none;z-index:30}
+.group-panel{position:relative;margin:0 0 52px;padding:0 0 52px;border-radius:0;border-bottom:1px solid #eeeae4;background:none;box-shadow:none}
+.group-panel:last-child{margin-bottom:0;border-bottom:0}
+html body #grid .card .photo,html body #grid .card:hover .photo,html body #grid .card:focus-within .photo{background:#f6f5f2}
+html body .filters.is-open{position:absolute;z-index:40;display:flex;flex-direction:column;align-items:stretch;gap:16px;margin:0;padding:18px;border:1px solid #eeeae4;border-radius:20px;background:#fff;box-shadow:0 18px 50px #2b24201f}
+html body .filters.is-open .group{display:block;width:auto}
+html body .filters.is-open .group>b{display:block;margin:0 0 8px}
+html body .filters.is-open .group label{margin:0 6px 6px 0}
+html body .filters.is-open select{width:100%}
+html body .filters.is-open .filter-reset{align-self:flex-start;margin:0}
+@media(min-width:1051px){
+ html body .wrap{padding-top:6px}
+ html body .bar .cat{font-size:28px}
+ html body .filters.is-open{left:calc(100% + 10px);bottom:0;width:320px}
+ html body .products-filter-toggle{margin-top:4px}
+ html body .group-head{position:absolute;top:0;left:0;width:1px;height:1px;margin:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+}
+@media(max-width:1050px){.shop-bar{margin-left:-20px;margin-right:-20px;padding-left:20px;padding-right:20px}html body .filters.is-open{left:16px;right:16px;top:100%}}
+@media(max-width:760px){.shop-bar{margin-left:-16px;margin-right:-16px;padding-left:16px;padding-right:16px}.group-panel{margin-bottom:30px;padding-bottom:30px}}
+
+/* Search result line and quiet states for empty categories or no matches. */
+.search-state{display:flex;align-items:center;justify-content:space-between;margin:0 0 16px;color:#7a6f68;font-size:14px}
+.search-state[hidden]{display:none}
+.search-state button{padding:0;border:0;background:none;color:#1f1512;font-size:14px;font-weight:700;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.group-empty,.search-none{padding:clamp(22px,3vw,34px);border-radius:18px;background:#f6f5f2}
+.group-empty strong,.search-none strong{display:block;font:500 20px/1.35 "IBM Plex Sans Thai",Arial,sans-serif;color:#1f1512}
+.group-empty p,.search-none p{margin:4px 0 12px;color:#7a6f68;font-size:14.5px}
+.group-empty a,.search-none button{padding:0;border:0;background:none;color:#b41616;font:700 14.5px/1.4 "IBM Plex Sans Thai",Arial,sans-serif;cursor:pointer}
+@media(max-width:1050px){.group-empty strong{display:none}}
+html body .bar .cat{font-size:26px}
+@media(max-width:1050px){html body .bar .cat{font-size:13px}}
+
+/* Headline gimmick: a slow rainbow travels through the closing words. */
+.h1-shine{display:inline-block;padding:.12em 0 .16em;margin:-.12em 0 -.16em;background:linear-gradient(90deg,#b41616,#ee5a24,#f2a91d,#25a86a,#2a7de1,#8a46dc,#e0409a,#b41616) 0 0/300% 100% repeat-x;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:h1Rainbow 9s linear infinite}
+@keyframes h1Rainbow{to{background-position:150% 0}}
+@media(prefers-reduced-motion:reduce){.h1-shine{animation:none}}
+
+/* Even tiles: products keep one visual size, and two full rows fit a laptop screen. */
+html body #grid .card .photo img{transform:translate(var(--x,0),var(--y,0)) scale(var(--s,1))}
+html body #grid .card:hover .photo img,html body #grid .card:focus-within .photo img{transform:translate(var(--x,0),var(--y,0)) scale(calc(var(--s,1)*1.05))}
+@media(min-width:1240px){.panel-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:26px 14px}}
+

@@ -22,7 +22,6 @@
  function syncCategoryTabs(products){
   const live=new Set(products.map(p=>p.category));
   const absent=value=>value&&value!=='all'&&!live.has(value);
-  document.querySelectorAll('.bar .cat').forEach(el=>{if(absent(el.getAttribute('onclick')?.match(/"([a-z]+)"/)?.[1]))hide(el)});
   document.querySelectorAll('.category-picker [data-pick]').forEach(card=>{
    const images=products.filter(p=>p.category===card.dataset.pick).flatMap(p=>p.images?.length?p.images:[p.image]).filter(Boolean);
    const chosen=(FOLDER_PHOTOS[card.dataset.pick]||[]).map(file=>images.find(url=>url.endsWith(file))).filter(Boolean);
