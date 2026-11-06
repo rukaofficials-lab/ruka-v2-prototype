@@ -1,4 +1,4 @@
-// Services page: builds the side list, tracks scroll position, and fills sample photos from the live catalog.
+// Services and how-we-work pages: builds the side list, tracks scroll position, and fills sample photos from the live catalog.
 (() => {
  const stack = document.querySelector('.occ-stack');
  const rail = document.querySelector('.occ-rail');
@@ -19,7 +19,7 @@
   card.style.setProperty('--i', index);
   const button = document.createElement('button');
   button.type = 'button';
-  button.textContent = card.querySelector('h2').textContent;
+  button.textContent = card.dataset.rail || card.querySelector('h2').textContent;
   button.onclick = () => {
    locked = index;
    track();
@@ -43,6 +43,10 @@
  let frame = 0;
  addEventListener('scroll', () => { if (!frame) frame = requestAnimationFrame(() => { frame = 0; track(); }); }, {passive: true});
  track();
+
+ // Deep links such as how.html#tracking land on the right card.
+ const start = panels.findIndex(card => card.id && '#' + card.id === location.hash);
+ if (start > 0) addEventListener('load', () => { locked = start; scrollTo(0, targetOf(start)); track(); });
 
  window.rukaCatalog?.load().then(items => {
   stack.querySelectorAll('.occ-photos[data-codes]').forEach(box => {

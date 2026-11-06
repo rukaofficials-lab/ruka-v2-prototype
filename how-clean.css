@@ -1,0 +1,17 @@
+/* How we work: same side list and card deck as the services page, with steps inside each card. */
+.how-panel{grid-template-columns:minmax(0,.9fr) minmax(0,1fr);align-items:center}
+.how-ey{margin:0 0 10px;color:#7a6f68;font-size:14px;font-weight:500}
+.how-panel h2{margin:0;font:500 clamp(26px,2.7vw,38px)/1.22 "IBM Plex Sans Thai",Arial,sans-serif;letter-spacing:-.015em}
+.how-panel .occ-copy>p:not(.how-ey){margin:12px 0 0;color:#5f544d;font-size:16px;line-height:1.55}
+.how-go{display:inline-flex;align-items:center;height:52px;margin-top:22px;padding:0 24px;border-radius:999px;background:#1f1512;color:#fff;font-size:15px;font-weight:500;text-decoration:none;transition:background .2s}
+.how-go:hover{background:#b41616}
+.how-steps{margin:0;padding:0;list-style:none;counter-reset:step}
+.how-steps li{position:relative;padding:12px 0 12px 44px;border-top:1px solid #2b242017;counter-increment:step}
+.how-steps li:first-child{border-top:0}
+.how-steps li::before{content:counter(step);position:absolute;left:0;top:14px;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#fff;color:#1f1512;font-size:14px;font-weight:500}
+.how-steps h3{margin:0;font:500 17px/1.35 "IBM Plex Sans Thai",Arial,sans-serif}
+.how-steps p{margin:2px 0 0;color:#5f544d;font-size:14.5px;line-height:1.5}
+.how-note{margin:10px 0 0;padding-top:10px;border-top:1px solid #2b242017;color:#7a6f68;font-size:13.5px;line-height:1.5}
+.occ-rail button{font-size:24px}
+@media(max-width:1050px){.occ-rail button{font-size:13px}}
+@media(max-width:760px){.how-panel{grid-template-columns:1fr;padding:22px 18px}.how-steps{margin-top:6px}}
