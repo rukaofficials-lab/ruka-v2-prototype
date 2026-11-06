@@ -78,6 +78,7 @@
   translations["งบประมาณตาม Brief"]="Budget per brief";
   translations["วันรับตาม Brief"]="Delivery per brief";
   Object.assign(translations,{"คิดไอเดีย":"Ideas","ออกแบบ":"Design","ใส่โลโก้":"Logo","ทำแพ็กเกจ":"Packaging","ตรวจงานก่อนส่ง":"Quality check","จัดส่ง":"Delivery"});
+  Object.assign(translations,{"เริ่มต้นจาก":"start with","ขอใบเสนอราคา":"Get a quote"});
   const textNodes = root => { const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode(node){if(!node.nodeValue.trim()||/^(SCRIPT|STYLE|NOSCRIPT)$/.test(node.parentElement?.tagName||''))return NodeFilter.FILTER_REJECT;return NodeFilter.FILTER_ACCEPT}});const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);return nodes };
   const placeholders = new WeakMap();
   const patterns = [

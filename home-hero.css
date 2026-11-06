@@ -118,3 +118,45 @@ html[lang=en] .home-hero h1{font-size:clamp(34px,min(5vw,10vh),74px)}
 }
 @media(prefers-reduced-motion:reduce){.chip-icon,.home-hero .chip{transition:none}}
 @media(max-width:760px){.home-hero .chips{gap:6px}.home-hero .chip{gap:5px;padding:0 6px;justify-content:center}.chip-icon{width:16px;height:16px}}
+/* Client logos: a quiet strip of proof directly below the opening screen. */
+section.trust.trust{padding:clamp(40px,7vh,68px) 0 clamp(40px,7vh,72px);background:#fff;color:#2b2420}
+section.trust.trust .trustEyebrow{margin-bottom:8px;color:#7a6f68;font:500 12.5px/1.4 "IBM Plex Sans Thai",Arial,sans-serif;letter-spacing:.14em}
+section.trust.trust .trustTitle{margin:0 0 clamp(20px,3.6vh,34px);padding:0 18px;color:#2b2420;font:500 clamp(24px,2.6vw,32px)/1.3 "IBM Plex Sans Thai",Arial,sans-serif}
+section.trust.trust .trustMarquee{border:0;padding:0;background:none;-webkit-mask-image:linear-gradient(90deg,#0000,#000 9%,#000 91%,#0000);mask-image:linear-gradient(90deg,#0000,#000 9%,#000 91%,#0000)}
+section.trust.trust .trustStrip{background:none}
+section.trust.trust .trustLogo{width:176px;flex-basis:176px;height:72px}
+section.trust.trust .trustLogo img{width:auto;max-width:118px;height:56px;object-fit:contain}
+@media(max-width:760px){section.trust.trust .trustLogo{width:132px;flex-basis:132px;height:60px}section.trust.trust .trustLogo img{max-width:92px;height:46px}}
+.headline-word{position:relative;display:inline-block}
+.headline-word svg{position:absolute;left:-1%;bottom:-.08em;width:102%;height:.17em;overflow:visible;fill:none;stroke:#e8a51d;stroke-width:5;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.headline-word path{vector-effect:non-scaling-stroke;stroke-dasharray:1;stroke-dashoffset:0}
+@keyframes headline-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@media(prefers-reduced-motion:no-preference){.headline-word path{animation:headline-draw .9s cubic-bezier(.3,.7,.3,1) .35s both}}
+@media(min-width:1051px){.home-hero{--nav:72px}}
+/* Tidy gallery: same size, nearly straight, fully on screen, one image treatment. */
+@media(min-width:1001px){
+ .hero-card{width:clamp(118px,11.4vw,176px);padding:6px 6px 9px}
+ .hero-card--2{--r:-2.5deg;left:2.4%;top:5%}
+ .hero-card--3{--r:2deg;left:9.6%;top:35%}
+ .hero-card--4{--r:-2deg;left:2.4%;top:65%}
+ .hero-card--6{--r:2.5deg;right:2.4%;top:5%}
+ .hero-card--7{--r:-2deg;right:9.6%;top:35%}
+ .hero-card--8{--r:2deg;right:2.4%;top:65%}
+}
+@media(min-width:1001px) and (max-width:1380px){
+ .hero-card--2,.hero-card--4,.hero-card--6,.hero-card--8{left:auto;right:auto}
+ .hero-card--2,.hero-card--4{left:1.6%}
+ .hero-card--3{left:5.5%}
+ .hero-card--6,.hero-card--8{right:1.6%}
+ .hero-card--7{right:5.5%}
+}
+.hero-card img,.hero-card img.is-scene{padding:0;object-fit:cover;border-radius:12px}
+.hero-card--3 img{padding:12%;object-fit:contain;background:#dcecf6}
+.hero-card--4 img{padding:12%;object-fit:contain;background:#f3e9d8}
+.hero-card--6 img{padding:12%;object-fit:contain;background:#f6dcd5}
+.hero-card--7 img{padding:12%;object-fit:contain;background:#fdecb8}
+.headline-word svg{left:0;width:100%;bottom:-.03em;height:.12em;stroke-width:4}
+@media(min-width:1001px){.hero-card{width:clamp(100px,min(11.4vw,20vh),176px)}}
+@media(min-width:1001px) and (max-width:1180px){.hero-card--3{left:1.6%}.hero-card--7{right:1.6%}}
+@media(max-width:1000px){.hero-card{--r:0deg}}
+.home-hero h1{font-weight:700;letter-spacing:-.022em}

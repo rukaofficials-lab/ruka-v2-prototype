@@ -15,3 +15,21 @@ html body .cover{background:#f5f4f0;color:#2b2420}
 html body .cover small{color:#6c625c}
 html body .cover .budget{color:#2b2420}
 html body #directions button[aria-pressed=true]{border-color:#2b2420;background:#f5f4f0;color:#2b2420}
+html body>nav .navLeft a,html body>nav .navRight a,html body>nav .quote{text-transform:none}
+html body>nav .searchBtn{font-size:0;color:transparent;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232b2420' stroke-width='1.8' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='6.500'/%3E%3Cpath d='m16 16 4 4'/%3E%3C/svg%3E") center/18px no-repeat}
+html body>nav .quote{padding:0 18px;height:40px;background:#b41616;font:500 14px/40px "IBM Plex Sans Thai",Arial,sans-serif;letter-spacing:0}
+@media(min-width:1051px){
+ html body>nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px;height:72px;padding:0 32px}
+ html body>nav .navLeft,html body>nav .navRight{position:static;height:auto;gap:28px;min-width:0;transform:none}
+ html body>nav .navLeft{justify-content:flex-start}
+ html body>nav .navRight{justify-content:flex-end;gap:18px}
+ html body>nav .logo{margin:0;font-size:46px;letter-spacing:-3.5px;transform:none}
+ html body>nav .logo .adot{width:7px;height:7px;top:6px;right:1px}
+ html body>nav .navLeft a,html body>nav .navRight a{padding:0;font:500 15px/72px "IBM Plex Sans Thai",Arial,sans-serif;color:#2b2420}
+ html body>nav .navLeft a:hover,html body>nav .navRight a:hover{color:#b41616;background:none}
+ html body>nav :is(.navLeft,.navRight) a.active{padding:0;border-radius:0;background:none!important;box-shadow:none;color:#b41616!important}
+}
+@media(min-width:1051px){
+ html body>nav :is(.navLeft,.navRight) a.active::before{display:none}
+ html body>nav :is(.navLeft,.navRight) a.active::after{top:auto;right:auto;bottom:16px;left:50%;width:18px;height:2px;border-radius:2px;background:#b41616;transform:translateX(-50%)}
+}
