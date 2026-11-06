@@ -102,11 +102,16 @@
   Object.assign(translations,{"ขั้นตอน":"How","การทำงาน":"we work","จากไอเดียจนถึงวันส่งของ และหลังจากนั้น":"From idea to delivery day, and beyond"});
   Object.assign(translations,{"มีงบในใจ? จัดของขวัญตามงบ →":"Have a budget? Plan by budget →","จัดของขวัญ":"Plan your gift","ตามงบของคุณ":"by budget","ใส่งบกับจำนวน แล้วดูว่าได้ของแบบไหน":"Enter your budget and quantity to see what you can get"});
   translations["จัดของขวัญตามงบ →"]="Plan by budget →";
+  Object.assign(translations,{"ไม่รู้ว่าจะทำอะไร?":"Not sure what to make?","เริ่มจากสิ่งที่คุณชอบก็ได้":"Start with what you like","เจอแนวที่ใกล้เคียง แล้วให้เราปรับต่อให้เข้ากับแบรนด์":"Find something close and we will shape it to your brand","ไม่ต้องฝืนเลือก บอกโจทย์จริงของคุณ แล้วให้ทีม RUKA คิดให้":"No need to force a pick. Tell us your brief and the RUKA team will think it through","อีเวนต์":"Events","แคมเปญ":"Campaigns"});
+  Object.assign(translations,{"งานจริงที่ทำกับแบรนด์":"Real work with brands","ไอเดียสำหรับงานของคุณ":"Ideas for your project","สมุดโน้ตที่ออกแบบปกให้เข้ากับแบรนด์":"Notebooks with covers designed for the brand","ที่ประคบเย็นพิมพ์แบรนด์ พร้อมกล่องบรรจุ":"Branded cold massagers with custom boxes","กระเป๋าและเสื้อทีมที่ออกแบบให้เข้ากับแบรนด์":"Team bags and shirts designed for the brand","สมุดโน้ต":"Notebook","สมุด A5":"A5 notebook","ที่ประคบเย็น":"Cold massager","กล่องบรรจุ":"Packaging box","กระเป๋าเครื่องมือช่าง":"Tool bag","เสื้อกีฬาผ้ารังผึ้ง":"Sports shirt"});
+  Object.assign(translations,{"กระบอกน้ำด้ามจับเอียง 500 ml":"500 ml angled-handle bottle","กระเป๋าแคนวาส":"Canvas bag","Giftset พัดลม":"Fan gift set","หมวกแก๊ป":"Cap","ร่มกอล์ฟ 30 นิ้ว":"30-inch golf umbrella","ร่มกอล์ฟ":"Golf umbrella","ซองใส่บัตรพนักงานพร้อมสายคล้อง":"ID card holder with lanyard","เขตรักษาพันธุ์สัตว์ป่าห้วยขาแข้ง":"Huai Kha Khaeng Wildlife Sanctuary","โต๊ะกลม":"Toeklom"});
+  Object.assign(translations,{"งานจริง":"Real work","ที่ทำกับแบรนด์":"with brands","กดรูปเพื่อดูว่าแต่ละแบรนด์ทำอะไรกับเรา":"Tap a piece to see what each brand made with us"});
   const textNodes = root => { const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode(node){if(!node.nodeValue.trim()||/^(SCRIPT|STYLE|NOSCRIPT)$/.test(node.parentElement?.tagName||''))return NodeFilter.FILTER_REJECT;return NodeFilter.FILTER_ACCEPT}});const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);return nodes };
   const placeholders = new WeakMap();
   const patterns = [
     [/^เริ่มประมาณ (.+) \/ ชิ้น$/, 'From $1 / piece'],
     [/^(\d+) รายการ$/, '$1 items'],
+    [/^(\d+) แบรนด์$/, '$1 brands'],
     [/^ขั้นต่ำ (\d+) · (.+) วัน$/, 'MOQ $1 · $2 days'],
     [/^MOQ (\d+) · (.+) วัน$/, 'MOQ $1 · $2 days'],
     [/^([\d–-]+) วัน$/, '$1 days'],
