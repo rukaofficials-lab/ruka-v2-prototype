@@ -23,8 +23,7 @@ html body>nav .quote{padding:0 18px;height:40px;background:#b41616;font:500 14px
  html body>nav .navLeft,html body>nav .navRight{position:static;height:auto;gap:28px;min-width:0;transform:none}
  html body>nav .navLeft{justify-content:flex-start}
  html body>nav .navRight{justify-content:flex-end;gap:18px}
- html body>nav .logo{margin:0;font-size:46px;letter-spacing:-3.5px;transform:none}
- html body>nav .logo .adot{width:7px;height:7px;top:6px;right:1px}
+ html body>nav .logo{margin:0;transform:none}
  html body>nav .navLeft a,html body>nav .navRight a{padding:0;font:700 15px/72px "IBM Plex Sans Thai",Arial,sans-serif;color:#2b2420}
  html body>nav .navLeft a:hover,html body>nav .navRight a:hover{color:#b41616;background:none}
  html body>nav :is(.navLeft,.navRight) a.active{padding:0;border-radius:0;background:none!important;box-shadow:none;color:#b41616!important}
@@ -33,5 +32,8 @@ html body>nav .quote{padding:0 18px;height:40px;background:#b41616;font:500 14px
  html body>nav :is(.navLeft,.navRight) a.active::before{display:none}
  html body>nav :is(.navLeft,.navRight) a.active::after{top:auto;right:auto;bottom:16px;left:50%;width:18px;height:2px;border-radius:2px;background:#b41616;transform:translateX(-50%)}
 }
+html body>nav .logo{font-family:"Google Sans","IBM Plex Sans Thai",Arial,sans-serif;font-size:50px;font-weight:700;line-height:1;letter-spacing:-.045em;transform:none}
+html body>nav .logo .adot{width:.15em;height:.15em;top:.02em;right:.015em}
+@media(max-width:760px){html body>nav .logo{font-size:46px}}
 html body>nav .languageSwitch button{font:700 13px "IBM Plex Sans Thai",Arial,sans-serif}
 html body .mobile-menu a{font-weight:700}
