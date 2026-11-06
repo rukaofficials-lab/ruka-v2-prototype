@@ -159,3 +159,8 @@ section.trust.trust .trustLogo img{width:auto;max-width:118px;height:56px;object
 @media(min-width:1001px){.hero-card{width:clamp(100px,min(11.4vw,20vh),176px)}}
 @media(min-width:1001px) and (max-width:1180px){.hero-card--3{left:1.6%}.hero-card--7{right:1.6%}}
 @media(max-width:1000px){.hero-card{--r:0deg}}
+/* One quiet line above the client logos. */
+section.trust.trust{padding:clamp(36px,6vh,56px) 0 clamp(36px,6vh,60px)}
+section.trust.trust .trustEyebrow{display:none}
+section.trust.trust .trustTitle{display:flex;align-items:center;gap:20px;max-width:1120px;margin:0 auto clamp(18px,3vh,28px);padding:0 24px;color:#6c625c;font:500 15px/1.4 "IBM Plex Sans Thai",Arial,sans-serif;letter-spacing:0;white-space:nowrap}
+section.trust.trust .trustTitle::before,section.trust.trust .trustTitle::after{content:"";flex:1;height:1px;background:#e9e5de}

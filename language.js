@@ -79,6 +79,7 @@
   translations["วันรับตาม Brief"]="Delivery per brief";
   Object.assign(translations,{"คิดไอเดีย":"Ideas","ออกแบบ":"Design","ใส่โลโก้":"Logo","ทำแพ็กเกจ":"Packaging","ตรวจงานก่อนส่ง":"Quality check","จัดส่ง":"Delivery"});
   Object.assign(translations,{"เริ่มต้นจาก":"start with","ขอใบเสนอราคา":"Get a quote"});
+  translations["แบรนด์และองค์กรที่ไว้วางใจ Ruka"]="Trusted by brands and organizations";
   const textNodes = root => { const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode(node){if(!node.nodeValue.trim()||/^(SCRIPT|STYLE|NOSCRIPT)$/.test(node.parentElement?.tagName||''))return NodeFilter.FILTER_REJECT;return NodeFilter.FILTER_ACCEPT}});const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);return nodes };
   const placeholders = new WeakMap();
   const patterns = [
@@ -147,7 +148,7 @@
       const strip = partners.map(([file, name]) =>
         `<div class="trustLogo"><img src="assets/brands/partners/${file}" alt="${name}" width="144" height="80"></div>`
       ).join('');
-      trust.innerHTML='<div class="trustEyebrow">BRANDS THAT TRUST US</div><h2 class="trustTitle">แบรนด์และองค์กรที่ไว้วางใจ <span style="font-family:Georgia,serif;font-weight:700;letter-spacing:-.02em;position:relative;display:inline-block"><span style="color:#b41616">R</span><span style="color:#e8a51d">uka</span><span aria-hidden="true" style="position:absolute;width:.13em;height:.13em;border-radius:50%;background:#b41616;right:-.02em;top:.02em"></span></span></h2><div class="trustMarquee" aria-label="โลโก้ลูกค้า RUKA"><div class="trustTrack"><div class="trustStrip">'+strip+'</div><div class="trustStrip" aria-hidden="true">'+strip+'</div></div></div>';
+      trust.innerHTML='<div class="trustEyebrow">BRANDS THAT TRUST US</div><h2 class="trustTitle">แบรนด์และองค์กรที่ไว้วางใจ Ruka</h2><div class="trustMarquee" aria-label="โลโก้ลูกค้า RUKA"><div class="trustTrack"><div class="trustStrip">'+strip+'</div><div class="trustStrip" aria-hidden="true">'+strip+'</div></div></div>';
       const style=document.createElement('style');
       style.textContent=`
         .trust{padding:54px 0 64px;background:#fff;color:#171717;overflow:hidden}
