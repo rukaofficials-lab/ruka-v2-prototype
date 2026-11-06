@@ -9,6 +9,9 @@
 .how-end.is-lit{background:linear-gradient(90deg,#b41616,#ee5a24,#f2a91d,#25a86a,#2a7de1,#8a46dc,#e0409a,#b41616) 0 0/300% 100% repeat-x;-webkit-background-clip:text;background-clip:text;color:transparent;animation:how-shine 9s linear infinite}
 @keyframes how-shine{to{background-position:-300% 0}}
 html[lang=en] .how-fill+.how-fill{margin-left:.24em}
+/* The same rainbow word opens the page. */
+.home-hero h1 .gold{display:inline-block;padding:.08em 0 .14em;margin:-.08em 0 -.14em;background:linear-gradient(90deg,#b41616,#ee5a24,#f2a91d,#25a86a,#2a7de1,#8a46dc,#e0409a,#b41616) 0 0/300% 100% repeat-x;-webkit-background-clip:text;background-clip:text;color:transparent;animation:how-shine 9s linear infinite}
+.home-hero .headline-word svg{display:none}
 html[lang=en] .how-ruka-head h2{font-size:clamp(28px,min(3vw,6vh),44px);max-width:760px}
 .how-side{display:flex;flex-shrink:0;flex-direction:column;align-items:flex-end;gap:12px;padding-bottom:6px}
 .how-actions{display:flex;gap:8px}
@@ -138,7 +141,7 @@ html[lang=en] .how-ruka-head h2{font-size:clamp(28px,min(3vw,6vh),44px);max-widt
  .how-check{color:#2b2420}
  .how-check i{background:#b41616}
  .how-stop,.how-stop-icon,.how-panel,.how-fill{transition:none}
- .how-end.is-lit{animation:none}
+ .how-end.is-lit,.home-hero h1 .gold{animation:none}
 }
 @media(max-width:900px),(max-height:640px){
  .how-ruka{height:auto;padding:48px 16px}

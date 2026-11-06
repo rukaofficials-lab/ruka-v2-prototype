@@ -164,3 +164,6 @@ section.trust.trust{padding:clamp(36px,6vh,56px) 0 clamp(36px,6vh,60px)}
 section.trust.trust .trustEyebrow{display:none}
 section.trust.trust .trustTitle{display:flex;align-items:center;gap:20px;max-width:1120px;margin:0 auto clamp(18px,3vh,28px);padding:0 24px;color:#6c625c;font:500 15px/1.4 "IBM Plex Sans Thai",Arial,sans-serif;letter-spacing:0;white-space:nowrap}
 section.trust.trust .trustTitle::before,section.trust.trust .trustTitle::after{content:"";flex:1;height:1px;background:#e9e5de}
+/* The rule beside the trust title draws outward in brand colours on arrival. */
+section.trust.trust .trustTitle::before,section.trust.trust .trustTitle::after{height:2px;border-radius:2px;background:linear-gradient(90deg,#b41616,#ee5a24,#f2a91d,#25a86a,#2a7de1,#8a46dc,#e0409a) no-repeat #efebe4;background-size:calc(var(--line,0)*100%) 100%}
+section.trust.trust .trustTitle::before{transform:scaleX(-1)}

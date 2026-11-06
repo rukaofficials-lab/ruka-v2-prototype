@@ -23,3 +23,8 @@ html body .site-footer .footer-legal a:hover{color:#fff}
  .footer-links{grid-template-columns:repeat(2,minmax(0,1fr))}
  .footer-bottom{align-items:flex-start;flex-direction:column}
 }
+/* The closing line fills in like the headings above it. */
+html.js-footer .footer-cta h2,html.js-footer .footer-cta h2 span{color:#ffffff4d;transition:color .55s ease}
+html.js-footer .site-footer.is-in .footer-cta h2{color:#fff}
+html.js-footer .site-footer.is-in .footer-cta h2 span{color:#f4c04a;transition-delay:.35s}
+@media(prefers-reduced-motion:reduce){html.js-footer .footer-cta h2,html.js-footer .footer-cta h2 span{transition:none}}

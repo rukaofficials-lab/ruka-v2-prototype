@@ -113,6 +113,7 @@
   Object.assign(translations,{"ประเภทงาน":"Event type","เป้าหมายแคมเปญ":"Campaign goal","ผู้รับ":"Recipient","ของขวัญนี้จะมอบให้ใคร?":"Who is this gift for?","พนักงานและทีม":"Employees and teams","ขอบคุณคนในบริษัท":"Thank the people in your company","ลูกค้าและคู่ค้า":"Customers and partners","ดูแลความสัมพันธ์":"Look after the relationship","ผู้ร่วมงานอีเวนต์":"Event attendees","ของที่ระลึกจากงาน":"A keepsake from the event","ให้ทีม RUKA ช่วยคิด":"Let the RUKA team help"});
   Object.assign(translations,{"ทีมคิด":"The brand thinking","และผลิต":"and production","ของแบรนด์":"team"});
   Object.assign(translations,{"ของขวัญปีใหม่ให้ลูกค้า":"New Year gifts for clients","บาท/ชุด":"THB/set","รับโจทย์แล้ว เดี๋ยวทีมช่วยคิดต่อให้":"Got your brief. The team will take it from here.","300 ชุด":"300 sets","โลโก้":"Logo","วางแล้ว":"Placed","สีแก้ว":"Colour","น้ำเงิน":"Navy","การพิมพ์":"Print","ผ่าน":"Passed","ครบ":"Complete","ออกแล้ว":"Sent","ถึงแล้ว":"Arrived","หลังรับของ":"After delivery","ดูแลต่อ":"Supported"});
+  Object.assign(translations,{"อยากให้":"Where should","แบรนด์คุณ":"your brand","อยู่บนอะไร?":"show up?"});
   const textNodes = root => { const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode(node){if(!node.nodeValue.trim()||/^(SCRIPT|STYLE|NOSCRIPT)$/.test(node.parentElement?.tagName||''))return NodeFilter.FILTER_REJECT;return NodeFilter.FILTER_ACCEPT}});const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);return nodes };
   const placeholders = new WeakMap();
   const patterns = [

@@ -15,4 +15,9 @@
   <div class="footer-bottom"><span>© ${new Date().getFullYear()} บริษัท รุกะ เวิลด์ จำกัด · ทีมคิดและผลิตของแบรนด์ ที่รับผิดชอบงานจนจบ</span><span class="footer-legal"><a href="privacy.html">นโยบายความเป็นส่วนตัว</a><a href="terms.html">ข้อกำหนดการใช้งาน</a></span></div>
  </div>`;
  document.body.append(footer);
+ if('IntersectionObserver' in window){
+  document.documentElement.classList.add('js-footer');
+  const watch=new IntersectionObserver(entries=>{if(entries.some(entry=>entry.isIntersecting)){footer.classList.add('is-in');watch.disconnect()}},{threshold:.3});
+  watch.observe(footer);
+ }else footer.classList.add('is-in');
 })();

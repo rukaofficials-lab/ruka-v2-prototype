@@ -80,3 +80,16 @@
 .folder-label{bottom:12%}
 .folder-label b{font-size:clamp(15px,1.3vw,18px)}
 @media(max-width:760px){.category-folder{width:100%}.folder-front{height:60%}}
+/* Heading fills and folders open one after another, matching the steps section. */
+.category-picker-header{margin-bottom:0}
+.category-picker-header h2{font-size:clamp(30px,3.6vw,50px)}
+.category-picker-header p{font-family:"IBM Plex Sans Thai",Arial,sans-serif;font-weight:400}
+.category-picker .how-line{height:3px;margin:clamp(14px,2.6vh,24px) 0 clamp(30px,5vh,48px)}
+.category-picker.is-live .folder-photo{transition:transform .55s cubic-bezier(.2,1.2,.4,1),opacity .3s ease}
+.category-picker.is-live .folder-photo--left,.category-picker.is-live .folder-photo--right{transition-delay:.08s}
+.category-picker.is-live .category-card:hover .folder-photo{transition:transform .36s cubic-bezier(.2,1.35,.4,1);transition-delay:0s}
+.category-picker.is-live .category-card:not(.is-in) .folder-photo{--x:0%;--y:58%;--r:0deg;opacity:0}
+.category-picker.is-live .folder-label{transition:opacity .35s ease}
+.category-picker.is-live .category-card:not(.is-in) .folder-label{opacity:.4}
+@media(prefers-reduced-motion:reduce){.category-picker.is-live .folder-photo,.category-picker.is-live .folder-label{transition:none}}
+@media(max-width:900px),(max-height:640px){.category-picker-header{margin-bottom:26px}}
