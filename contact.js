@@ -7,6 +7,7 @@
  const status=document.getElementById('contactStatus');
  const brief=document.getElementById('handoff').textContent;
  if(brief.startsWith('บรีฟโปรเจกต์ RUKA'))message.value=brief;
+ const hasBrief=brief.startsWith('บรีฟโปรเจกต์ RUKA');document.querySelector('.contact-brief').hidden=!hasBrief;document.getElementById('copyBrief').hidden=!hasBrief;
 
  // มาจาก flow บรีฟ → จัดหน้านี้ให้เป็น "สเต็ปสุดท้าย" (ขอแค่ชื่อ+เบอร์) ไม่ใช่ฟอร์มเขียนข้อความเต็ม
  // บรีฟถูกแนบไปให้แล้ว (โชว์ใน details ด้านล่าง) จึงซ่อนช่องข้อความก้อนใหญ่ที่ทำให้รู้สึกกรอกซ้ำ
