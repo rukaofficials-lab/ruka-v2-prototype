@@ -159,4 +159,3 @@ section.trust.trust .trustLogo img{width:auto;max-width:118px;height:56px;object
 @media(min-width:1001px){.hero-card{width:clamp(100px,min(11.4vw,20vh),176px)}}
 @media(min-width:1001px) and (max-width:1180px){.hero-card--3{left:1.6%}.hero-card--7{right:1.6%}}
 @media(max-width:1000px){.hero-card{--r:0deg}}
-.home-hero h1{font-weight:700;letter-spacing:-.022em}
