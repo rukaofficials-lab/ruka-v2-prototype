@@ -106,3 +106,7 @@ html body #complete{padding:0;text-align:left}
 html body .wrap:has(#complete.active) .brief-voice{display:none}
 html body .wrap:has(#complete.is-sent) .brief-edit{display:none}
 html body .wrap:has(#complete.is-sent) .brief-rail{pointer-events:none}
+.brief-photos--ref{grid-template-columns:repeat(2,minmax(0,1fr))}
+.brief-photos--ref:has(span:only-child){grid-template-columns:1fr}
+.brief-photos--ref span{aspect-ratio:1/.9;border-radius:14px}
+.brief-photos--ref .fit img{object-fit:contain;padding:6%;box-sizing:border-box}

@@ -1,6 +1,6 @@
 // Brief state: a new brief starts clean unless the visitor arrived with something chosen for it.
 (() => {
- const LOCAL=['rukaBrief','rukaDraft','rukaProduct','rukaProductTech','rukaIdea','rukaIdeaBudget','rukaIdeaMood','rukaSearchIntent','rukaFilterIntent','rukaOccasion','rukaConcept','rukaDirection','rukaHandoff'];
+ const LOCAL=['rukaBrief','rukaDraft','rukaProduct','rukaProductTech','rukaIdea','rukaIdeaBudget','rukaIdeaMood','rukaSearchIntent','rukaFilterIntent','rukaOccasion','rukaConcept','rukaDirection','rukaHandoff','rukaRefPics'];
  const remove=keys=>keys.forEach(key=>{try{localStorage.removeItem(key)}catch{}});
  window.rukaClearBrief=()=>{remove(LOCAL);try{sessionStorage.removeItem('rukaGiftPlan')}catch{}};
  if((location.pathname.split('/').pop()||'')!=='brief.html')return;

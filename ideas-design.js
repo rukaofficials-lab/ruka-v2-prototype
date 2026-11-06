@@ -2,8 +2,8 @@
 (() => {
  const wall = document.getElementById('clWall');
  const dialog = document.getElementById('clProfile');
- if (!wall || !dialog) return;
- const V = '?v=20261106-c';
+ if (!dialog) return;
+ const V = '?v=20261106-d';
  const brands = [
   {name: 'UNICEF Thailand', logo: 'unicef.jpg', made: ['สมุดโน้ต', 'สมุด A5'], pics: [['unicef-1', 0], ['unicef-2', 1]]},
   {name: 'Medyceles', logo: 'medyceles.jpg', made: ['ที่ประคบเย็น', 'กล่องบรรจุ'], pics: [['medyceles-1', 0], ['medyceles-2', 0]]},
@@ -23,34 +23,76 @@
   if (brand.logo) { const img = el('img'); img.src = 'assets/brands/partners/' + brand.logo; img.alt = ''; box.append(img); }
   return box;
  };
- const open = brand => {
+ // Shared profile dialog: real work and concept ideas open and hand off the same way.
+ const show = ({head, note, pics, chips, label, href, handoff}) => {
   dialog.replaceChildren();
   const close = el('button', 'cl-close', '×');
   close.type = 'button';
   close.setAttribute('aria-label', 'ปิด');
   close.onclick = () => dialog.close();
-  const head = el('header');
-  head.append(mark(brand), el('h3', '', brand.name));
-  const pics = el('div', 'cl-pics' + (brand.pics.length === 1 ? ' one' : ''));
-  brand.pics.forEach(([key, fit]) => {
+  const top = el('header');
+  top.append(...head);
+  const box = el('div', 'cl-pics' + (pics.length === 1 ? ' one' : ''));
+  pics.forEach(({src: url, fit, alt}) => {
    const tile = el('span', fit ? 'fit' : '');
    const img = el('img');
-   img.src = src(key);
-   img.alt = 'งานของ ' + brand.name;
+   img.src = url;
+   img.alt = alt;
    tile.append(img);
-   pics.append(tile);
+   box.append(tile);
   });
   const made = el('ul', 'cl-made');
-  brand.made.forEach(item => made.append(el('li', '', item)));
-  const go = el('a', 'cl-go', 'อยากได้แนวนี้ →');
-  go.href = 'brief.html';
+  chips.forEach(item => made.append(el('li', '', item)));
+  const go = el('a', 'cl-go', label);
+  go.href = href;
+  go.onclick = () => {
+   try {
+    localStorage.removeItem('rukaDraft');
+    localStorage.removeItem('rukaBrief');
+    localStorage.setItem('rukaRefPics', JSON.stringify(pics.map(({src: url, fit}) => ({src: url, fit}))));
+    handoff();
+   } catch (error) {}
+  };
   const foot = el('footer');
   foot.append(made, go);
-  dialog.append(close, head, pics, foot);
+  dialog.append(close, top);
+  if (note) dialog.append(el('p', 'cl-note', note));
+  dialog.append(box, foot);
   dialog.showModal();
  };
+ const open = brand => show({
+  head: [mark(brand), el('h3', '', brand.name)],
+  pics: brand.pics.map(([key, fit]) => ({src: src(key), fit, alt: 'งานของ ' + brand.name})),
+  chips: brand.made,
+  label: 'ขอราคางานแบบนี้ →',
+  href: 'brief.html?ref=' + encodeURIComponent(brand.name),
+  handoff: () => {
+   localStorage.setItem('rukaProduct', brand.made.join(', '));
+   localStorage.setItem('rukaHandoff', 'product');
+   localStorage.setItem('rukaOccasion', 'unsure');
+  },
+ });
+ document.querySelectorAll('.idea-card').forEach(card => {
+  const name = card.querySelector('b').textContent;
+  card.querySelector('.idea-pic').onclick = () => show({
+   head: [mark({letter: 'R'}), el('h3', '', name)],
+   note: card.dataset.text,
+   pics: [{src: card.querySelector('img').getAttribute('src'), fit: 0, alt: name}],
+   chips: [card.dataset.tag],
+   label: 'ขอราคาแนวนี้ →',
+   href: 'brief.html?kind=idea&ref=' + encodeURIComponent(name),
+   handoff: () => {
+    localStorage.setItem('rukaIdea', name);
+    localStorage.setItem('rukaOccasion', card.dataset.occ);
+    localStorage.setItem('rukaIdeaBudget', '');
+    localStorage.setItem('rukaIdeaMood', card.dataset.mood);
+    localStorage.setItem('rukaHandoff', 'idea');
+   },
+  });
+ });
  dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
 
+ if (!wall) return;
  const tiles = brands.flatMap(brand => brand.pics.map(([key, fit]) => ({brand, key, fit})));
  // Deal tiles across columns so one brand does not sit in a clump.
  const order = [0, 6, 11, 3, 13, 8, 1, 10, 5, 14, 2, 12, 7, 4, 9].map(i => tiles[i]).filter(Boolean);
