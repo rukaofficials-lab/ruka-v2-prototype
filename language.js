@@ -108,6 +108,7 @@
   Object.assign(translations,{"งานจริง":"Real work","ที่ทำกับแบรนด์":"with brands","กดรูปเพื่อดูว่าแต่ละแบรนด์ทำอะไรกับเรา":"Tap a piece to see what each brand made with us"});
   Object.assign(translations,{"ขอราคางานแบบนี้ →":"Get a quote like this →","อ้างอิงงานจริง":"Real work reference","งานที่อ้างอิง":"Referenced job"});
   Object.assign(translations,{"ไอเดียสำหรับ":"Ideas for","งานของคุณ":"your project","กดรูปเพื่อดูแนวคิด แล้วขอราคาได้เลย":"Tap an image to see the idea and ask for a quote","ขอราคาแนวนี้ →":"Get a quote like this →","แนวที่อ้างอิง":"Referenced idea","อีเวนต์ / แคมเปญ":"Events / Campaigns"});
+  Object.assign(translations,{"บทความ":"Articles","เรื่องของขวัญองค์กร":"on corporate gifting","ความรู้สำหรับคนทำของพรีเมียมให้แบรนด์":"Guides for teams planning branded gifts","ไม่พบหน้านี้":"Page not found","ลิงก์อาจเปลี่ยนไปแล้ว ลองกลับไปดูสินค้าหรือเริ่มบรีฟได้เลย":"The link may have changed. Browse products or start a brief.","กลับหน้าแรก":"Back to home"});
   const textNodes = root => { const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode(node){if(!node.nodeValue.trim()||/^(SCRIPT|STYLE|NOSCRIPT)$/.test(node.parentElement?.tagName||''))return NodeFilter.FILTER_REJECT;return NodeFilter.FILTER_ACCEPT}});const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);return nodes };
   const placeholders = new WeakMap();
   const patterns = [
@@ -152,7 +153,7 @@
   function applyLanguage(lang){document.documentElement.lang=lang==='en'?'en':'th';textNodes(document.body).forEach(node=>{if(!originals.has(node))originals.set(node,node.nodeValue);const original=originals.get(node);if(lang==='th'){node.nodeValue=original;return}const lead=original.match(/^\s*/)?.[0]||'',tail=original.match(/\s*$/)?.[0]||'',key=original.trim();const translated=translate(key);if(translated)node.nodeValue=lead+translated+tail});document.querySelectorAll('[placeholder]').forEach(el=>{if(!placeholders.has(el))placeholders.set(el,el.placeholder);const original=placeholders.get(el);el.placeholder=lang==='en'?translate(original.trim())||original:original});document.querySelectorAll('[data-lang]').forEach(button=>button.classList.toggle('active',button.dataset.lang===lang));const changed=lang!==activeLanguage;activeLanguage=lang;try{localStorage.setItem('rukaLanguage',lang)}catch{}if(changed)dispatchEvent(new CustomEvent('rukaLanguageChange',{detail:lang}))}
   function markCurrentPage(){
     const page=(location.pathname.split('/').pop()||'index.html').toLowerCase();
-    const section={'product.html':'products.html','brief.html':'occasion.html','recommendations.html':'occasion.html','concept.html':'occasion.html','how.html':'occasion.html'}[page]||page;
+    const section={'product.html':'products.html','brief.html':'occasion.html','recommendations.html':'occasion.html','concept.html':'occasion.html','how.html':'occasion.html'}[page]||(location.pathname.startsWith('/blog/')?'blog.html':page);
     document.querySelectorAll('body > nav a[href]').forEach(a=>{
       if(a.classList.contains('logo'))return;
       const target=new URL(a.href,location.href).pathname.split('/').pop()||'index.html';

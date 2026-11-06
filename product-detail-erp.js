@@ -3,6 +3,7 @@
 (async () => {
   const ENDPOINT = 'https://ruka-erp.vercel.app/api/public-products';
   const requested =
+    decodeURIComponent((location.pathname.match(/^\/products\/([^/]+)/) || [])[1] || '') ||
     new URLSearchParams(location.search).get('product') ||
     localStorage.getItem('rukaProductDetail') || '';
   const finish = () => document.documentElement.classList.remove('product-pending');
@@ -28,13 +29,28 @@
     }
     if (!p) throw new Error('Product not found');
     selected = clean(p.name) + (p.code ? ' (' + p.code + ')' : '');
+    // Search basics for each product: title, description, canonical link and structured data.
+    {
+     const label = rukaCatalog.name(p);
+     const url = location.origin + '/products/' + encodeURIComponent(p.code);
+     const about = `${label} สั่งทำพร้อมใส่โลโก้ ${p.material ? 'วัสดุ' + p.material + ' ' : ''}ขั้นต่ำ ${p.moq || ''} ${p.unit || 'ชิ้น'} จาก RUKA`.replace(/\s+/g, ' ');
+     document.title = `${label} สั่งทำ ใส่โลโก้ — RUKA`;
+     document.querySelector('meta[name="description"]')?.setAttribute('content', about);
+     document.querySelector('link[rel="canonical"]')?.setAttribute('href', url);
+     const data = {'@context': 'https://schema.org', '@type': 'Product', name: label, sku: p.code, description: about, brand: {'@type': 'Brand', name: 'RUKA'}, image: (p.images && p.images.length ? p.images : [p.image]).filter(Boolean), url};
+     if (p.price) data.offers = {'@type': 'AggregateOffer', priceCurrency: 'THB', lowPrice: p.price, highPrice: p.priceMax || p.price};
+     const tag = document.createElement('script');
+     tag.type = 'application/ld+json';
+     tag.textContent = JSON.stringify(data);
+     document.head.append(tag);
+    }
     // Same-category picks replace the old mood mock-ups; hidden when the category has nothing else.
     const relatedBox = document.getElementById('related');
     const relatedItems = items.filter((x) => x.category === p.category && x.code !== p.code && x.image).slice(0, 4);
     if (relatedBox && relatedItems.length) {
       relatedBox.innerHTML = relatedItems.map((x) => {
         const cost = x.price ? `<span>฿${esc(x.price)}${x.priceMax && x.priceMax > x.price ? '–' + esc(x.priceMax) : ''} / ชิ้น</span>` : '';
-        return `<a class="related-card" href="product.html?product=${encodeURIComponent(x.code)}"><i><img src="${attr(rukaCatalog.thumb(rukaCatalog.cover(x), 520))}" alt="" loading="lazy" decoding="async"></i><b>${esc(rukaCatalog.name(x))}</b>${cost}</a>`;
+        return `<a class="related-card" href="${window.rukaProductUrl(x.code)}"><i><img src="${attr(rukaCatalog.thumb(rukaCatalog.cover(x), 520))}" alt="" loading="lazy" decoding="async"></i><b>${esc(rukaCatalog.name(x))}</b>${cost}</a>`;
       }).join('');
       document.getElementById('relatedSection').hidden = false;
     }

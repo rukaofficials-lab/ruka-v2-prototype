@@ -55,7 +55,7 @@
    found.slice(0, 4).forEach(item => {
     const tile = document.createElement('a');
     tile.className = 'occ-photo';
-    tile.href = 'product.html?product=' + encodeURIComponent(item.code);
+    tile.href = window.rukaProductUrl(item.code);
     tile.setAttribute('aria-label', rukaCatalog.name(item));
     const img = document.createElement('img');
     img.src = rukaCatalog.thumb(rukaCatalog.cover(item), 520);

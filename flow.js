@@ -1,3 +1,5 @@
+// Clean product links on the live site; the local server has no route rewriting.
+window.rukaProductUrl=code=>/^(localhost|127\.)/.test(location.hostname)?'product.html?product='+encodeURIComponent(code):'/products/'+encodeURIComponent(code);
 /* Shared navigation and handoff for the prototype. No message is sent automatically. */
 const flowRead=(key,fallback={})=>{try{return JSON.parse(localStorage.getItem(key))||fallback}catch{return fallback}};
 function flowFilterIntent() {
@@ -40,7 +42,7 @@ if(flowPage==='products.html'){
  budgetInputs.forEach(x=>x.onchange=()=>render());selects.forEach(x=>x.onchange=()=>render());
  const reset=document.createElement('button');reset.className='filter-reset';reset.textContent='ล้างตัวกรอง';reset.onclick=()=>{budgetInputs.forEach(x=>x.checked=false);selects.forEach(x=>x.selectedIndex=0);render('all')};document.querySelector('.filters').append(reset);
  add=flowSelectProduct;
- detail=function(name){location.href='product.html?product='+encodeURIComponent(name)};
+ detail=function(name){location.href=window.rukaProductUrl(name)};
  preset=function(type){if(type==='easy'){location.href='occasion.html';return}budgetInputs.forEach(x=>x.checked=false);selects.forEach(s=>s.selectedIndex=0);if(type==='budget')budgetInputs[0].checked=true;if(type==='premium')budgetInputs[2].checked=true;if(type==='fast')selects[1].selectedIndex=2;render('all');document.querySelector('.filters').scrollIntoView({block:'center'})};
  document.getElementById('q').addEventListener('keydown',e=>{if(e.key==='Enter')smartSearch()});render();if(location.search.includes('search=1'))document.getElementById('q').focus();
 }
