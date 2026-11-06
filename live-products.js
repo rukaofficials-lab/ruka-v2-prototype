@@ -3,7 +3,7 @@
 // → สินค้าเข้าหมวดจริง + ตัวกรองงบ/ค้นหา/หน้ารายละเอียด ทำงานครบ.
 // ถ้า endpoint ล่ม → ใช้ไฟล์สำรองใน assets, ถ้าไม่ได้ทั้งคู่จึงแจ้งโหลดไม่สำเร็จ.
 (async () => {
-  const EMOJI = { drink: '🥤', bag: '👜', tech: '🔌', apparel: '👕', eco: '🌱', pack: '📦', life: '🎁' };
+  const EMOJI = { drink: '', bag: '', tech: '', apparel: '', eco: '', pack: '', life: '' };
   const q1 = (s) => String(s == null ? '' : s).replace(/'/g, '’'); // กัน onclick พังจาก single quote
   const attr = (s) => String(s == null ? '' : s).replace(/"/g, '&quot;');
 
@@ -26,7 +26,7 @@
     const buildRows = () => items.map((p) => {
       const photo = p.image
         ? `<img src="${attr(rukaCatalog.thumb(p.image, 520))}" alt="" loading="lazy" decoding="async">`       // สไตล์คุมด้วย <style> ด้านบน
-        : (EMOJI[p.category] || '🎁');
+        : (EMOJI[p.category] || '');
       const moq = p.moq ? 'MOQ ' + p.moq : '';
       const lead = p.leadTime ? p.leadTime + ' วัน' : '';
       // ช่วงราคา floor–ราคาแนะนำ (เช่น ฿138–207) · ถ้ามีค่าเดียวก็โชว์ค่าเดียว

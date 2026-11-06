@@ -7,7 +7,7 @@ q.setAttribute('aria-label','บอกสินค้าหรือไอเด
 q.placeholder='เช่น กระบอกน้ำ 300 ใบ งบไม่เกิน 500 บาท';
 document.querySelector('.ask').textContent='ให้ RUKA ช่วยหา →';
 const quick=document.querySelector('.quick');quick.replaceChildren();
-[['fast','⚡ ผลิตภายใน 1 เดือน'],['premium','✨ งบ 600–999 บาท']].forEach(([type,label])=>{const b=document.createElement('button');b.textContent=label;b.type='button';b.onclick=()=>preset(type);quick.append(b)});
+[['fast','ผลิตภายใน 1 เดือน'],['premium','งบ 600–999 บาท']].forEach(([type,label])=>{const b=document.createElement('button');b.textContent=label;b.type='button';b.onclick=()=>preset(type);quick.append(b)});
 const help=document.createElement('a');help.href='occasion.html';help.textContent='ยังไม่มีไอเดีย? เริ่มตรงนี้ →';quick.append(help);
 const filter=document.querySelector('.filters');
 filter.querySelector('h3').textContent='เลือกเงื่อนไข';

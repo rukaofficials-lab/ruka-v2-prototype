@@ -125,10 +125,10 @@
     const lead = document.getElementById('lead');
     if (lead) {
       const specs = [];
-      if (p.material) specs.push(['⚙️', 'วัสดุ', p.material]);
-      if (clean(p.size)) specs.push(['📐', 'ขนาด/ความจุ', clean(p.size)]); // รองรับหลายขนาด เช่น "350 ML, 510 ML"
+      if (p.material) specs.push(['', 'วัสดุ', p.material]);
+      if (clean(p.size)) specs.push(['', 'ขนาด/ความจุ', clean(p.size)]); // รองรับหลายขนาด เช่น "350 ML, 510 ML"
       // สี = ชวนลูกค้าสอบถาม/ระบุสี (ตรงกับ ERP)
-      if (p.colors) specs.push(['🎨', 'สีที่ผลิตได้', p.colors + ' · สอบถาม/ระบุสีที่ต้องการกับทีมงาน']);
+      if (p.colors) specs.push(['', 'สีที่ผลิตได้', p.colors + ' · สอบถาม/ระบุสีที่ต้องการกับทีมงาน']);
       if (specs.length) {
         lead.insertAdjacentHTML('afterend',
           '<div class="erp-specs">' +
@@ -157,7 +157,7 @@
         picked = picked.filter((t) => techs.includes(t)); save();
         const hint = document.createElement('p');
         hint.className = 'erp-tech-hint';
-        hint.textContent = '👉 แตะเลือกเทคนิคที่สนใจได้ (ไม่บังคับ) — ราคาขึ้นกับเทคนิค (ปักมักสูงกว่าสกรีน) ทีมยืนยันราคาตามงานจริง';
+        hint.textContent = 'แตะเลือกเทคนิคที่สนใจได้ (ไม่บังคับ) — ราคาขึ้นกับเทคนิค (ปักมักสูงกว่าสกรีน) ทีมยืนยันราคาตามงานจริง';
         chips.before(hint);
         chips.replaceChildren();
         techs.forEach((t) => {

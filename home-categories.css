@@ -1,8 +1,8 @@
 /* Product categories as frosted folders holding real catalog photos. */
-.category-picker{padding:clamp(52px,9vh,96px) 20px;background:#faf8f4;color:#1f1512}
+.category-picker{padding:clamp(52px,9vh,96px) 20px;background:#f7f6f3;color:#2b2420}
 .category-picker-inner{max-width:1200px;margin:0 auto}
 .category-picker-header{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:clamp(30px,6vh,60px)}
-.category-picker-header h2{margin:0;font:700 clamp(28px,3.4vw,42px)/1.25 RukaDisplay,Arial,sans-serif;letter-spacing:-.01em;color:inherit}
+.category-picker-header h2{margin:0;font:500 clamp(28px,3.2vw,40px)/1.25 "IBM Plex Sans Thai",Arial,sans-serif;letter-spacing:-.01em;color:inherit}
 .category-picker-header p{margin:6px 0 0;color:#7a6f68;font:500 16px/1.5 Arial,sans-serif}
 .category-picker-all{flex-shrink:0;color:#1f1512;font:700 15px/1.4 Arial,sans-serif;text-decoration:none;border-bottom:1.5px solid #e6dccd;padding-bottom:3px;transition:color .18s,border-color .18s}
 .category-picker-all:hover{color:#b41616;border-color:#b41616}
@@ -20,30 +20,24 @@
 .folder-glass{position:absolute;inset:0;background:linear-gradient(170deg,#ffffffa6,#fbf9f694);-webkit-backdrop-filter:blur(16px) saturate(1.2);backdrop-filter:blur(16px) saturate(1.2);clip-path:url(#folder-shape)}
 .folder-outline{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
 .folder-outline path{fill:none;stroke:#ffffffe0;stroke-width:1.5;vector-effect:non-scaling-stroke}
+.folder-mark{position:absolute;left:8%;bottom:16%;font:700 clamp(17px,1.6vw,20px)/1 Georgia,serif;letter-spacing:-.02em;color:#b41616}
+.folder-mark span+span{color:#d9981a}
 .folder-groove{position:absolute;left:6%;right:6%;bottom:9%;height:1px;background:#d9d2c7}
-.folder-sticker{position:absolute;display:grid;place-items:center;font-size:clamp(34px,3.6vw,46px);line-height:1;filter:drop-shadow(1.5px 0 #fff) drop-shadow(-1.5px 0 #fff) drop-shadow(0 1.5px #fff) drop-shadow(0 -1.5px #fff) drop-shadow(0 3px 5px #4c392233);transition:transform .32s cubic-bezier(.2,1.6,.4,1)}
-.folder-sticker--main{left:13%;top:38%;rotate:-9deg}
-.folder-stamp{right:11%;top:37%;rotate:7deg;width:clamp(42px,4vw,52px)}
-.folder-stamp svg{display:block;width:100%;height:auto;overflow:visible}
-.category-card b{font:700 clamp(16px,1.5vw,18px)/1.35 RukaDisplay,Arial,sans-serif;text-align:center}
-.folder-count{min-height:24px;box-sizing:border-box;margin-top:6px;padding:3px 11px;border-radius:999px;background:#efebe4;color:#6c625c;font:700 12.5px/18px Arial,sans-serif}
+.category-card b{font:500 clamp(16px,1.5vw,18px)/1.35 "IBM Plex Sans Thai",Arial,sans-serif;text-align:center}
+.folder-count{min-height:20px;margin-top:2px;color:#7a6f68;font:400 13.5px/20px "IBM Plex Sans Thai",Arial,sans-serif}
 .folder-count:empty{visibility:hidden}
 .category-card:hover .folder-front,.category-card:focus-visible .folder-front{transform:perspective(600px) rotateX(-14deg)}
 .category-card:hover .folder-photo--center,.category-card:focus-visible .folder-photo--center{--y:-14%}
 .category-card:hover .folder-photo--left,.category-card:focus-visible .folder-photo--left{--x:-86%;--y:2%;--r:-17deg}
 .category-card:hover .folder-photo--right,.category-card:focus-visible .folder-photo--right{--x:86%;--y:2%;--r:17deg}
-.category-card:hover .folder-sticker--main,.category-card:focus-visible .folder-sticker--main{transform:scale(1.14) rotate(-8deg)}
-.category-card:hover .folder-stamp,.category-card:focus-visible .folder-stamp{transform:rotate(9deg)}
 .category-card:hover b,.category-card:focus-visible b{color:#b41616}
 .category-card:focus-visible .category-folder{outline:2px solid #b41616;outline-offset:6px;border-radius:14px}
-@media(prefers-reduced-motion:reduce){.folder-photo,.folder-front,.folder-sticker{transition:none}}
+@media(prefers-reduced-motion:reduce){.folder-photo,.folder-front{transition:none}}
 @media(max-width:760px){
  .category-picker{padding:44px 16px}
  .category-picker-header{align-items:flex-start;flex-direction:column;gap:10px}
  .category-grid{grid-template-columns:repeat(2,1fr);gap:26px 12px}
  .category-folder{width:min(100%,170px);margin-bottom:12px}
- .folder-sticker{font-size:26px}
- .folder-stamp{width:34px}
  .category-card b{font-size:14.5px}
  .folder-count{font-size:12px}
 }

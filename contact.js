@@ -15,7 +15,7 @@
   const card=document.querySelector('.form-card');
   const h2=card&&card.querySelector('h2');
   const sub=card&&card.querySelector('.contact-muted');
-  if(h2)h2.textContent='เกือบเสร็จแล้ว ✦';
+  if(h2)h2.textContent='เกือบเสร็จแล้ว';
   if(sub)sub.textContent='เหลือแค่ชื่อกับเบอร์ เดี๋ยวทีม RUKA ติดต่อกลับพร้อมราคา — บรีฟของคุณแนบไปให้แล้ว';
   const msgLabel=message.closest('label');
   if(msgLabel)msgLabel.hidden=true;
@@ -84,7 +84,7 @@
    const res=await fetch(LEAD_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p)});
    if(!res.ok)throw new Error('bad status '+res.status);
    await res.json();
-   status.textContent='✅ ส่งเรียบร้อย! ทีม RUKA จะติดต่อกลับภายใน 24 ชั่วโมง (จันทร์–ศุกร์)';
+   status.textContent='ส่งเรียบร้อย! ทีม RUKA จะติดต่อกลับภายใน 24 ชั่วโมง (จันทร์–ศุกร์)';
    window.rukaClearBrief();
    form.reset();
   }catch(err){

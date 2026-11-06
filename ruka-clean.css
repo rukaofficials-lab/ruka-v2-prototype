@@ -1,0 +1,17 @@
+/* Shared RUKA look: plain, calm and readable, with brand color used sparingly. */
+html body{font-family:"IBM Plex Sans Thai",Arial,sans-serif;color:#2b2420;-webkit-font-smoothing:antialiased}
+html body button,html body input,html body select,html body textarea{font-family:inherit}
+html body :is(h1,h2,h3,h4){font-family:"IBM Plex Sans Thai",Arial,sans-serif;font-weight:500;letter-spacing:-.01em}
+html body .brief-choice-icon:empty,html body .emoji:empty,html body .pimg:empty{display:none}
+html body .visual{background:#f5f4f0;color:#2b2420}
+html body .visual :is(.type,.num,.mood,.caption){color:#6c625c}
+html body .primary,html body .send,html body .ask,html body .recommend{border-radius:999px}
+html body .occasion-disc,html body .occasion-eyebrow{display:none}
+html body .occasion-card-top{justify-content:flex-end}
+html body .occasion-card{background:#fff;box-shadow:none}
+html body .visual{height:auto;min-height:0;padding:16px 20px;background:#f5f4f0;gap:4px}
+html body .visual :is(.type,.num,.mood,.caption){background:none;padding:0;border:0}
+html body .cover{background:#f5f4f0;color:#2b2420}
+html body .cover small{color:#6c625c}
+html body .cover .budget{color:#2b2420}
+html body #directions button[aria-pressed=true]{border-color:#2b2420;background:#f5f4f0;color:#2b2420}

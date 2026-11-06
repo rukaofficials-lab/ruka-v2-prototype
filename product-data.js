@@ -5,7 +5,7 @@
  const clean=value=>String(value??'').replace(/\s+/g,' ').trim();
  const isEnglish=()=>{try{return localStorage.getItem('rukaLanguage')==='en'}catch{return false}};
  const name=product=>(isEnglish()&&clean(product.nameEn))||clean(product.name);
- const normalize=product=>({...product,name:clean(product.name),nameEn:clean(product.nameEn),size:clean(product.size)});
+ const normalize=product=>({...product,name:clean(product.name),nameEn:clean(product.nameEn),size:clean(product.size),leadTime:clean(product.leadTime)});
  const thumb=(url,width)=>String(url).includes('/storage/v1/object/public/')?String(url).replace('/storage/v1/object/public/','/storage/v1/render/image/public/')+`?width=${width}&height=${width}&resize=contain&quality=75`:url;
  const hide=el=>{el.hidden=true;el.style.display='none'};
  // Clean catalog photos chosen for the homepage folders; other ERP images fill any gap.

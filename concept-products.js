@@ -20,7 +20,7 @@ function paintConcept(){
  slots.slice(0,3).forEach((p,i)=>{
   const image=document.getElementById('e'+i);
   document.getElementById('n'+i).textContent=p?rukaCatalog.name(p):'ให้ทีม RUKA แนะนำ';
-  image.innerHTML=conceptImage(p||{})||'🎁';
+  image.innerHTML=conceptImage(p||{})||'';
  });
  packName.textContent=slots[3]?rukaCatalog.name(slots[3]):'ให้ทีม RUKA แนะนำ';
  const chosen=slots.filter(p=>p?.price);
