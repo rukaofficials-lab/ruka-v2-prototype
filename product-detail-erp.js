@@ -15,17 +15,19 @@
       const cached = JSON.parse(sessionStorage.getItem('rukaPublicProducts') || 'null');
       if (cached && Date.now() - cached.savedAt >= 0 && Date.now() - cached.savedAt < 300000 && Array.isArray(cached.products)) items = cached.products;
     } catch (e) {}
-    let p = items.find((x) => x.name === requested || x.code === requested);
+    const clean = rukaCatalog.clean;
+    const matches = (x) => x.code === requested || clean(x.name) === clean(requested);
+    let p = items.find(matches);
     if (!p) {
       const res = await fetch(ENDPOINT, { signal: AbortSignal.timeout(10000) });
       if (!res.ok) throw new Error('Product feed unavailable');
       const data = await res.json();
       items = Array.isArray(data.products) ? data.products : [];
       try { sessionStorage.setItem('rukaPublicProducts', JSON.stringify({ savedAt: Date.now(), products: items })); } catch (e) {}
-      p = items.find((x) => x.name === requested || x.code === requested);
+      p = items.find(matches);
     }
     if (!p) throw new Error('Product not found');
-    selected = p.name;
+    selected = clean(p.name) + (p.code ? ' (' + p.code + ')' : '');
     const saveButton = document.querySelector('.secondary');
     if (saveButton) saveButton.setAttribute('aria-label', 'บันทึก ' + selected);
 
@@ -69,8 +71,12 @@
     // ขนาดย้ายไปอยู่ในสเปคด้านล่างแทน (ลูกค้าส่วนใหญ่เลือกจากรูปทรงมากกว่าขนาด)
     const nameEl = document.getElementById('name');
     if (nameEl) {
-      nameEl.textContent = p.name;
-      if (p.code) nameEl.insertAdjacentHTML('beforeend', ` <span class="erp-code" title="รหัสสินค้า — แจ้งเซลเพื่อเช็คราคาได้เลย">${esc(p.code)}</span>`);
+      const paintName = () => {
+        nameEl.textContent = rukaCatalog.name(p);
+        if (p.code) nameEl.insertAdjacentHTML('beforeend', ` <span class="erp-code" title="รหัสสินค้า — แจ้งเซลเพื่อเช็คราคาได้เลย">${esc(p.code)}</span>`);
+      };
+      paintName();
+      addEventListener('rukaLanguageChange', paintName);
     }
 
     if (p.image) {
@@ -119,7 +125,7 @@
     if (lead) {
       const specs = [];
       if (p.material) specs.push(['⚙️', 'วัสดุ', p.material]);
-      if (p.size) specs.push(['📐', 'ขนาด/ความจุ', p.size]); // รองรับหลายขนาด เช่น "350 ML, 510 ML"
+      if (clean(p.size)) specs.push(['📐', 'ขนาด/ความจุ', clean(p.size)]); // รองรับหลายขนาด เช่น "350 ML, 510 ML"
       // สี = ชวนลูกค้าสอบถาม/ระบุสี (ตรงกับ ERP)
       if (p.colors) specs.push(['🎨', 'สีที่ผลิตได้', p.colors + ' · สอบถาม/ระบุสีที่ต้องการกับทีมงาน']);
       if (specs.length) {
