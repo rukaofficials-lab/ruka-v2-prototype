@@ -109,6 +109,7 @@
   Object.assign(translations,{"ขอราคางานแบบนี้ →":"Get a quote like this →","อ้างอิงงานจริง":"Real work reference","งานที่อ้างอิง":"Referenced job"});
   Object.assign(translations,{"ไอเดียสำหรับ":"Ideas for","งานของคุณ":"your project","กดรูปเพื่อดูแนวคิด แล้วขอราคาได้เลย":"Tap an image to see the idea and ask for a quote","ขอราคาแนวนี้ →":"Get a quote like this →","แนวที่อ้างอิง":"Referenced idea","อีเวนต์ / แคมเปญ":"Events / Campaigns"});
   Object.assign(translations,{"บทความ":"Articles","เรื่องของขวัญองค์กร":"on corporate gifting","ความรู้สำหรับคนทำของพรีเมียมให้แบรนด์":"Guides for teams planning branded gifts","ไม่พบหน้านี้":"Page not found","ลิงก์อาจเปลี่ยนไปแล้ว ลองกลับไปดูสินค้าหรือเริ่มบรีฟได้เลย":"The link may have changed. Browse products or start a brief.","กลับหน้าแรก":"Back to home"});
+  Object.assign(translations,{"คุยกับทีม":"Talk to the team","ที่ตั้ง":"Location","โทรเลย":"Call now","คัดลอก":"Copy","คัดลอกแล้ว":"Copied","คัดลอกไม่สำเร็จ":"Copy failed","เปิดแผนที่":"Open map","บริษัท รุกะ เวิลด์ จำกัด":"RUKA World Co., Ltd."});
   const textNodes = root => { const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode(node){if(!node.nodeValue.trim()||/^(SCRIPT|STYLE|NOSCRIPT)$/.test(node.parentElement?.tagName||''))return NodeFilter.FILTER_REJECT;return NodeFilter.FILTER_ACCEPT}});const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);return nodes };
   const placeholders = new WeakMap();
   const patterns = [

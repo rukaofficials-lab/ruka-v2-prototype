@@ -94,6 +94,8 @@
   }
  });
 
+ // Copy buttons for the phone number and address.
+ document.querySelectorAll('.ct-copy').forEach(button=>{const label=button.textContent;button.onclick=async()=>{try{await navigator.clipboard.writeText(button.dataset.copy);button.textContent='คัดลอกแล้ว'}catch{button.textContent='คัดลอกไม่สำเร็จ'}setTimeout(()=>{button.textContent=label},1600)}});
  document.getElementById('copyBrief').onclick=async()=>{
   try{await navigator.clipboard.writeText(fallbackBody());status.textContent='คัดลอกแล้ว เปิด LINE @rukaworld แล้ววางข้อความเพื่อส่งให้ทีม'}
   catch{status.textContent='คัดลอกอัตโนมัติไม่ได้ กรุณาเลือกข้อความและคัดลอกด้วยตนเอง'}
