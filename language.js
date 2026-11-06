@@ -1,6 +1,8 @@
 (() => {
   const translations = {
 "อยากให้แบรนด์คุณ":"Where should your brand ",
+"อยากให้แบรนด์คุณอยู่บนอะไร?":"Where should your brand show up?",
+"ดูสินค้าทั้งหมด →":"Explore all products →",
 "อยู่บนอะไร?":"show up?",
 "เลือกหมวดที่ใช่ แล้วไปต่อกัน":"Pick a category. Make it yours.",
 "ดูสินค้าทั้งหมด ↗":"Explore all products \u2197",
