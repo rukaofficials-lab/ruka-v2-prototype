@@ -13,7 +13,7 @@ const options={
  'Custom Gift Box':['กระดาษและวัสดุหุ้มกล่อง',['พิมพ์โลโก้และลาย','ปั๊มฟอยล์ / ปั๊มนูนตามวัสดุ','ปลอกกล่องและการ์ด']],
  'Clear Event Bag':['วัสดุใสและสายกระเป๋า',['พิมพ์โลโก้บนวัสดุที่รองรับ','ป้าย / โลโก้บนสาย','การ์ดแทรกแบรนด์']]
 };
-const [material,methods]=options[selected];
+const [material,methods]=options[selected] || ['วัสดุจริงของสินค้า', []];
 const custom=document.querySelector('.custom');custom.querySelector('h3').textContent='สินค้านี้ต่อยอดโลโก้แบบไหนได้บ้าง?';
 const intro=document.createElement('p');intro.className='branding-material';intro.textContent='พิจารณาจาก: '+material;custom.querySelector('h3').after(intro);
 const chips=custom.querySelector('.chips');chips.replaceChildren();methods.forEach(method=>{const chip=document.createElement('span');chip.className='chip';chip.textContent=method;chips.append(chip)});

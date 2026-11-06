@@ -1,10 +1,58 @@
 (() => {
   const translations = {
+"อยากให้แบรนด์คุณ":"Where should your brand ",
+"อยู่บนอะไร?":"show up?",
+"เลือกหมวดที่ใช่ แล้วไปต่อกัน":"Pick a category. Make it yours.",
+"ดูสินค้าทั้งหมด ↗":"Explore all products \u2197",
+"แก้วและกระบอกน้ำ":"Drinkware",
+"กระเป๋า":"Bags",
+"เสื้อผ้าและหมวก":"Apparel & hats",
+"อุปกรณ์ไอที":"Tech accessories",
+"ของใช้ประจำวัน":"Everyday essentials",
+"บรรจุภัณฑ์":"Packaging",
+"เติมแบรนด์ในทุกวัน":"A sip of your brand",
+"พาแบรนด์ไปได้ทุกวัน":"Carry your brand everywhere",
+"ใส่ความเป็นคุณ":"Wear it your way",
+"ไอเดียที่เชื่อมถึงกัน":"Ideas that connect",
+"ให้แบรนด์อยู่ในทุกวัน":"Make every day yours",
+"เริ่มประทับใจตั้งแต่แกะ":"A great first impression",
+"ดูแก้วและกระบอกน้ำ ↗":"Explore drinkware \u2197",
+"ดูกระเป๋าทั้งหมด ↗":"Explore bags \u2197",
+"ดูเสื้อผ้าและหมวก ↗":"Explore apparel \u2197",
+"ดูอุปกรณ์ไอที ↗":"Explore tech \u2197",
+"ดูของใช้ประจำวัน ↗":"Explore essentials \u2197",
+"ดูบรรจุภัณฑ์ ↗":"Explore packaging \u2197",
+
+    "เริ่มให้เป็นคุณ":"Make it yours",
+    "จัดเต็มเป็นเซ็ต":"Create the complete set",
+    "ไอเดียคุณ เราช่วยต่อ":"Your idea. Our next step.",
+    "เลือกแพ็กนี้":"Choose this plan",
+    "คุยไอเดีย":"Let’s talk ideas",
+
+    "เป็นไปได้ใน":"Make it ",
+    "เริ่มเล็ก เล่นใหญ่":"Start small. Think big.",
+    "ไปได้ใน":"Make it ",
+    "แบบคุณ.":"your own.",
+    "เลือกงบตั้งต้น":"Pick a starting budget",
+    "แล้วให้ RUKA ช่วยคิดต่อ ↙":"Let RUKA take it further ↙",
+    "เริ่มให้คนจำแบรนด์":"Make your brand memorable",
+    "งบตั้งต้น 20,000 บาท / โปรเจกต์":"Starting budget: THB 20,000 / project",
+    "เติมไอเดียให้ครบเซ็ต":"Bring your gift set together",
+    "งบตั้งต้น 50,000 บาท / โปรเจกต์":"Starting budget: THB 50,000 / project",
+    "มีโจทย์ของคุณอยู่แล้ว?":"Have a brief in mind?",
+    "วางงบและขอบเขตไปด้วยกัน":"Let’s plan the budget and scope together",
+    "เริ่มตรงนี้":"Start here",
+    "ต่อยอดกัน":"Build on it",
+    "เล่าให้ฟัง":"Tell us more",
+    "งบตัวอย่างสำหรับวางแผน · ทีมจะยืนยันรายละเอียดและราคาก่อนสั่งผลิต":"Indicative budgets for planning. We’ll confirm scope and pricing before production.",
+
     'สินค้า':'Products','บริการ':'Services','เกี่ยวกับ':'About','ติดต่อ':'Contact','ค้นหา':'Search',
-    'ของขวัญองค์กรที่ดี':'Corporate gifts that matter','เริ่มจาก':'start with','ไอเดีย.':'an idea.',
+    'ของขวัญที่ดี':'Gifts that matter','เริ่มจาก':'start with','เริ่มต้น จาก':'start with','ไอเดีย.':'an idea.',
     'ไม่ต้องเริ่มจากการเปิดแคตตาล็อก':'You don’t have to start with a catalogue',
-    'บอกเราว่าคุณกำลังสร้างอะไร แล้ว RUKA จะช่วยต่อให้ครบ':'Tell us what you’re creating, and RUKA will help shape the rest.',
-    'เริ่มจากโอกาสของคุณ':'Start with your occasion','อีเวนต์':'Event','พนักงาน':'Employees','แคมเปญ':'Campaign','ปีใหม่':'New Year','ยังไม่แน่ใจ':'Not sure yet',
+    'บอกเราว่าคุณต้องการอะไร ที่เหลือ Ruka จะดูแลให้':'Tell us what you need — Ruka takes care of the rest.',
+    'กำลังมองหาของขวัญแบบไหน?':'What kind of gift are you looking for?',
+    'เปิดตัวอย่างเป็นทางการ · 1 ตุลาคม 2569':'Official launch · 1 October 2026','วัน':'days','ชั่วโมง':'hours','นาที':'mins','วินาที':'seconds',
+    'อีเวนต์':'Event','พนักงาน':'Employees','แคมเปญ':'Campaign','ปีใหม่':'New Year','ยังไม่แน่ใจ':'Not sure yet',
     'Ruka คือสตูดิโอที่คิด ออกแบบ และผลิต — เพื่อสร้างประสบการณ์แบรนด์ที่ครบทุกสัมผัส':'Ruka is a creative studio that thinks, designs and produces complete brand experiences.',
     'ดีไซน์ไปด้วยกัน':'Design together','บรีฟสั้นๆ ทีมดีไซน์คิดต่อให้ แก้ได้จนใช่':'Share a short brief. Our design team develops it with you until it feels right.',
     'ติดตามเรียลไทม์':'Track in real time','อัปเดตอัตโนมัติ เห็นรูป QC ก่อนส่งจริง':'Get automatic updates and review QC photos before delivery.',
@@ -51,11 +99,11 @@
       const strip = partners.map(([file, name]) =>
         `<div class="trustLogo"><img src="assets/brands/partners/${file}" alt="${name}" width="144" height="80"></div>`
       ).join('');
-      trust.innerHTML='<div class="trustEyebrow">BRANDS THAT TRUST US</div><h2 class="trustTitle">แบรนด์และองค์กรที่ไว้วางใจ RUKA</h2><div class="trustMarquee" aria-label="โลโก้ลูกค้า RUKA"><div class="trustTrack"><div class="trustStrip">'+strip+'</div><div class="trustStrip" aria-hidden="true">'+strip+'</div></div></div>';
+      trust.innerHTML='<div class="trustEyebrow">BRANDS THAT TRUST US</div><h2 class="trustTitle">แบรนด์และองค์กรที่ไว้วางใจ <span style="font-family:Georgia,serif;font-weight:700;letter-spacing:-.02em;position:relative;display:inline-block"><span style="color:#b41616">R</span><span style="color:#e8a51d">uka</span><span aria-hidden="true" style="position:absolute;width:.13em;height:.13em;border-radius:50%;background:#b41616;right:-.02em;top:.02em"></span></span></h2><div class="trustMarquee" aria-label="โลโก้ลูกค้า RUKA"><div class="trustTrack"><div class="trustStrip">'+strip+'</div><div class="trustStrip" aria-hidden="true">'+strip+'</div></div></div>';
       const style=document.createElement('style');
       style.textContent=`
         .trust{padding:54px 0 64px;background:#fff;color:#171717;overflow:hidden}
-        .trustEyebrow{text-align:center;font-size:11px;font-weight:900;letter-spacing:.18em;color:#b41616;margin-bottom:10px}
+        .trustEyebrow{text-align:center;font-size:13px;font-weight:900;letter-spacing:.18em;color:#b41616;margin-bottom:10px}
         .trustTitle{text-align:center;font:700 34px Georgia;margin:0 0 28px}
         .trustMarquee{width:100%;overflow:hidden;border-top:1px solid #eee;border-bottom:1px solid #eee;background:#fff;padding:18px 0}
         .trustTrack{display:flex;width:max-content;animation:rukaLogoMarquee 40s linear infinite}

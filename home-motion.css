@@ -1,0 +1,9 @@
+/* Progressive enhancement: native scroll, desktop scenes only. */
+@media(min-width:901px) and (min-height:650px) and (prefers-reduced-motion:no-preference){
+ .motion-hero-scene{position:relative;padding-bottom:36vh;background:#fffaf2}
+ .motion-hero-scene>.hero-carousel{position:sticky;top:0;transform-origin:center 30%}
+ .motion-scenes .brandStory{overflow:visible}
+ .motion-scenes .brandStoryHead{position:sticky;top:100px;background:#fbf8f1;padding:22px 0;margin-bottom:60px;z-index:4}
+ .motion-scenes .brandJourney{position:relative;z-index:5;row-gap:100px;padding-bottom:15vh}
+ .motion-scenes .brandCard{box-shadow:0 12px 30px #4c392213}
+}
