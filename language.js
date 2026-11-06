@@ -87,7 +87,7 @@
   }
   window.setRukaLanguage=applyLanguage;
   document.addEventListener('DOMContentLoaded',()=>{
-    const SHOW_CLIENT_LOGOS=false;
+    const SHOW_CLIENT_LOGOS=true;
     const trust=document.querySelector('.trust');
     if(trust&&SHOW_CLIENT_LOGOS){
       const partners = [
