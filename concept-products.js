@@ -4,8 +4,7 @@ const conceptCategories={drink:'drinkware',bag:'bags',life:'lifestyle',apparel:'
 const synonymGroups=[['กระเป๋า','ถุง','bag','tote'],['แก้ว','กระบอก','ขวด','tumbler','bottle','mug','cup','drinkware'],['หมวก','cap','hat','bucket'],['สมุด','notebook','note'],['แผ่นรองเมาส์','mouse pad','mousepad'],['พัดลม','fan'],['กล่อง','บรรจุภัณฑ์','box','packaging']];
 const conceptEsc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const conceptPrice=p=>p.price?(p.priceMax&&p.priceMax>p.price?'฿'+p.price+'–'+p.priceMax:'฿'+p.price):'';
-const conceptThumb=url=>String(url).includes('/storage/v1/object/public/')?String(url).replace('/storage/v1/object/public/','/storage/v1/render/image/public/')+'?width=320&quality=75':url;
-const conceptImage=p=>p.image?'<img src="'+conceptEsc(conceptThumb(p.image))+'" alt="" decoding="async">':'';
+const conceptImage=p=>p.image?'<img src="'+conceptEsc(rukaCatalog.thumb(p.image,320))+'" alt="" decoding="async">':'';
 const conceptRef=p=>rukaCatalog.clean(p.name)+' ('+p.code+')';
 const conceptCode=value=>String(value||'').match(/\(([^()]+)\)$/)?.[1]||'';
 function conceptMatches(product,query){
