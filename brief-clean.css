@@ -1,0 +1,108 @@
+/* Brief: step list, one focused question, and a project card that fills up as you answer. */
+html body{background:#fff}
+html body .brief-occasion-back{max-width:1240px;margin:22px auto 8px;padding:0 20px;color:#7a6f68;font:500 14px/1.4 "IBM Plex Sans Thai",Arial,sans-serif;text-decoration:none}
+html body .brief-occasion-back:hover{color:#b41616}
+html body .wrap{display:grid;grid-template-columns:210px minmax(0,1fr) 340px;gap:clamp(20px,3vw,40px);max-width:1240px;margin:0 auto;padding:0 20px 64px;align-items:start}
+html body .wrap>.panel{min-width:0;padding:0;border:0;border-radius:0;background:none;box-shadow:none}
+.brief-rail{position:sticky;top:calc(50vh - 130px);display:flex;flex-direction:column;align-items:flex-start;gap:2px}
+.brief-rail button{display:flex;align-items:center;gap:8px;padding:5px 0;border:0;background:none;color:#b3a99f;font:500 26px/1.35 "IBM Plex Sans Thai",Arial,sans-serif;white-space:nowrap;cursor:pointer;transform:scale(.72);transform-origin:left center;transition:transform .5s cubic-bezier(.16,1,.3,1),color .35s ease}
+.brief-rail button:hover{color:#1f1512}
+.brief-rail button.done::after{content:"";width:9px;height:9px;border-radius:50%;background:#e8a51d}
+.brief-rail button.active{color:#1f1512;transform:none}
+html body .brief-step{display:none}
+html body .q{animation:none}
+html body .q.active{animation:briefIn .42s cubic-bezier(.16,1,.3,1) both}
+@keyframes briefIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+html body .q h2{margin:0 0 6px;color:#1f1512;font:500 clamp(28px,3vw,40px)/1.25 "IBM Plex Sans Thai",Arial,sans-serif;letter-spacing:-.015em;outline:none}
+html body .qlead{margin:0 0 22px;color:#7a6f68;font-size:16px}
+html body .options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+html body .opt,html body .budgetcard{position:relative;display:block;min-height:112px;padding:20px 44px 20px 20px;border:1.5px solid #eee9e2;border-radius:20px;background:#fff;box-shadow:none;color:#1f1512;text-align:left;cursor:pointer;transition:border-color .2s,background .2s,transform .25s cubic-bezier(.16,1,.3,1)}
+html body .opt:hover,html body .budgetcard:hover{border-color:#1f1512;transform:translateY(-2px)}
+html body .opt.selected,html body .budgetcard.selected{border-color:#b41616;background:#fdf3f0}
+html body .opt.selected::after,html body .budgetcard.selected::after{content:"\2713";position:absolute;top:16px;right:16px;display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:#b41616;color:#fff;font-size:13px}
+html body .brief-choice-icon:empty{display:none}
+html body .brief-choice-copy strong,html body .budgetcard b{display:block;font:500 18px/1.35 "IBM Plex Sans Thai",Arial,sans-serif;color:#1f1512}
+html body .brief-choice-copy small,html body .budgetcard span{display:block;margin-top:4px;color:#7a6f68;font:400 14.5px/1.45 "IBM Plex Sans Thai",Arial,sans-serif}
+html body .budgetgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+html body .qtygrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:12px}
+html body .qtybtn{height:112px;border:1.5px solid #eee9e2;border-radius:20px;background:#fff;color:#1f1512;font:500 32px/1.1 "IBM Plex Sans Thai",Arial,sans-serif;cursor:pointer;transition:border-color .2s,background .2s,transform .25s cubic-bezier(.16,1,.3,1)}
+html body .qtybtn small{display:block;margin-top:4px;color:#7a6f68;font-size:14px;font-weight:400}
+html body .qtybtn:hover{border-color:#1f1512;transform:translateY(-2px)}
+html body .qtybtn.selected{border-color:#b41616;background:#fdf3f0}
+html body .field,html body .dateinput{width:100%;box-sizing:border-box;border:1.5px solid #eee9e2;border-radius:16px;background:#fff;font-family:"IBM Plex Sans Thai",Arial,sans-serif}
+html body .note{margin-top:12px;border:0;border-radius:14px;background:#f6f5f2;color:#6c625c}
+html body .datechip,html body .brief-moods button{border:1.5px solid #eee9e2;border-radius:999px;background:#fff;color:#1f1512;font-weight:500;cursor:pointer}
+html body .datechip.selected,html body .brief-moods button:hover{border-color:#b41616;background:#fdf3f0}
+html body .actions{display:flex;justify-content:space-between;align-items:center;margin-top:24px}
+html body .actions .next{height:52px;padding:0 26px;border:0;border-radius:999px;background:#1f1512;color:#fff;font:500 15px/1 "IBM Plex Sans Thai",Arial,sans-serif;cursor:pointer;transition:background .2s}
+html body .actions .next:hover{background:#b41616}
+html body .actions .back{border:0;background:none;color:#7a6f68;font:500 14px/1 "IBM Plex Sans Thai",Arial,sans-serif;cursor:pointer}
+html body .wrap>.panel.summary{position:sticky;top:88px;padding:20px;border:0;border-radius:28px;background:var(--brief-tint,#f6f1e7);box-shadow:none}
+html body .summary h3{margin:0 0 14px;color:#1f1512;font:500 20px/1.3 "IBM Plex Sans Thai",Arial,sans-serif}
+.brief-photos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:0 0 6px}
+.brief-photos span{overflow:hidden;aspect-ratio:1;border-radius:12px;background:#fff}
+.brief-photos img{display:block;width:100%;height:100%;object-fit:cover}
+.brief-photos-note{margin:0 0 12px;color:#8b7f76;font-size:12.5px}
+html body .summary .row{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:2px 10px;padding:9px 0;border:0;border-top:1px solid #2b242014}
+html body .summary .row small{color:#7a6f68;font-size:13.5px}
+html body .summary .row b{order:3;width:100%;color:#1f1512;font:500 15px/1.4 "IBM Plex Sans Thai",Arial,sans-serif}
+html body .summary .row.is-empty b{width:auto;order:2;color:#b3a99f;font-weight:400}
+html body .summary .row.is-empty .brief-edit{display:none}
+html body .brief-edit{border:0;background:none;color:#7a6f68;font-size:13px;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+html body .brief-summary-note{margin:10px 0 0;padding:0;background:none;color:#7a6f68;font-size:13px}
+@media(max-width:1180px){html body .wrap{grid-template-columns:minmax(0,1fr) 320px}.brief-rail{display:none}html body .brief-step{display:flex}}
+@media(max-width:860px){html body .wrap{grid-template-columns:1fr}html body .wrap>.panel.summary{position:static}}
+@media(max-width:560px){html body .wrap{padding:0 16px 40px}html body .options,html body .budgetgrid{grid-template-columns:1fr}html body .opt,html body .budgetcard{min-height:0}html body .qtybtn{height:92px;font-size:26px}}
+@media(prefers-reduced-motion:reduce){html body .q.active{animation:none}.brief-rail button{transition:none}}
+
+/* Warmth: Ruka talks back, cards carry colour and icons, the card fills through a rainbow. */
+.brief-voice{display:flex;align-items:center;gap:10px;margin:0 0 18px}
+.brief-face{display:grid;flex:none;place-items:center;width:36px;height:36px;border-radius:50%;background:#b41616;color:#fff;font:700 17px/1 "Google Sans","IBM Plex Sans Thai",Arial,sans-serif}
+.brief-voice p{margin:0;padding:9px 16px;border-radius:18px 18px 18px 4px;background:#f6f5f2;color:#1f1512;font-size:14.5px;line-height:1.45}
+.brief-voice p.pop{animation:briefPop .42s cubic-bezier(.2,1.4,.4,1) both}
+@keyframes briefPop{from{opacity:0;transform:translateY(8px) scale(.96)}to{opacity:1;transform:none}}
+html body .opt,html body .budgetcard{--tint:#f6f1e7;border-color:transparent;background:var(--tint)}
+html body .opt:nth-child(2),html body .budgetcard:nth-child(2){--tint:#f3f0f8}
+html body .opt:nth-child(3),html body .budgetcard:nth-child(3){--tint:#edf4ef}
+html body .opt:nth-child(4),html body .budgetcard:nth-child(4){--tint:#fbeee9}
+html body .opt:hover,html body .budgetcard:hover{border-color:transparent;box-shadow:0 12px 26px #2b242014}
+html body .opt.selected,html body .budgetcard.selected{border-color:#b41616;background:var(--tint)}
+html body .brief-choice-icon:empty{display:none}
+html body .brief-choice-icon{display:grid;width:40px;height:40px;margin:0 0 10px;padding:8px;box-sizing:border-box;border-radius:50%;background:#fff;color:#b41616;transition:transform .35s cubic-bezier(.2,1.4,.4,1)}
+html body .brief-choice-icon svg{display:block;width:100%;height:100%}
+html body .opt:hover .brief-choice-icon,html body .opt.selected .brief-choice-icon{transform:rotate(-7deg) scale(1.08)}
+.brief-coins{display:block;margin-bottom:8px;color:#b41616;font:700 15px/1 Arial,sans-serif;letter-spacing:.06em;font-style:normal}
+html body .qtybtn:nth-child(1){background:#f6f1e7;border-color:transparent}
+html body .qtybtn:nth-child(2){background:#f3f0f8;border-color:transparent}
+html body .qtybtn:nth-child(3){background:#edf4ef;border-color:transparent}
+html body .qtybtn.selected{border-color:#b41616}
+.brief-meter{height:6px;margin:-6px 0 14px;overflow:hidden;border-radius:6px;background:#2b242014}
+.brief-meter i{display:block;width:0;height:100%;border-radius:6px;background:linear-gradient(90deg,#b41616,#ee5a24,#f2a91d,#25a86a,#2a7de1,#8a46dc);background-size:340px 100%;transition:width .5s cubic-bezier(.16,1,.3,1)}
+@media(prefers-reduced-motion:reduce){.brief-voice p.pop{animation:none}.brief-meter i,html body .brief-choice-icon{transition:none}}
+
+
+/* Final step: review on the right, contact details here, sent from this page. */
+html body #complete h2{margin:0 0 6px;color:#1f1512;font:500 clamp(28px,3vw,40px)/1.25 "IBM Plex Sans Thai",Arial,sans-serif;letter-spacing:-.015em}
+html body #complete p{color:#7a6f68;font-size:16px}
+html body #complete.active{animation:briefIn .42s cubic-bezier(.16,1,.3,1) both}
+.brief-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:20px}
+.brief-form label{display:grid;gap:6px;color:#5f544d;font-size:14px;font-weight:500}
+.brief-form label span{color:#b41616}
+.brief-form input{height:52px;padding:0 16px;box-sizing:border-box;border:1.5px solid #eee9e2;border-radius:16px;background:#fff;color:#1f1512;font:400 16px/1.2 "IBM Plex Sans Thai",Arial,sans-serif;transition:border-color .2s}
+.brief-form input:focus{outline:none;border-color:#b41616}
+.brief-form button{grid-column:1/-1;justify-self:start;height:54px;margin-top:6px;padding:0 28px;border:0;border-radius:999px;background:#b41616;color:#fff;font:500 16px/1 "IBM Plex Sans Thai",Arial,sans-serif;cursor:pointer;transition:background .2s}
+.brief-form button:hover{background:#1f1512}
+.brief-form button:disabled{opacity:.6;cursor:default}
+html body #complete .brief-form-note{grid-column:1/-1;margin:0;color:#8b7f76;font-size:13.5px}
+.brief-sent{display:none}
+#complete.is-sent .brief-ask{display:none}
+#complete.is-sent .brief-sent{display:block}
+.brief-sent a{display:inline-flex;align-items:center;height:52px;margin:18px 10px 0 0;padding:0 24px;border-radius:999px;background:#1f1512;color:#fff;font-size:15px;font-weight:500;text-decoration:none}
+.brief-sent a+a{border:1.5px solid #eee9e2;background:#fff;color:#1f1512}
+@media(max-width:560px){.brief-form{grid-template-columns:1fr}.brief-form button{width:100%;justify-self:stretch}}
+html body #complete{padding:0;text-align:left}
+.brief-form label{display:block}
+.brief-form input{display:block;width:100%;margin-top:6px}
+html body .wrap:has(#complete.active) .brief-voice{display:none}
+html body .wrap:has(#complete.is-sent) .brief-edit{display:none}
+html body .wrap:has(#complete.is-sent) .brief-rail{pointer-events:none}

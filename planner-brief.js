@@ -9,6 +9,6 @@ const prior=sync;sync=function(){prior();const brief=flowRead('rukaBrief');Objec
 const oldContext=document.querySelector('.flow-context');if(oldContext)oldContext.textContent='ชุดที่เลือก: '+plan.title;
 sOccasion.textContent=plan.occasionLabel;
 const priorNext=next;next=function(){priorNext();sync()};
-document.querySelector('#complete .recommend').textContent='กรอกข้อมูลติดต่อ ให้ RUKA ช่วยต่อ →';document.querySelector('#complete .recommend').onclick=()=>location.href='contact.html';document.querySelector('#complete p').textContent='แนวสินค้า งบ และจำนวนพร้อมแล้ว เหลือข้อมูลติดต่อเพื่อส่งให้ทีมช่วยประเมิน';
+
 step=4;sync();show();
 })();

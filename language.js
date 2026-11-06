@@ -91,6 +91,8 @@
   Object.assign(translations,{"เลือกของที่ใช่":"Find the right gift","ให้แบรนด์คุณ":"for your brand"});
   Object.assign(translations,{"เริ่มบรีฟงานนี้":"Start this brief","ตัวอย่างสินค้าที่เหมาะกับงานนี้":"Sample products for this occasion","เริ่มจากโอกาส":"Start from your","ของคุณ":"occasion"});
   translations["ภาพตัวอย่าง"]="Sample image";
+  Object.assign(translations,{"โจทย์":"Brief","จำนวน":"Quantity","งบต่อชุด":"Budget per set","วันรับของ":"Delivery date","แนวทาง":"Direction"});
+  Object.assign(translations,{"เกือบเสร็จแล้ว":"Almost done","เหลือแค่ชื่อกับเบอร์ เดี๋ยวทีม RUKA ติดต่อกลับพร้อมราคา บรีฟของคุณแนบไปให้แล้ว":"Just your name and number. The RUKA team will get back to you with pricing, and your brief is attached.","ชื่อ-นามสกุล":"Full name","ถ้ามี":"Optional","ส่งบรีฟให้ทีม RUKA →":"Send brief to RUKA →","ทีมจะติดต่อกลับภายใน 24 ชั่วโมง (จันทร์–ศุกร์)":"We reply within 24 hours (Mon–Fri)","ส่งเรียบร้อยแล้ว":"Sent","ทีม RUKA ได้รับบรีฟของคุณแล้ว และจะติดต่อกลับภายใน 24 ชั่วโมง (จันทร์–ศุกร์)":"The RUKA team has your brief and will reply within 24 hours (Mon–Fri)","กลับหน้าแรก":"Back to home"});
   const textNodes = root => { const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode(node){if(!node.nodeValue.trim()||/^(SCRIPT|STYLE|NOSCRIPT)$/.test(node.parentElement?.tagName||''))return NodeFilter.FILTER_REJECT;return NodeFilter.FILTER_ACCEPT}});const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);return nodes };
   const placeholders = new WeakMap();
   const patterns = [
