@@ -25,7 +25,7 @@
 
     const buildRows = () => items.map((p) => {
       const photo = p.image
-        ? `<img src="${attr(rukaCatalog.thumb(p.image, 520))}" alt="" loading="lazy" decoding="async">`       // สไตล์คุมด้วย <style> ด้านบน
+        ? `<img src="${attr(rukaCatalog.thumb(rukaCatalog.cover(p), 520))}" alt="" loading="lazy" decoding="async">`       // สไตล์คุมด้วย <style> ด้านบน
         : (EMOJI[p.category] || '');
       const moq = p.moq ? 'MOQ ' + p.moq : '';
       const lead = p.leadTime ? p.leadTime + ' วัน' : '';
