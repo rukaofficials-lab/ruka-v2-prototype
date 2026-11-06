@@ -65,3 +65,8 @@
 .hero-art-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;width:min(100%,1200px);max-height:100%;align-items:center}
 .hero-track .hero-art .hero-art-pair img{display:block;width:100%;height:auto;max-width:100%;max-height:100%;aspect-ratio:3/2;object-fit:contain;background:transparent;border-radius:20px}
 @media(max-width:760px){.hero-art-pair{gap:10px;grid-template-columns:1fr;width:min(100%,220px)}.hero-track .hero-art .hero-art-pair img{border-radius:12px}}
+/* Fit the occasion chips into the opening screen on any window height. */
+.hero-track{height:clamp(280px,calc(100svh - 268px),420px)}
+.hero-track>.hero-art img{max-height:100%}
+@media(max-width:760px){.hero-track{height:clamp(240px,calc(100svh - 372px),370px)}.hero-track .heroContent .prompt{margin-top:14px}.hero-track .ey{margin-bottom:12px}.hero-track .hero h1{margin-bottom:10px}}
+@media(min-width:761px) and (max-width:1100px){.hero-track{height:clamp(280px,calc(100svh - 336px),420px)}}
