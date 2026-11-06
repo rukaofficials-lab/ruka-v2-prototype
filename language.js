@@ -152,11 +152,12 @@
   let activeLanguage='th';
   function applyLanguage(lang){document.documentElement.lang=lang==='en'?'en':'th';textNodes(document.body).forEach(node=>{if(!originals.has(node))originals.set(node,node.nodeValue);const original=originals.get(node);if(lang==='th'){node.nodeValue=original;return}const lead=original.match(/^\s*/)?.[0]||'',tail=original.match(/\s*$/)?.[0]||'',key=original.trim();const translated=translate(key);if(translated)node.nodeValue=lead+translated+tail});document.querySelectorAll('[placeholder]').forEach(el=>{if(!placeholders.has(el))placeholders.set(el,el.placeholder);const original=placeholders.get(el);el.placeholder=lang==='en'?translate(original.trim())||original:original});document.querySelectorAll('[data-lang]').forEach(button=>button.classList.toggle('active',button.dataset.lang===lang));const changed=lang!==activeLanguage;activeLanguage=lang;try{localStorage.setItem('rukaLanguage',lang)}catch{}if(changed)dispatchEvent(new CustomEvent('rukaLanguageChange',{detail:lang}))}
   function markCurrentPage(){
-    const page=(location.pathname.split('/').pop()||'index.html').toLowerCase();
+    const pageOf=(p=>/^\/products\/[^/]+/.test(p)?'product.html':(s=>s.includes('.')?s:s+'.html')(p.split('/').pop()||'index.html'));
+    const page=pageOf(location.pathname).toLowerCase();
     const section={'product.html':'products.html','brief.html':'occasion.html','recommendations.html':'occasion.html','concept.html':'occasion.html','how.html':'occasion.html'}[page]||(location.pathname.startsWith('/blog/')?'blog.html':page);
     document.querySelectorAll('body > nav a[href]').forEach(a=>{
       if(a.classList.contains('logo'))return;
-      const target=new URL(a.href,location.href).pathname.split('/').pop()||'index.html';
+      const target=pageOf(new URL(a.href,location.href).pathname);
       const current=target===page;
       const active=current||(target===section&&(!a.closest('.mobile-menu')||page!=='how.html'));
       a.classList.toggle('active',active);

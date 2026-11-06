@@ -16,7 +16,7 @@ function flowSelectProduct(name) {
  localStorage.setItem('rukaFilterIntent',JSON.stringify(flowFilterIntent()));
  location.href='brief.html';
 }
-const flowPage=location.pathname.split('/').pop()||'index.html';
+const flowPage=(p=>/^\/products\/[^/]+/.test(p)?'product.html':(s=>s.includes('.')?s:s+'.html')(p.split('/').pop()||'index.html'))(location.pathname);
 const flowNav=document.querySelector('body>nav');
 if(flowNav){
  const toggle=document.createElement('button');toggle.type='button';toggle.className='mobile-menu-button';toggle.textContent='☰';toggle.setAttribute('aria-label','เปิดเมนู');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-controls','mobileMenu');

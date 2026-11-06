@@ -3,7 +3,7 @@
  const LOCAL=['rukaBrief','rukaDraft','rukaProduct','rukaProductTech','rukaIdea','rukaIdeaBudget','rukaIdeaMood','rukaSearchIntent','rukaFilterIntent','rukaOccasion','rukaConcept','rukaDirection','rukaHandoff','rukaRefPics'];
  const remove=keys=>keys.forEach(key=>{try{localStorage.removeItem(key)}catch{}});
  window.rukaClearBrief=()=>{remove(LOCAL);try{sessionStorage.removeItem('rukaGiftPlan')}catch{}};
- if((location.pathname.split('/').pop()||'')!=='brief.html')return;
+ if(!/\/brief(\.html)?$/.test(location.pathname))return;
  const params=new URLSearchParams(location.search);
  const navType=performance.getEntriesByType('navigation')[0]?.type;
  if(params.get('planner')==='1'||params.get('resume')==='1'||navType==='reload'||navType==='back_forward')return;
