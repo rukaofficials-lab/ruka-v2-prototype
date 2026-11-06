@@ -1,13 +1,12 @@
-// Walkthrough: steps play in turn while on screen; visitors can pick one, and hover pauses it.
+// The steps follow the scroll; on small screens they stack and open as they arrive.
 (() => {
- const demo=document.getElementById('how-demo');
- if(!demo)return;
- const STEP=4800;
- demo.style.setProperty('--step',STEP+'ms');
- const tabs=[...demo.querySelectorAll('.how-tab')],panels=[...demo.querySelectorAll('.how-panel')];
- const reduced=matchMedia('(prefers-reduced-motion: reduce)');
- const percent=demo.querySelector('[data-percent]');
- let index=0,timer=0,left=STEP,started=0,visible=false,hovering=false,count=0;
+ const section=document.getElementById('how-ruka');
+ if(!section)return;
+ const pin=section.querySelector('.how-pin'),stops=[...section.querySelectorAll('.how-stop')],words=[...section.querySelectorAll('.how-fill')];
+ const line=section.querySelector('.how-line i'),percent=section.querySelector('[data-percent]');
+ const reduced=matchMedia('(prefers-reduced-motion: reduce)'),compact=matchMedia('(max-width:900px),(max-height:640px)');
+ let index=-1,count=0,frame=0,seen=0,observer=null;
+ const light=n=>words.forEach((word,i)=>word.classList.toggle('is-lit',i<n));
  function runPercent(){
   cancelAnimationFrame(count);
   if(reduced.matches){percent.textContent='100%';return}
@@ -15,23 +14,36 @@
   count=requestAnimationFrame(tick);
  }
  function show(next){
+  if(next===index)return;
   index=next;
-  tabs.forEach((tab,i)=>{const on=i===next;tab.classList.toggle('is-active',on);tab.setAttribute('aria-selected',String(on))});
-  panels.forEach((panel,i)=>panel.classList.toggle('is-active',i===next));
+  stops.forEach((stop,i)=>{stop.classList.toggle('is-active',i===next);stop.classList.toggle('is-done',i<next);stop.querySelector('.how-stop-head').setAttribute('aria-current',i===next?'step':'false')});
+  light(next+2);
   if(next===2)runPercent();
  }
- function schedule(ms){clearTimeout(timer);started=performance.now();left=ms;timer=setTimeout(()=>{show((index+1)%tabs.length);restart()},ms)}
- function restart(){const active=tabs[index].querySelector('i');active.style.animation='none';void active.offsetWidth;active.style.animation='';schedule(STEP)}
- function sync(){
-  const run=visible&&!hovering&&!reduced.matches;
-  demo.classList.toggle('is-paused',!run);
-  if(run){if(!demo.classList.contains('is-playing')){demo.classList.add('is-playing');show(index);restart()}else schedule(left)}
-  else{clearTimeout(timer);if(started)left=Math.max(300,left-(performance.now()-started))}
+ const range=()=>Math.max(1,section.offsetHeight-pin.offsetHeight);
+ function read(){
+  frame=0;
+  if(compact.matches)return;
+  const p=Math.min(1,Math.max(0,(parseFloat(getComputedStyle(pin).top||0)-section.getBoundingClientRect().top)/range()));
+  line.style.transform='scaleX('+(.08+p*.92)+')';
+  show(Math.min(stops.length-1,Math.floor(p*stops.length)));
  }
- tabs.forEach((tab,i)=>tab.addEventListener('click',()=>{show(i);if(!reduced.matches&&visible)restart()}));
- demo.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'){hovering=true;sync()}});
- demo.addEventListener('pointerleave',()=>{hovering=false;sync()});
- new IntersectionObserver(entries=>{visible=entries[entries.length-1].isIntersecting;sync()},{threshold:.35}).observe(demo);
- document.addEventListener('visibilitychange',()=>{visible=visible&&!document.hidden;sync()});
- show(0);
+ function arrive(entries){
+  entries.forEach(entry=>{if(!entry.isIntersecting)return;entry.target.classList.add('is-active');observer.unobserve(entry.target);seen++;light(seen+1);if(entry.target===stops[2])runPercent()});
+ }
+ function mode(){
+  observer?.disconnect();observer=null;index=-1;seen=0;
+  stops.forEach(stop=>stop.classList.remove('is-active','is-done'));
+  if(compact.matches){light(1);observer=new IntersectionObserver(arrive,{threshold:.3});stops.forEach(stop=>observer.observe(stop))}
+  else read();
+ }
+ stops.forEach((stop,i)=>stop.querySelector('.how-stop-head').addEventListener('click',()=>{
+  if(compact.matches)return;
+  const top=section.getBoundingClientRect().top+scrollY-parseFloat(getComputedStyle(pin).top||0);
+  scrollTo({top:top+range()*(i+.5)/stops.length,behavior:reduced.matches?'auto':'smooth'});
+ }));
+ addEventListener('scroll',()=>{if(!frame)frame=requestAnimationFrame(read)},{passive:true});
+ addEventListener('resize',read);
+ compact.addEventListener('change',mode);
+ mode();
 })();
