@@ -1,12 +1,41 @@
-@font-face{font-family:RukaTicket;src:url('assets/fonts/Kanit-Regular.ttf') format('truetype');font-weight:400;font-display:swap}
-@font-face{font-family:RukaTicket;src:url('assets/fonts/Kanit-Bold.ttf') format('truetype');font-weight:700;font-display:swap}
-@font-face{font-family:RukaTicket;src:url('assets/fonts/Kanit-Black.ttf') format('truetype');font-weight:900;font-display:swap}
-.budget-tickets{max-width:1280px;margin:0 auto;padding:60px 36px;background:#fffaf4;color:#211d19;font-family:RukaTicket,Arial,sans-serif;box-sizing:border-box}
-.budget-ticket-header{display:flex;align-items:center;justify-content:space-between;gap:30px;margin-bottom:32px}.budget-ticket-header small{font-size:12px;letter-spacing:.18em;color:#b9181c}.budget-ticket-header h2{font-size:clamp(30px,3.7vw,50px);font-weight:700;line-height:1.3;margin:16px 0 0;letter-spacing:-.5px}.budget-ticket-header h2>span:first-child{display:block}.budget-ticket-header p{font-size:15px;line-height:1.6;text-align:right;flex-shrink:0;color:#655e55}
-.budget-ticket-header em{font-style:normal;background:linear-gradient(105deg,#b9181c 0%,#dd3e15 22%,#a96909 42%,#d34415 62%,#b9181c 80%,#dd3e15 100%);background-size:300% 100%;background-clip:text;-webkit-background-clip:text;color:transparent;animation:budget-colors 8s ease-in-out infinite alternate}
-@keyframes budget-colors{from{background-position:0% 50%}to{background-position:100% 50%}}
-.budget-ticket-list{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:18px}.budget-ticket{position:relative;display:flex;flex-direction:column;min-width:0;min-height:320px;padding:28px;border-radius:20px;text-decoration:none;color:var(--ink);background:var(--card);box-sizing:border-box;transition:transform .18s}.budget-ticket--starter{--card:#b9181c;--ink:#fff7e8}.budget-ticket--plus{--card:#fff7e8;--ink:#b9181c;border:1px solid #e8bc62}.budget-ticket--custom{--card:#f5c547;--ink:#701519}.budget-ticket-value{display:flex;flex-direction:column;gap:24px}.budget-ticket-value small{font-size:13px;letter-spacing:.06em;font-weight:700}.budget-ticket-value strong{font:700 clamp(64px,7.5vw,106px)/1.1 RukaTicket,Arial,sans-serif;letter-spacing:-3px}.budget-ticket--custom .budget-ticket-value strong{font-size:clamp(32px,3.5vw,48px);line-height:1.05;letter-spacing:-1px;max-width:6em}.budget-ticket-copy{margin-top:auto;padding-top:28px;padding-right:30px}.budget-ticket-copy h3{font-size:clamp(18px,1.65vw,23px);line-height:1.3;margin:0 0 8px}.budget-ticket-copy p{font-size:13px;line-height:1.5;margin:0}.budget-ticket-stub{position:absolute;right:18px;bottom:24px}.budget-ticket-stub>span:first-child{display:none}.budget-ticket-arrow{display:grid;place-items:center;width:34px;height:34px;border:1.5px solid currentColor;border-radius:50%;font:26px/1 Arial,sans-serif}.budget-sticker,.budget-flower,.budget-spark{display:none}.budget-ticket-note{font-size:12px;color:#81796f;margin:22px 0 0;line-height:1.6}.budget-ticket:focus-visible{outline:3px solid #2458b0;outline-offset:5px}#home-styles-title{scroll-margin-top:120px}
-@media(hover:hover) and (prefers-reduced-motion:no-preference){.budget-ticket:hover{transform:translateY(-4px)}}
-@media(max-width:900px){.budget-ticket-header{display:block}.budget-ticket-header p{text-align:left;font-size:13px}.budget-ticket{padding:22px}.budget-ticket-list{grid-template-columns:1.2fr 1fr 1fr;gap:12px}.budget-ticket-value strong{font-size:64px}.budget-ticket--custom .budget-ticket-value strong{font-size:32px}.budget-ticket-copy{padding-right:24px}.budget-ticket-copy p{font-size:12px}}
-@media(max-width:650px){.budget-tickets{padding:36px 20px}.budget-ticket-list{grid-template-columns:1fr}.budget-ticket{min-height:240px}.budget-ticket-header h2{font-size:32px}.budget-ticket-value{gap:14px}.budget-ticket-value strong{font-size:72px}.budget-ticket--custom .budget-ticket-value strong{font-size:42px;max-width:none}.budget-ticket-copy h3{font-size:23px}}
-@media(prefers-reduced-motion:reduce){.budget-ticket-header em{animation:none}.budget-ticket{transition:none}}
+/* Starting budgets as quiet tickets that match the folder section. */
+.budget-tickets{max-width:none;margin:0;padding:clamp(52px,9vh,96px) 20px clamp(44px,7vh,76px);background:#fff;color:#1f1512}
+.budget-ticket-header,.budget-ticket-list,.budget-ticket-note{max-width:1200px;margin-left:auto;margin-right:auto}
+.budget-ticket-header{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:clamp(24px,4.4vh,44px)}
+.budget-ticket-header small{display:none}
+.budget-ticket-header h2{margin:0;font:700 clamp(28px,3.4vw,42px)/1.25 RukaDisplay,Arial,sans-serif;letter-spacing:-.01em;color:inherit}
+.budget-ticket-header h2 em{margin-left:.25em;color:inherit;font-style:normal}
+.budget-ticket-header p{flex-shrink:0;margin:0;color:#7a6f68;font:500 16px/1.5 Arial,sans-serif;text-align:right}
+.budget-ticket-list{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.6vw,20px)}
+.budget-ticket{--tint:#fff3c9;position:relative;display:flex;flex-direction:column;min-width:0;overflow:hidden;box-sizing:border-box;padding:24px 24px 0;border:1px solid #efe7da;border-radius:24px;background:#fff;color:inherit;text-decoration:none;transition:background .28s,border-color .28s,transform .28s cubic-bezier(.2,.9,.3,1.2)}
+.budget-ticket--plus{--tint:#fde8e2}
+.budget-ticket--custom{--tint:#e6f2fb}
+.budget-ticket-value small{display:block;color:#b41616;font:800 12px/1.4 Arial,sans-serif;letter-spacing:.12em}
+.budget-ticket-value strong{display:block;min-height:1.2em;margin-top:8px;font:700 clamp(40px,4.4vw,56px)/1.2 RukaDisplay,Arial,sans-serif;letter-spacing:-.015em}
+.budget-ticket--custom .budget-ticket-value strong{display:flex;align-items:center;font-size:clamp(26px,2.7vw,34px)}
+.budget-ticket-copy{margin:10px 0 22px}
+.budget-ticket-copy h3{margin:0;font:700 18px/1.35 RukaDisplay,Arial,sans-serif}
+.budget-ticket-copy p{margin:3px 0 0;color:#7a6f68;font:500 14px/1.45 Arial,sans-serif}
+.budget-ticket-stamp{position:absolute;top:20px;right:20px;width:46px;rotate:7deg;filter:drop-shadow(1.5px 0 #fff) drop-shadow(-1.5px 0 #fff) drop-shadow(0 1.5px #fff) drop-shadow(0 -1.5px #fff) drop-shadow(0 3px 5px #4c392226);transition:transform .32s cubic-bezier(.2,1.6,.4,1)}
+.budget-ticket-stamp svg{display:block;width:100%;height:auto;overflow:visible}
+.budget-ticket-stub{position:relative;display:flex;align-items:center;justify-content:space-between;margin:auto -24px 0;padding:15px 24px;border-top:1.5px dashed #e6dccd;font:700 15px/1.4 Arial,sans-serif}
+.budget-ticket-stub::before,.budget-ticket-stub::after{content:"";position:absolute;top:-10px;width:19px;height:19px;border:1px solid #efe7da;border-radius:50%;background:#fff;transition:border-color .28s}
+.budget-ticket-stub::before{left:-10px}
+.budget-ticket-stub::after{right:-10px}
+.budget-ticket-arrow{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:#f7f1e7;font-size:15px;transition:background .2s,color .2s,transform .2s}
+.budget-ticket:hover,.budget-ticket:focus-visible{background:var(--tint);border-color:var(--tint);transform:translateY(-4px)}
+.budget-ticket:hover .budget-ticket-stamp,.budget-ticket:focus-visible .budget-ticket-stamp{transform:scale(1.12) rotate(8deg)}
+.budget-ticket:hover .budget-ticket-arrow,.budget-ticket:focus-visible .budget-ticket-arrow{background:#b41616;color:#fff;transform:translateX(2px)}
+.budget-ticket:hover .budget-ticket-stub,.budget-ticket:focus-visible .budget-ticket-stub{border-top-color:#fff}
+.budget-ticket:focus-visible{outline:2px solid #b41616;outline-offset:3px}
+.budget-ticket-note{margin-top:16px;color:#8a7f78;font:500 13px/1.5 Arial,sans-serif;text-align:center}
+@media(prefers-reduced-motion:reduce){.budget-ticket,.budget-ticket-stamp,.budget-ticket-arrow{transition:none}}
+@media(max-width:860px){
+ .budget-tickets{padding:44px 16px}
+ .budget-ticket-header{align-items:flex-start;flex-direction:column;gap:8px}
+ .budget-ticket-header p{text-align:left}
+ .budget-ticket-header p br{display:none}
+ .budget-ticket-list{grid-template-columns:1fr}
+ .budget-ticket{padding:20px 20px 0}
+ .budget-ticket-stub{margin:auto -20px 0;padding:13px 20px}
+}
