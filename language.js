@@ -51,7 +51,7 @@
     'ไม่ต้องเริ่มจากการเปิดแคตตาล็อก':'You don’t have to start with a catalogue',
     'บอกเราว่าคุณต้องการอะไร ที่เหลือ Ruka จะดูแลให้':'Tell us what you need — Ruka takes care of the rest.',
     'กำลังมองหาของขวัญแบบไหน?':'What kind of gift are you looking for?',
-    'เปิดตัวอย่างเป็นทางการ · 1 ตุลาคม 2569':'Official launch · 1 October 2026','วัน':'days','ชั่วโมง':'hours','นาที':'mins','วินาที':'seconds',
+    'ทีมคิดและผลิตของแบรนด์ ที่รับผิดชอบงานจนจบ':'The brand thinking and production team that owns the job end-to-end','ส่งข้อความถึงทีม RUKA':'Send to the RUKA team','กดส่งแล้วข้อมูลจะถึงทีม RUKA ทันที และทีมจะติดต่อกลับภายใน 24 ชั่วโมง (จันทร์–ศุกร์)':'Your message goes straight to the RUKA team. We reply within 24 hours (Mon–Fri).','นโยบายความเป็นส่วนตัว':'Privacy Policy','ข้อกำหนดการใช้งาน':'Terms of Use',
     'อีเวนต์':'Event','พนักงาน':'Employees','แคมเปญ':'Campaign','ปีใหม่':'New Year','ยังไม่แน่ใจ':'Not sure yet',
     'Ruka คือสตูดิโอที่คิด ออกแบบ และผลิต — เพื่อสร้างประสบการณ์แบรนด์ที่ครบทุกสัมผัส':'Ruka is a creative studio that thinks, designs and produces complete brand experiences.',
     'ดีไซน์ไปด้วยกัน':'Design together','บรีฟสั้นๆ ทีมดีไซน์คิดต่อให้ แก้ได้จนใช่':'Share a short brief. Our design team develops it with you until it feels right.',
@@ -87,8 +87,9 @@
   }
   window.setRukaLanguage=applyLanguage;
   document.addEventListener('DOMContentLoaded',()=>{
+    const SHOW_CLIENT_LOGOS=false;
     const trust=document.querySelector('.trust');
-    if(trust){
+    if(trust&&SHOW_CLIENT_LOGOS){
       const partners = [
         ['generali.jpg', 'Generali'], ['jll.png', 'JLL'],
         ['medyceles.jpg', 'Medyceles'], ['toeklom.jpg', 'TOEKLOM'],

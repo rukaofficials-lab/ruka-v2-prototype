@@ -19,3 +19,5 @@ body{background:#fbf8f3}
 @media(max-width:1000px){.about-vision{grid-template-columns:220px 1fr;padding:34px}.vision-copy{font-size:21px}.shine-card{padding:20px}.shine-top{grid-template-columns:52px 1fr;gap:12px}.shine-letter{width:52px;height:52px;font-size:34px}}
 @media(max-width:780px){.about-page{padding:45px 28px 60px}.about-vision{grid-template-columns:1fr;gap:18px}.shine-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.shine-grid:before{right:-15px;width:65px;height:65px}.about-vision:before{left:-18px}.about-mission>header{margin-bottom:30px}}
 @media(max-width:520px){.about-page{padding:35px 20px 50px}.about-vision{padding:27px 24px;border-radius:22px}.vision-copy{font-size:20px}.shine-grid{grid-template-columns:1fr;gap:14px}.shine-card{padding:22px}.shine-top{grid-template-columns:56px 1fr;gap:16px}.shine-letter{width:56px;height:56px;font-size:36px}.shine-card h3{font-size:17px}.shine-label{font-size:9px}.shine-description{margin-top:15px;font-size:13px}.about-mission{margin-top:38px}}
+
+.about-positioning{grid-column:1/-1;margin:20px 0 0;font-size:clamp(18px,2.4vw,24px);font-weight:800;color:#b41616}

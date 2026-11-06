@@ -10,6 +10,7 @@ function flowFilterIntent() {
 }
 function flowSelectProduct(name) {
  localStorage.setItem('rukaProduct',name);
+ localStorage.setItem('rukaHandoff','product');
  localStorage.setItem('rukaFilterIntent',JSON.stringify(flowFilterIntent()));
  location.href='brief.html';
 }
@@ -73,7 +74,7 @@ if(flowPage==='ideas.html'){
 
 if(flowPage==='product.html'){
  addToProject=function(){flowSelectProduct(selected)};
- const save=document.querySelector('button[onclick^="alert("]');if(save){save.onclick=()=>{localStorage.setItem('rukaProduct',selected);save.textContent='✓ บันทึกแล้ว';save.setAttribute('aria-pressed','true')};if(localStorage.getItem('rukaProduct')===selected)save.textContent='✓ บันทึกแล้ว'}
+ const save=document.querySelector('button[onclick^="alert("]');if(save){save.onclick=()=>{localStorage.setItem('rukaProduct',selected);localStorage.setItem('rukaHandoff','product');save.textContent='✓ บันทึกแล้ว';save.setAttribute('aria-pressed','true')};if(localStorage.getItem('rukaProduct')===selected)save.textContent='✓ บันทึกแล้ว'}
 }
 
 if(flowPage==='product.html'){

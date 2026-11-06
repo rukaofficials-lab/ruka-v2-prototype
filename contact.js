@@ -85,7 +85,7 @@
    if(!res.ok)throw new Error('bad status '+res.status);
    await res.json();
    status.textContent='✅ ส่งเรียบร้อย! ทีม RUKA จะติดต่อกลับภายใน 24 ชั่วโมง (จันทร์–ศุกร์)';
-   localStorage.removeItem('rukaDraft');
+   window.rukaClearBrief();
    form.reset();
   }catch(err){
    if(btn)btn.disabled=false;

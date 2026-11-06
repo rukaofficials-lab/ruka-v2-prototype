@@ -88,3 +88,7 @@ body > nav a:focus-visible{outline:2px solid var(--ruka-header-red);outline-offs
  body > nav .navLeft a.active::after,body > nav .navRight a.active::after{left:-10px;right:-10px}
 }
 @media(min-width:1051px){body > nav .navLeft{justify-content:space-between;gap:24px;width:100%;max-width:370px}}
+
+.footer-brand .footer-positioning{font-weight:800;color:inherit;margin-bottom:8px}
+.footer-legal{display:inline-flex;gap:16px;flex-wrap:wrap}
+.footer-legal a{color:inherit;text-decoration:underline;text-underline-offset:3px}
