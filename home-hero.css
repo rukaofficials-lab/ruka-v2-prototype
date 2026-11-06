@@ -1,11 +1,11 @@
 /* Homepage hero: one focused message, the brief prompt, occasions, then proof. */
 @font-face{font-family:RukaDisplay;src:url('assets/fonts/Kanit-Bold.ttf') format('truetype');font-weight:700;font-display:swap}
 @font-face{font-family:RukaDisplay;src:url('assets/fonts/Kanit-Black.ttf') format('truetype');font-weight:900;font-display:swap}
-.home-hero{--ink:#1f1512;position:relative;overflow:hidden;padding:clamp(18px,4.4vh,52px) 20px clamp(14px,2.6vh,28px);text-align:center;background:radial-gradient(46% 62% at 12% 8%,#fff3d9 0,#fff0 70%),radial-gradient(42% 58% at 90% 20%,#ffe7e0 0,#fff0 70%),#fffdf9}
+.home-hero{--ink:#1f1512;position:relative;overflow:hidden;padding:clamp(16px,3.6vh,44px) 20px clamp(12px,2.2vh,24px);text-align:center;background:radial-gradient(46% 62% at 12% 8%,#fff3d9 0,#fff0 70%),radial-gradient(42% 58% at 90% 20%,#ffe7e0 0,#fff0 70%),#fffdf9}
 .home-hero-inner{position:relative;max-width:1040px;margin:0 auto}
 .home-hero-badge{display:inline-flex;align-items:center;gap:8px;margin:0 0 clamp(8px,1.8vh,18px);padding:6px 14px;border:1px solid #f1e3cd;border-radius:999px;background:#fff;color:var(--r);font:800 11px/1.3 Arial,sans-serif;letter-spacing:.14em}
 .home-hero-badge i{width:6px;height:6px;border-radius:50%;background:var(--g)}
-.home-hero h1{position:relative;display:inline-block;max-width:none;margin:0;font:900 clamp(42px,min(8.2vw,15vh),112px)/1.14 RukaDisplay,Arial,sans-serif;letter-spacing:-.025em;color:var(--ink)}
+.home-hero h1{position:relative;display:inline-block;max-width:none;margin:0;font:700 clamp(38px,min(5.2vw,10vh),72px)/1.22 RukaDisplay,Arial,sans-serif;letter-spacing:-.015em;color:var(--ink)}
 .home-hero-line{position:relative;display:table;margin:0 auto;white-space:nowrap}
 .home-hero h1 .gold{color:var(--r)}
 .home-hero-sub{margin:clamp(6px,1.4vh,14px) auto clamp(12px,2.4vh,24px);color:#6c625c;font:500 clamp(15px,2.3vh,19px)/1.5 Arial,sans-serif}
@@ -21,10 +21,10 @@
 .home-hero .chip:hover{transform:translateY(-2px);border-color:var(--r);background:#fff7f4}
 .home-hero .chip .occasion-icon{width:26px;height:26px;margin:0}
 /* Original RUKA buddies sit on the headline and react to the visitor. */
-.hero-buddy{position:absolute;width:.92em;height:auto;overflow:visible;pointer-events:none}
-.hero-buddy--box{top:-.16em;right:-.66em;rotate:7deg}
-.hero-buddy--cup{left:-.72em;bottom:-.1em;rotate:-7deg}
-.hero-buddy--spark{right:-.5em;bottom:.1em;width:.42em}
+.hero-buddy{position:absolute;width:.86em;height:auto;overflow:visible;pointer-events:none}
+.hero-buddy--box{top:-.1em;right:-1em;rotate:7deg}
+.hero-buddy--cup{left:-1em;bottom:-.04em;rotate:-7deg}
+.hero-buddy--spark{right:-.56em;bottom:.14em;width:.4em}
 @media(prefers-reduced-motion:no-preference){
  .hero-buddy{animation:buddy-pop .62s cubic-bezier(.2,1.5,.4,1) both,buddy-bob 3.4s ease-in-out .7s infinite}
  .hero-buddy--cup{animation-delay:.14s,.5s}
@@ -47,9 +47,9 @@ section.trust.trust .trustLogo{height:58px;padding:0 26px}
 section.trust.trust .trustLogo img{width:auto;max-width:112px;height:46px;object-fit:contain;mix-blend-mode:multiply}
 @media(max-width:760px){
  .home-hero{padding:18px 16px 16px}
- .home-hero h1{font-size:clamp(40px,12.4vw,60px)}
- .hero-buddy--box{top:-.42em;right:-.42em;width:.74em}
- .hero-buddy--cup{left:-.34em;bottom:auto;top:-.42em;width:.68em}
+ .home-hero h1{font-size:clamp(38px,11.4vw,56px)}
+ .hero-buddy--box{top:-.3em;right:-.62em;width:.62em}
+ .hero-buddy--cup{left:-.62em;bottom:auto;top:-1.02em;width:.58em}
  .hero-buddy--spark{right:-.24em;width:.3em}
  .home-hero .chips{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
  .home-hero .chip{min-height:42px;padding:0 6px;gap:4px;font-size:12px}
@@ -58,7 +58,7 @@ section.trust.trust .trustLogo img{width:auto;max-width:112px;height:46px;object
 }
 section.trust.trust .trustStrip{background:transparent}
 .home-hero .chip{white-space:nowrap}
-html[lang=en] .home-hero h1{font-size:clamp(34px,min(7.4vw,14vh),100px)}
+html[lang=en] .home-hero h1{font-size:clamp(34px,min(4.8vw,9.6vh),68px)}
 @media(max-width:760px){
  .home-hero-sub{font-size:14px}
  .home-hero .chip{font-size:11.5px}
