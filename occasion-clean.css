@@ -1,0 +1,52 @@
+/* Services page: side list plus a deck of occasion cards that stack while scrolling. */
+html body{background:#fff}
+.occ-page{max-width:1240px;margin:0 auto;padding:clamp(28px,5vh,44px) 20px 72px;font-family:"IBM Plex Sans Thai",Arial,sans-serif;color:#1f1512}
+.occ-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px 40px;flex-wrap:wrap;margin-bottom:clamp(22px,4vh,36px)}
+.occ-head h1{margin:0;font:500 clamp(28px,3.2vw,40px)/1.25 "IBM Plex Sans Thai",Arial,sans-serif;letter-spacing:-.01em}
+.occ-head p{margin:0 0 6px;color:#7a6f68;font-size:16px}
+.h1-shine{display:inline-block;padding:.12em 0 .16em;margin:-.12em 0 -.16em;background:linear-gradient(90deg,#b41616,#ee5a24,#f2a91d,#25a86a,#2a7de1,#8a46dc,#e0409a,#b41616) 0 0/300% 100% repeat-x;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:h1Rainbow 9s linear infinite}
+@keyframes h1Rainbow{to{background-position:150% 0}}
+.occ-body{display:grid;grid-template-columns:272px minmax(0,1fr);column-gap:32px;align-items:start}
+.occ-rail{position:sticky;top:calc(50vh - 150px);display:flex;flex-direction:column;align-items:flex-start}
+.occ-rail button{padding:5px 0;border:0;background:none;color:#b3a99f;font:500 26px/1.35 "IBM Plex Sans Thai",Arial,sans-serif;text-align:left;white-space:nowrap;cursor:pointer;transform:scale(.72);transform-origin:left center;transition:transform .5s cubic-bezier(.16,1,.3,1),color .35s ease}
+.occ-rail button:hover{color:#1f1512}
+.occ-rail button.active{color:#1f1512;transform:none}
+.occ-stack{display:grid;gap:24px;min-width:0}
+.occ-panel{--t:#f6f1e7;position:sticky;top:calc(88px + var(--i,0)*12px);display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,1fr);gap:clamp(20px,3vw,40px);align-items:center;min-height:min(500px,calc(100vh - 150px));padding:clamp(22px,3vw,40px);border-radius:32px;background:var(--t);box-shadow:0 -10px 34px #2b242012}
+.occ-panel:nth-child(2){--t:#f3f0f8}
+.occ-panel:nth-child(3){--t:#edf4ef}
+.occ-panel:nth-child(4){--t:#fbeee9}
+.occ-panel:nth-child(5){--t:#f1f4f9}
+.occ-panel:nth-child(6){--t:#fbeecb}
+.occ-copy h2{margin:0;font:500 clamp(28px,3vw,42px)/1.2 "IBM Plex Sans Thai",Arial,sans-serif;letter-spacing:-.015em}
+.occ-copy p{margin:12px 0 0;color:#5f544d;font-size:17px;line-height:1.55}
+.occ-note{display:block;margin-top:10px;color:#8b7f76;font-size:14px}
+.occ-go{display:inline-flex;align-items:center;gap:12px;height:52px;margin-top:26px;padding:0 7px 0 24px;border-radius:999px;background:#1f1512;color:#fff;font-size:15px;font-weight:500;text-decoration:none;transition:background .2s}
+.occ-go i{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:#fff;color:#1f1512;font-style:normal;transition:transform .3s cubic-bezier(.16,1,.3,1)}
+.occ-go:hover{background:#b41616}
+.occ-go:hover i{transform:translateX(3px)}
+.occ-photos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.occ-photos:empty{display:none}
+.occ-photo{position:relative;overflow:hidden;aspect-ratio:1;border-radius:18px;background:#fff}
+.occ-photo img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.16,1,.3,1)}
+.occ-photo:hover img{transform:scale(1.05)}
+.occ-sample{grid-column:1/-1;margin:0;color:#8b7f76;font-size:13px;text-align:right}
+.occ-panel--open{grid-template-columns:1fr;min-height:0}
+.occ-more{display:flex;flex-wrap:wrap;gap:10px 24px;align-items:center;margin-top:26px}
+.occ-more .occ-go{margin-top:0}
+.occ-more a:not(.occ-go){color:#1f1512;font-size:15px;font-weight:500;text-underline-offset:4px}
+@media(max-width:1050px){
+ .occ-body{display:block}
+ .occ-rail{top:76px;z-index:20;flex-direction:row;gap:8px;margin:0 -20px 14px;padding:8px 20px;overflow-x:auto;background:#fff;scrollbar-width:none}
+ .occ-rail::-webkit-scrollbar{display:none}
+ .occ-rail button{flex-shrink:0;height:38px;padding:0 14px;border:1px solid #efe7da;border-radius:999px;background:#fff;color:#1f1512;font-size:13px;font-weight:700;transform:none}
+ .occ-rail button.active{border-color:#1f1512;background:#1f1512;color:#fff}
+ .occ-panel{position:static;min-height:0}
+}
+@media(max-width:760px){
+ .occ-page{padding:22px 16px 44px}
+ .occ-rail{top:70px;margin:0 -16px 12px;padding:8px 16px}
+ .occ-panel{grid-template-columns:1fr;padding:22px 18px;border-radius:24px}
+ .occ-stack{gap:14px}
+}
+@media(prefers-reduced-motion:reduce){.h1-shine{animation:none}.occ-rail button,.occ-photo img,.occ-go i{transition:none}}

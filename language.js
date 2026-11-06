@@ -89,6 +89,8 @@
   translations["© "+new Date().getFullYear()+" บริษัท รุกะ เวิลด์ จำกัด · ทีมคิดและผลิตของแบรนด์ ที่รับผิดชอบงานจนจบ"]="© "+new Date().getFullYear()+" RUKA World Co., Ltd. · The brand thinking and production team that owns the job end-to-end";
   Object.assign(translations,{"ค้นหา":"Search","ล้างการค้นหา":"Clear search","ค้นหาสินค้า":"Search products","ค้นหาสินค้า เช่น กระบอกน้ำ งบไม่เกิน 200 บาท":"Search, e.g. bottle under 200 baht","ไม่พบสินค้าที่ตรงกับคำค้น":"No products match your search","ลองคำอื่น หรือส่งโจทย์ให้ทีม Ruka ช่วยหาให้":"Try another word, or send your brief to the Ruka team","ให้ทีม Ruka ช่วยหา →":"Ask the Ruka team →","ยังไม่มีสินค้าขึ้นเว็บในหมวดนี้ บอกสิ่งที่ต้องการ แล้วทีม Ruka จะช่วยหาให้":"Nothing listed here yet. Tell us what you need and the Ruka team will source it"});
   Object.assign(translations,{"เลือกของที่ใช่":"Find the right gift","ให้แบรนด์คุณ":"for your brand"});
+  Object.assign(translations,{"เริ่มบรีฟงานนี้":"Start this brief","ตัวอย่างสินค้าที่เหมาะกับงานนี้":"Sample products for this occasion","เริ่มจากโอกาส":"Start from your","ของคุณ":"occasion"});
+  translations["ภาพตัวอย่าง"]="Sample image";
   const textNodes = root => { const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode(node){if(!node.nodeValue.trim()||/^(SCRIPT|STYLE|NOSCRIPT)$/.test(node.parentElement?.tagName||''))return NodeFilter.FILTER_REJECT;return NodeFilter.FILTER_ACCEPT}});const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);return nodes };
   const placeholders = new WeakMap();
   const patterns = [
