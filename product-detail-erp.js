@@ -91,6 +91,8 @@
       }
     }
 
+    if (p.image) document.querySelectorAll('.ideaVisual').forEach((v) => { v.innerHTML = `<img src="${attr(rukaCatalog.thumb(p.image, 520))}" alt="" loading="lazy" decoding="async">`; });
+
     // ── ราคาช่วง (target ต่ำสุด–สูงสุด) ──
     const price = document.getElementById('price');
     if (price) {
@@ -107,8 +109,7 @@
       const label = f.querySelector('small');
       if (!label || label.dataset.iced) return;
       const t = label.textContent;
-      const ic = /MOQ|ขั้นต่ำ/i.test(t) ? '📦' : /lead|เวลา|ผลิต/i.test(t) ? '⏱️' : /เหมาะ|gift|occasion/i.test(t) ? '🎁' : '✨';
-      label.textContent = ic + ' ' + t.trim();
+      label.textContent = t.trim();
       label.dataset.iced = '1';
     });
 

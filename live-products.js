@@ -25,7 +25,7 @@
 
     const buildRows = () => items.map((p) => {
       const photo = p.image
-        ? `<img src="${attr(p.image)}" alt="" loading="lazy" decoding="async">`       // สไตล์คุมด้วย <style> ด้านบน
+        ? `<img src="${attr(rukaCatalog.thumb(p.image, 520))}" alt="" loading="lazy" decoding="async">`       // สไตล์คุมด้วย <style> ด้านบน
         : (EMOJI[p.category] || '🎁');
       const moq = p.moq ? 'MOQ ' + p.moq : '';
       const lead = p.leadTime ? p.leadTime + ' วัน' : '';
@@ -34,7 +34,7 @@
       const price = lo ? (hi && hi > lo ? `฿${lo}–${hi}` : '฿' + lo) : '';
       const custom = p.printType || 'ปรับแต่งโลโก้ได้';
       // รูปแบบ positional เดียวกับ array products เดิม: [รูป, ชื่อ, หมวด, MOQ, lead, ราคา, badge, custom]
-      return [photo, q1(rukaCatalog.name(p)), p.category || 'life', moq, lead, price, '', q1(custom), attr(p.code), q1(p.name + ' (' + p.code + ')')];
+      return [photo, q1(rukaCatalog.name(p)), p.category || 'life', moq, lead, price, '', q1(custom), attr(p.code), q1(p.name + ' (' + p.code + ')'), q1(p.size === 'ตามกำหนด' ? '' : p.size)];
     });
 
     // ── โชว์รหัสสินค้าเป็นแท็กมุมรูปบนการ์ด (ดูเร็ว ๆ · ลูกค้าอ้างรหัสกับเซลได้) ──
