@@ -41,3 +41,42 @@
  .category-card b{font-size:14.5px}
  .folder-count{font-size:12px}
 }
+/* Larger, matching hero photo in each folder; shorter glass front. */
+.category-folder{aspect-ratio:1/.8}
+.folder-front{height:60%}
+.folder-back{top:16%}
+.folder-photo{top:5%;width:36%;margin-left:-18%}
+.folder-photo--center{top:-3%;z-index:2;width:46%;margin-left:-23%;padding:5px}
+.folder-photo--center img{padding:10%;box-sizing:border-box;object-fit:contain;border-radius:9px}
+.folder-photo--left{--x:-82%;--y:14%}
+.folder-photo--right{--x:82%;--y:14%}
+.category-card--drink .folder-photo--center img{background:#dcecf6}
+.category-card--bag .folder-photo--center img{background:#fdecb8}
+.category-card--apparel .folder-photo--center img{background:#f6dcd5}
+.category-card--life .folder-photo--center img{background:#f3e9d8}
+.category-card--tech .folder-photo--center img{background:#e6e4f4}
+.category-card--pack .folder-photo--center img{background:#f3e9d8}
+.category-card:hover .folder-photo--center,.category-card:focus-visible .folder-photo--center{--y:-10%}
+.category-card:hover .folder-photo--left,.category-card:focus-visible .folder-photo--left{--x:-100%;--y:4%;--r:-16deg}
+.category-card:hover .folder-photo--right,.category-card:focus-visible .folder-photo--right{--x:100%;--y:4%;--r:16deg}
+/* The folder front carries the category name instead of a repeated logo. */
+.folder-groove{display:none}
+.folder-front{height:50%}
+.category-folder{margin-bottom:0}
+.folder-label{position:absolute;left:8%;right:8%;bottom:13%;display:flex;align-items:baseline;justify-content:space-between;gap:10px;text-align:left}
+.folder-label b{font:500 clamp(15px,1.3vw,17px)/1.3 "IBM Plex Sans Thai",Arial,sans-serif;color:#2b2420}
+.folder-label .folder-count{flex-shrink:0;min-height:0;margin:0;color:#6c625c;font-size:13px;line-height:1.3}
+.category-card:hover .folder-label b,.category-card:focus-visible .folder-label b{color:#b41616}
+@media(max-width:760px){.folder-label{display:block;bottom:10%}.folder-label b{display:block;font-size:13.5px;line-height:1.25}.folder-label .folder-count{display:block;font-size:12px}.folder-front{height:58%}}
+/* Keep the folder shape obvious: bigger, taller front, visible tab and edge. */
+.category-folder{width:min(100%,280px);aspect-ratio:1/.88}
+.folder-front{height:62%}
+.folder-back{left:3%;right:3%;top:12%;bottom:3%;border-radius:16px;background:#ddd7cc}
+.folder-back::before{content:"";position:absolute;left:0;top:-7%;width:44%;height:16%;border-radius:12px 12px 0 0;background:#ddd7cc}
+.folder-glass{background:linear-gradient(170deg,#ffffffd9,#fbf9f6c7)}
+.folder-outline path{stroke:#d3ccc0;stroke-width:1.2}
+.folder-photo{top:2%}
+.folder-photo--center{top:-5%;width:44%;margin-left:-22%}
+.folder-label{bottom:12%}
+.folder-label b{font-size:clamp(15px,1.3vw,18px)}
+@media(max-width:760px){.category-folder{width:100%}.folder-front{height:60%}}

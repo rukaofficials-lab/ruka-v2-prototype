@@ -30,7 +30,7 @@
    if(absent(card.dataset.pick)){hide(card);return}
    card.querySelector('.folder-count').textContent=products.filter(p=>p.category===card.dataset.pick).length+' สินค้า';
    const photo=(place,item)=>{const frame=card.querySelector('.folder-photo--'+place)||document.createElement('span');frame.className='folder-photo folder-photo--'+place;const image=frame.querySelector('img')||frame.appendChild(new Image);image.alt='';image.decoding='async';image.src=thumb(item,260);if(!frame.parentNode)card.querySelector('.folder-front').before(frame)};
-   ['center','left','right'].forEach((place,i)=>{if(items[i])photo(place,items[i])});
+   ['left','right'].forEach((place,i)=>{if(items[i])photo(place,items[i])});
   });
  }
  window.rukaCatalog={clean,name,thumb,cover,load,syncCategoryTabs};
