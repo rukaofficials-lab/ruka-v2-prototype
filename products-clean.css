@@ -178,7 +178,7 @@ html body .hero p,html body .quick{display:none}
 html body .hero h1{margin:0}
 @media(min-width:861px){html body .hero{padding-top:34px;padding-bottom:18px}html body .hero h1{grid-row:1;align-self:center}html body .hero .search{grid-row:1}}
 html body .hero .search{border-color:#ece8e1;background:#fff}
-.shop-bar{--bg:#fff;box-shadow:none;clip-path:none;z-index:30}
+.shop-bar{--bg:#fff;box-shadow:none;clip-path:none;z-index:15}
 .group-panel{position:relative;margin:0 0 52px;padding:0 0 52px;border-radius:0;border-bottom:1px solid #eeeae4;background:none;box-shadow:none}
 .group-panel:last-child{margin-bottom:0;border-bottom:0}
 html body #grid .card .photo,html body #grid .card:hover .photo,html body #grid .card:focus-within .photo{background:#f6f5f2}
