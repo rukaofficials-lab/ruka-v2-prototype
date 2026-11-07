@@ -55,3 +55,39 @@ html body .ct-copy:hover{border-color:#1f1512}
 @media(max-width:980px){.ct-band{grid-template-columns:1fr;margin:8px 10px 0;padding:24px 14px 14px;border-radius:24px}.ct-where{grid-template-columns:1fr}}
 @media(max-width:560px){html body .contact-fields{grid-template-columns:1fr}.ct-where{padding:0 10px}}
 @media(prefers-reduced-motion:reduce){.ct-left h1 em{animation:none}}
+/* Everything on one screen: greeting, form, then place and channels. */
+.ct-page{padding-bottom:28px}
+.ct-band{grid-template-columns:minmax(0,.72fr) minmax(0,1.12fr) minmax(0,.96fr);gap:12px;align-items:stretch;height:clamp(600px,calc(100vh - 100px),660px);padding:12px 12px 12px clamp(20px,2.6vw,36px)}
+.ct-left{display:flex;flex-direction:column;justify-content:center;min-width:0;padding-right:10px}
+.ct-left h1{font-size:clamp(44px,4.6vw,64px)}
+.ct-sub{font-size:16px}
+.ct-phone{font-size:clamp(26px,2.5vw,34px)}
+.ct-form{display:flex;min-height:0}
+html body .form-card{display:flex;flex:1;flex-direction:column;min-width:0;overflow-y:auto}
+.ct-info{display:flex;flex-direction:column;gap:12px;min-width:0;min-height:0}
+.ct-where{display:flex;flex:1;flex-direction:column;color:#1f1512;max-width:none;margin:0;padding:12px;min-height:0;border-radius:24px;background:#fff}
+.ct-map{flex:1;min-height:110px;border-radius:14px}
+.ct-map iframe{min-height:110px}
+.ct-place{flex:none;padding:12px 4px 0;border-radius:0;background:none}
+.ct-place p{margin:2px 0 10px;font-size:13.5px;line-height:1.5}
+html body .ct-btn{height:40px}
+.ct-tiles{display:grid;flex:none;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.ct-tile{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:8px;align-items:center;min-width:0;padding:10px;border-radius:18px;background:#fff;color:#1f1512;text-decoration:none;transition:background .2s}
+.ct-tile:hover{background:#f7e9dc}
+.ct-ico{display:grid;grid-row:span 2;place-items:center;width:36px;height:36px;border-radius:50%;background:#f6f5f2}
+.ct-ico svg{width:18px;height:18px}
+.ct-tile b{font:500 14.5px/1.3 "IBM Plex Sans Thai",Arial,sans-serif}
+.ct-tile small{overflow:hidden;color:#7a6f68;font:400 11.5px/1.3 "IBM Plex Sans Thai",Arial,sans-serif;text-overflow:ellipsis;white-space:nowrap}
+@media(max-width:1240px){
+ .ct-band{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);height:auto}
+ .ct-info{grid-column:1/-1;flex-direction:row}
+ .ct-where,.ct-tiles{flex:1 1 0}
+ .ct-map,.ct-map iframe{min-height:150px}
+ html body .form-card{overflow:visible}
+}
+@media(max-width:980px){
+ .ct-band{grid-template-columns:1fr;height:auto}
+ .ct-info{flex-direction:column}
+ .ct-where,.ct-tiles{flex:none}
+ .ct-left{padding:8px 8px 12px}
+}
