@@ -90,3 +90,27 @@ html body .id-filters .filter.on{background:none;color:#1f1512}
 
 .id-ideas{margin-top:clamp(4px,1vh,10px)}
 @media(max-width:760px){.cl-logos{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}.cl-logos img{width:100%;height:38px;padding:5px 6px}}
+/* Ideas grouped by audience; the list on the left follows the scroll. */
+.id-grid{display:block}
+.id-group{display:grid;gap:12px;margin-bottom:12px}
+.id-group .idea-card{grid-column:auto}
+.id-group .idea-pic{aspect-ratio:2/1.08}
+@media(max-width:900px){
+ .id-side{position:static;display:contents}
+ .id-side .cl-title,.id-side p{grid-column:1/-1}
+ html body .id-filters{position:sticky;top:70px;z-index:10;flex-flow:row nowrap;gap:8px;margin:0 -16px;padding:10px 16px;overflow-x:auto;background:#fff;scrollbar-width:none}
+ html body .id-filters .filter{flex:none;white-space:nowrap;transform:none}
+ html body .id-filters .filter.on{border-color:#1f1512;background:#1f1512;color:#fff}
+ html body .id-group .idea-pic{aspect-ratio:1/.8}
+}
+/* Same list treatment as the services page: the current item grows, the rest step back. */
+@media(min-width:901px){
+ html body .id-filters .filter{padding:5px 0;font-size:26px;white-space:nowrap;transform:scale(.72);transform-origin:left center;transition:transform .5s cubic-bezier(.2,.7,.2,1),color .25s}
+ html body .id-filters .filter.on{transform:none}
+}
+@media(prefers-reduced-motion:reduce){html body .id-filters .filter{transition:none}}
+/* Reserved slot until the campaign images are ready. */
+.idea-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;aspect-ratio:2/1.08;border-radius:24px;background:#f6f5f2;color:#8a8077;text-align:center}
+.idea-empty b{color:#2b2420;font:500 clamp(20px,2vw,26px)/1.3 "IBM Plex Sans Thai",Arial,sans-serif}
+.idea-empty span{font-size:15px}
+@media(max-width:900px){.idea-empty{aspect-ratio:1/.6}}

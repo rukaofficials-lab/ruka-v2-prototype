@@ -91,6 +91,44 @@
   });
  });
  dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
+ // Ideas page: the side list follows the scroll, the same way the services page does.
+ const groups = [...document.querySelectorAll('.id-group')];
+ const list = document.querySelector('.id-filters');
+ if (groups.length && list) {
+  let locked = -1;
+  ['wheel', 'touchmove', 'keydown'].forEach(name => addEventListener(name, () => { locked = -1; }, {passive: true}));
+  const roomy = () => innerWidth > 900;
+  // "All" is the top of the page; every other item is a group.
+  const stops = [null, ...groups];
+  const buttons = stops.map((group, index) => {
+   const button = el('button', 'filter', group ? group.dataset.rail : 'ทั้งหมด');
+   button.type = 'button';
+   button.onclick = () => {
+    locked = index;
+    follow();
+    const top = group ? group.getBoundingClientRect().top + scrollY - (roomy() ? 100 : 136) : 0;
+    scrollTo({top, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
+   };
+   list.append(button);
+   return button;
+  });
+  function follow() {
+   const line = roomy() ? innerHeight * .55 : 220;
+   let now = 0;
+   if (scrollY > 60) groups.forEach((group, index) => { if (group.getBoundingClientRect().top <= line) now = index + 1; });
+   if (locked >= 0) now = locked;
+   buttons.forEach((button, index) => {
+    const on = index === now;
+    if (button.classList.contains('on') !== on && on && !roomy()) list.scrollTo({left: button.offsetLeft - 16, behavior: 'smooth'});
+    button.classList.toggle('on', on);
+    button.setAttribute('aria-pressed', String(on));
+   });
+  }
+  let frame = 0;
+  addEventListener('scroll', () => { if (!frame) frame = requestAnimationFrame(() => { frame = 0; follow(); }); }, {passive: true});
+  addEventListener('resize', follow);
+  follow();
+ }
 
  if (!wall) return;
  const tiles = brands.flatMap(brand => brand.pics.map(([key, fit]) => ({brand, key, fit})));
