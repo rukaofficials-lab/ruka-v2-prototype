@@ -119,6 +119,7 @@
   Object.assign(translations,{"อีเวนต์ & แคมเปญ":"Events & Campaigns"});
   Object.assign(translations,{"ไอเดียชุดนี้กำลังจะมา":"Ideas coming soon"});
   Object.assign(translations,{"ช่องทางติดต่อ":"Contact channels"});
+  Object.assign(translations,{"น้อยแต่มาก":"Less, but more."});
   const textNodes = root => { const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode(node){if(!node.nodeValue.trim()||/^(SCRIPT|STYLE|NOSCRIPT)$/.test(node.parentElement?.tagName||''))return NodeFilter.FILTER_REJECT;return NodeFilter.FILTER_ACCEPT}});const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);return nodes };
   const placeholders = new WeakMap();
   const patterns = [

@@ -43,7 +43,7 @@ html body{background:#fff}
 .ab-ink{grid-column:span 3;background:#f6f5f2}
 .ab-ink p{color:#5f544d}
 .ab-mark{align-items:center;justify-content:center;background:linear-gradient(120deg,#b41616,#ee5a24,#f2a91d,#25a86a,#2a7de1,#8a46dc,#e0409a,#b41616) 0 0/300% 300%;animation:abMark 14s linear infinite}
-.ab-mark span{color:#fff;font:700 clamp(48px,5.6vw,76px)/1 "Google Sans","IBM Plex Sans Thai",Arial,sans-serif;letter-spacing:-.045em}
+.ab-mark span{padding:0 16px;color:#fff;font:500 clamp(36px,3.5vw,50px)/1.25 "IBM Plex Sans Thai",Arial,sans-serif;letter-spacing:-.02em;text-align:center}
 @keyframes abMark{to{background-position:150% 150%}}
 .ab-roll{justify-content:flex-start;padding:0 24px;background:#f6f5f2;-webkit-mask-image:linear-gradient(#0000,#000 22%,#000 78%,#0000);mask-image:linear-gradient(#0000,#000 22%,#000 78%,#0000)}
 .ab-roll-track{position:absolute;top:0;left:24px;right:24px;display:flex;flex-direction:column;animation:abRoll 16s linear infinite}
@@ -56,4 +56,3 @@ html body{background:#fff}
 @media(max-width:1050px){.ab-bento{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:minmax(190px,auto)}.ab-tile{grid-column:span 1}.ab-red{grid-column:1/-1}}
 @media(max-width:760px){.ab-values{padding:20px 16px 44px}.ab-bento{grid-template-columns:1fr;grid-auto-rows:auto}.ab-tile{min-height:150px}.ab-mark,.ab-roll{min-height:200px}}
 @media(prefers-reduced-motion:reduce){.ab-tile{transition:none}.ab-mark,.ab-roll-track{animation:none}}
-
