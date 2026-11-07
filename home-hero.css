@@ -171,3 +171,6 @@ section.trust.trust .trustTitle::before{transform:scaleX(-1)}
 .hero-badge{position:absolute;z-index:2;right:-9px;top:-9px;display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:#b41616;box-shadow:0 5px 12px #2b242033}
 .hero-badge svg{width:21px;height:21px;fill:none;stroke:#fff;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 @media(max-width:1000px){.hero-gallery .hero-card{position:relative;inset:auto}.hero-badge{right:12px;top:12px;width:32px;height:32px}.hero-badge svg{width:18px;height:18px}}
+/* English labels run longer: one row where there is room, an even split where there is not. */
+@media(min-width:1280px){html[lang=en] .home-hero .chips{flex-wrap:nowrap;margin-inline:-60px}}
+@media(min-width:1001px) and (max-width:1279px){html[lang=en] .home-hero .chips{max-width:540px;margin-inline:auto}}
