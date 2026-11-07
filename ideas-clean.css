@@ -89,3 +89,4 @@ html body .id-filters .filter.on{background:none;color:#1f1512}
 @media(prefers-reduced-motion:reduce){.cl-track{animation:none}.cl-side h1 em{animation:none}.cl-tile img{transition:none}.cl-profile[open]{animation:none}}
 
 .id-ideas{margin-top:clamp(4px,1vh,10px)}
+@media(max-width:760px){.cl-logos{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}.cl-logos img{width:100%;height:38px;padding:5px 6px}}
