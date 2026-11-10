@@ -86,7 +86,7 @@ const reference=new URLSearchParams(location.search).get('ref');
 const referenceIsIdea=new URLSearchParams(location.search).get('kind')==='idea';
 if(reference){data.detail=(referenceIsIdea?'อ้างอิงแนว ':'อ้างอิงงานของ ')+reference;step=Math.max(step,2);if(!referenceIsIdea)sOccasion.textContent='อ้างอิงงานจริง';detailLabel.textContent=referenceIsIdea?'แนวที่อ้างอิง':'งานที่อ้างอิง'}
 // The referenced job's own photos follow the customer into the project card.
-if(reference){let refPics=[];try{const saved=JSON.parse(localStorage.getItem('rukaRefPics')||'[]');refPics=Array.isArray(saved)?saved.filter(p=>typeof p?.src==='string'&&/^assets\/(clients|ideas)\//.test(p.src)):[]}catch{}
+if(reference){let refPics=[];try{const saved=JSON.parse(localStorage.getItem('rukaRefPics')||'[]');refPics=Array.isArray(saved)?saved.filter(p=>typeof p?.src==='string'&&/^assets\/(clients|ideas|work)\//.test(p.src)):[]}catch{}
  if(refPics.length){const box=document.createElement('div');box.className='brief-photos brief-photos--ref';refPics.slice(0,2).forEach(p=>{const tile=document.createElement('span');if(p.fit)tile.className='fit';const img=document.createElement('img');img.src=p.src;img.alt=reference;img.decoding='async';tile.append(img);box.append(tile)});const caption=document.createElement('p');caption.className='brief-photos-note';caption.textContent=(referenceIsIdea?'แนว ':'งานของ ')+reference;summary.querySelector('h3').after(box,caption)}}
 show();refresh();paintRail();sync();armed=true;
 if(reference)say(english()?'Noted, we will use the '+reference+' job as your reference. How many sets?':'รับทราบ อ้างอิง'+(referenceIsIdea?'แนว ':'งานของ ')+reference+' ต่อไปขอถามจำนวนหน่อย');

@@ -89,7 +89,7 @@ html body .id-filters .filter.on{background:none;color:#1f1512}
 @media(prefers-reduced-motion:reduce){.cl-track{animation:none}.cl-side h1 em{animation:none}.cl-tile img{transition:none}.cl-profile[open]{animation:none}}
 
 .id-ideas{margin-top:clamp(4px,1vh,10px)}
-@media(max-width:760px){.cl-logos{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}.cl-logos img{width:100%;height:38px;padding:5px 6px}}
+@media(max-width:760px){.cl-logos{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:5px}.cl-logos img{width:100%;height:38px;padding:5px 6px}}
 /* Ideas grouped by audience; the list on the left follows the scroll. */
 .id-grid{display:block}
 .id-group{display:grid;gap:12px;margin-bottom:12px}
@@ -114,3 +114,104 @@ html body .id-filters .filter.on{background:none;color:#1f1512}
 .idea-empty b{color:#2b2420;font:500 clamp(20px,2vw,26px)/1.3 "IBM Plex Sans Thai",Arial,sans-serif}
 .idea-empty span{font-size:15px}
 @media(max-width:900px){.idea-empty{aspect-ratio:1/.6}}
+/* Three or four pictures sit in one row; phones keep two per row. */
+.cl-pics.many{grid-template-columns:repeat(var(--n),minmax(0,1fr))}
+@media(max-width:760px){.cl-pics.many{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* Eleven logos: six and five per row. */
+@media(min-width:761px){.cl-logos{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;max-width:400px}.cl-logos img{width:100%;height:40px;padding:5px 6px}}
+/* Profile: one block per product, real photos first, then the layout. */
+.cl-profile{overflow-y:auto}
+.cl-body{display:grid;gap:16px;margin-top:6px}
+.cl-work h4{margin:0;font:500 15.5px/1.4 "IBM Plex Sans Thai",Arial,sans-serif;color:#1f1512}
+.cl-work .cl-pics{margin-top:8px}
+.cl-pics span{position:relative}
+.cl-pics .fit{background:#fff;box-shadow:inset 0 0 0 1px #eee9e2}
+.cl-pics .fit img{mix-blend-mode:normal}
+.cl-pic-tag{position:absolute;left:8px;bottom:8px;padding:3px 9px;border-radius:999px;background:#1f1512cc;color:#fff;font:500 11.5px/1.4 "IBM Plex Sans Thai",Arial,sans-serif;font-style:normal}
+.cl-count{margin:0;color:#7a6f68;font-size:14px}
+/* Client profiles below the band. */
+.cl-clients{max-width:1240px;margin:0 auto;padding:clamp(40px,7vh,72px) 20px 0;box-sizing:border-box;font-family:"IBM Plex Sans Thai",Arial,sans-serif}
+.cl-clients header h2{margin:0;font:500 clamp(28px,3.2vw,40px)/1.25 "IBM Plex Sans Thai",Arial,sans-serif;letter-spacing:-.01em;color:#1f1512}
+.cl-clients header p{margin:6px 0 0;color:#7a6f68;font-size:16px}
+.cl-deck{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:24px}
+.cl-card{display:flex;flex-direction:column;gap:12px;min-width:0;padding:12px;border:0;border-radius:28px;background:#f6f5f2;color:#1f1512;font-family:inherit;text-align:left;cursor:pointer;transition:background .25s}
+.cl-card:hover{background:#efe9e0}
+.cl-card:focus-visible{outline:3px solid #1f1512;outline-offset:2px}
+.cl-mosaic{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);grid-template-rows:repeat(2,minmax(0,1fr));gap:8px;aspect-ratio:16/9.4}
+.cl-mosaic span{position:relative;min-height:0;overflow:hidden;border-radius:18px;background:#fff}
+.cl-mosaic span:first-child{grid-row:1/-1}
+.cl-mosaic.n1 span{grid-column:1/-1}
+.cl-mosaic.n2 span:last-child{grid-row:1/-1}
+.cl-mosaic img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.16,1,.3,1)}
+.cl-mosaic .fit img{object-fit:contain;padding:8%;box-sizing:border-box}
+.cl-card:hover .cl-mosaic img{transform:scale(1.03)}
+.cl-card-foot{display:flex;align-items:center;gap:12px;padding:0 6px 4px}
+.cl-card-text{display:flex;flex:1;flex-direction:column;min-width:0}
+.cl-card-text b{font:500 18px/1.3 "IBM Plex Sans Thai",Arial,sans-serif}
+.cl-card-text small{overflow:hidden;color:#7a6f68;font-size:13.5px;text-overflow:ellipsis;white-space:nowrap}
+.cl-card-go{flex:none;padding:8px 14px;border-radius:999px;background:#fff;font:500 13.5px/1 "IBM Plex Sans Thai",Arial,sans-serif;font-style:normal}
+@media(max-width:760px){.cl-clients{padding:36px 16px 0}.cl-deck{grid-template-columns:minmax(0,1fr)}.cl-mosaic{aspect-ratio:4/3}}
+@media(prefers-reduced-motion:reduce){.cl-mosaic img{transition:none}}
+/* Logos are the way into each profile. */
+.cl-clients[hidden]{display:none}
+.cl-logo-btn{display:block;min-width:0;padding:0;border:0;border-radius:12px;background:none;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease}
+.cl-logo-btn img{display:block;width:100%}
+.cl-logo-btn:hover{transform:translateY(-2px);box-shadow:0 0 0 2px #f4c04a}
+.cl-logo-btn:focus-visible{outline:2px solid #f4c04a;outline-offset:2px}
+/* Compact client cards with a product filter. */
+.cl-filters{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.cl-filter{height:40px;padding:0 16px;border:1.5px solid #eee9e2;border-radius:999px;background:#fff;color:#1f1512;font:500 14.5px/1 "IBM Plex Sans Thai",Arial,sans-serif;cursor:pointer;transition:border-color .2s,background .2s,color .2s}
+.cl-filter:hover{border-color:#1f1512}
+.cl-filter.on{border-color:#1f1512;background:#1f1512;color:#fff}
+.cl-deck{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:18px}
+.cl-card{gap:10px;padding:8px;border-radius:22px}
+.cl-card-pic{position:relative;display:block;overflow:hidden;aspect-ratio:4/3;border-radius:16px;background:#fff}
+.cl-card-pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.16,1,.3,1)}
+.cl-card-pic.fit img{object-fit:contain;padding:8%;box-sizing:border-box}
+.cl-card:hover .cl-card-pic img{transform:scale(1.04)}
+.cl-card-foot{gap:10px;padding:0 4px 4px}
+.cl-card-foot .cl-logo{width:40px;height:40px;padding:4px}
+.cl-card-text b{font-size:15.5px}
+.cl-card-text small{font-size:12.5px}
+@media(max-width:1050px){.cl-deck{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:760px){.cl-deck{grid-template-columns:repeat(2,minmax(0,1fr))}.cl-filters{flex-wrap:nowrap;margin:16px -16px 0;padding:0 16px;overflow-x:auto;scrollbar-width:none}.cl-filter{flex:none}.cl-card-foot .cl-logo{display:none}}
+@media(prefers-reduced-motion:reduce){.cl-card-pic img{transition:none}}
+/* From layout to real piece: scroll-led side list, cards that turn on hover or in view. */
+.cl-browse{display:grid;grid-template-columns:minmax(260px,.62fr) minmax(0,1.38fr);gap:clamp(20px,3vw,44px);align-items:start}
+.cl-browse-side{position:sticky;top:calc(50vh - 210px)}
+.cl-browse-side h2{margin:0;font:500 clamp(36px,4.4vw,60px)/1.16 "IBM Plex Sans Thai",Arial,sans-serif;letter-spacing:-.025em;color:#1f1512}
+.cl-browse-side h2 span{display:inline-block;padding:.1em 0 .16em;margin:-.1em 0 -.16em;background:linear-gradient(90deg,#b41616,#ee5a24,#f2a91d,#25a86a,#2a7de1,#8a46dc,#e0409a,#b41616) 0 0/300% 100% repeat-x;-webkit-background-clip:text;background-clip:text;color:transparent;animation:clRainbow 9s linear infinite}
+@keyframes clRainbow{to{background-position:-300% 0}}
+.cl-browse-side p{margin:14px 0 0;color:#7a6f68;font-size:16px;line-height:1.55}
+.cl-types-body{display:grid;gap:clamp(28px,5vh,48px)}
+.cl-type h3{margin:0 0 10px;color:#8b7f76;font:500 14px/1.4 "IBM Plex Sans Thai",Arial,sans-serif;letter-spacing:.02em}
+.cl-type-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.cl-flip-card{display:flex;flex-direction:column;gap:10px;min-width:0;padding:8px;border:0;border-radius:24px;background:#f6f5f2;color:#1f1512;font-family:inherit;text-align:left;cursor:pointer}
+.cl-flip-card:focus-visible{outline:3px solid #1f1512;outline-offset:2px}
+.cl-flip{position:relative;display:block;overflow:hidden;aspect-ratio:4/3;border-radius:18px;background:#fff}
+.cl-flip img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cl-flip img.is-design{object-fit:contain;padding:8%;box-sizing:border-box;transition:transform .9s cubic-bezier(.16,1,.3,1)}
+.cl-flip img.fit{object-fit:contain;padding:8%;box-sizing:border-box;background:#fff}
+.cl-flip.has-both img.is-real{clip-path:inset(0 100% 0 0);transition:clip-path .85s cubic-bezier(.65,0,.2,1)}
+.cl-flip.has-both::after{content:"";position:absolute;top:0;bottom:0;left:0;width:3px;background:linear-gradient(#b41616,#f2a91d,#25a86a,#2a7de1,#8a46dc);opacity:0;pointer-events:none}
+@keyframes clSweep{0%{left:0;opacity:1}85%{opacity:1}100%{left:calc(100% - 3px);opacity:0}}
+.cl-flip-card:hover .cl-flip.has-both img.is-real,.cl-flip.has-both.is-turned img.is-real{clip-path:inset(0 0 0 0)}
+.cl-flip-card:hover .cl-flip.has-both::after,.cl-flip.has-both.is-turned::after{animation:clSweep .85s cubic-bezier(.65,0,.2,1) both}
+.cl-flip-card:hover .cl-flip img.is-design{transform:scale(.96)}
+.cl-flip-tags{position:absolute;left:10px;top:10px;display:grid}
+.cl-flip-tags em{grid-area:1/1;padding:4px 10px;border-radius:999px;background:#1f1512cc;color:#fff;font:500 12px/1.4 "IBM Plex Sans Thai",Arial,sans-serif;font-style:normal;transition:opacity .35s}
+.cl-flip-tags em.is-real{background:#b41616;opacity:0}
+.cl-flip-card:hover .cl-flip-tags em.is-real,.cl-flip.is-turned .cl-flip-tags em.is-real{opacity:1}
+.cl-flip-card:hover .cl-flip-tags em.is-design,.cl-flip.is-turned .cl-flip-tags em.is-design{opacity:0}
+.cl-flip-foot{display:flex;align-items:center;gap:10px;padding:0 4px 4px}
+.cl-flip-foot .cl-logo{width:40px;height:40px;padding:4px}
+@media(max-width:900px){
+ .cl-browse{grid-template-columns:1fr}
+ .cl-browse-side{position:static;display:contents}
+ .cl-browse-side h2,.cl-browse-side p{grid-column:1/-1}
+ html body .cl-types{position:sticky;top:70px;z-index:10;flex-flow:row nowrap;gap:8px;margin:0 -16px;padding:10px 16px;overflow-x:auto;background:#fff;scrollbar-width:none}
+ html body .cl-types .filter{flex:none;white-space:nowrap;transform:none}
+ html body .cl-types .filter.on{border-color:#1f1512;background:#1f1512;color:#fff}
+}
+@media(max-width:560px){.cl-type-grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.cl-flip img,.cl-flip::after,.cl-flip-tags em{transition:none}.cl-browse-side h2 span{animation:none}}
