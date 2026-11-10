@@ -26,7 +26,7 @@
   {name: 'The Val', logo: 'theval.jpg', works: [
    {item: 'ร่มกอล์ฟ', type: ['ร่ม'], real: ['theval-umbrella'], design: ['theval-top']}]},
   {name: 'UNICEF Thailand', logo: 'unicef.jpg', works: [
-   {item: 'สมุดโน้ต A5', type: ['สมุด'], real: ['unicef-notebook', 'unicef-set'], design: ['unicef-cover']}]},
+   {item: 'สมุดโน้ต A5', type: ['สมุด'], real: ['unicef-notebook', 'unicef-set'], design: ['unicef-cover-2', 'unicef-cover']}]},
   {name: 'MuzikMove', logo: 'muzikmove.jpg', works: [
    {item: 'ซองใส่บัตรพนักงานพร้อมสายคล้อง', type: ['ของใช้อื่น ๆ'], real: ['muzikmove-lanyard', 'muzikmove-holder'], design: ['muzikmove-spec']}]},
   {name: 'เขตรักษาพันธุ์สัตว์ป่าห้วยขาแข้ง', logo: 'huaikhakhaeng.jpg', works: [
@@ -257,19 +257,20 @@
   follow();
  }
  if (!wall) return;
- // Hand-set wall: each column alternates a layout with a real piece, and no product type or colour sits twice in a row.
+ // Hand-set wall: white-background pieces only, so the band reads as one set; colours and brands spread across columns.
  const columnsPlan = [
-  ['jll-bag-spec', 'gloria-tote', 'generali-cap-3d', 'theval-umbrella', 'muzikmove-spec'],
-  ['medyceles-pink', 'huai-artwork-b', 'unicef-notebook', 'toeklom-fan-dieline', 'jll-bags'],
-  ['superrich-3d', 'pathe-cap', 'jll-shirt-template', 'muzikmove-lanyard', 'gloria-tote-spec'],
-  ['toeklom-tote', 'unicef-cover', 'superrich-open', 'pathe-artwork', 'medyceles-box'],
+  ['jll-bag-spec', 'unicef-cover', 'pathe-artwork', 'generali-cap-side'],
+  ['superrich-3d', 'huai-artwork-b', 'muzikmove-spec', 'toeklom-tote-spec', 'unicef-cover-2'],
+  ['generali-cap-3d', 'theval-top', 'toeklom-fan', 'gloria-tote-spec'],
+  ['toeklom-fan-dieline', 'jll-shirt-template', 'unicef-notebook', 'huai-artwork-a'],
  ];
  const owner = key => brands.find(brand => brand.real.includes(key) || brand.design.includes(key));
  const order = [];
- columnsPlan[0].forEach((_, row) => columnsPlan.forEach(column => {
-  const key = column[row], brand = owner(key);
-  if (brand) order.push({brand, key, fit: brand.design.includes(key) ? 1 : 0});
- }));
+ const rows = Math.max(...columnsPlan.map(column => column.length));
+ for (let row = 0; row < rows; row++) columnsPlan.forEach(column => {
+  const key = column[row], brand = key && owner(key);
+  if (brand) order.push({brand, key, fit: 1});
+ });
  const build = (list, hidden) => list.map(({brand, key, fit}) => {
   const button = el('button', 'cl-tile' + (fit ? ' fit' : ''));
   button.type = 'button';
