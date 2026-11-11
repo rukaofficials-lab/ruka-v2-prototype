@@ -50,3 +50,12 @@ html body{background:#fff}
  .occ-stack{gap:14px}
 }
 @media(prefers-reduced-motion:reduce){.h1-shine{animation:none}.occ-rail button,.occ-photo img,.occ-go i{transition:none}}
+/* One backdrop for every product tile: catalog shots blend into it, RUKA shots already sit on it. */
+.occ-photo{background:#f6f4ef}
+.occ-photo img{object-fit:contain;padding:12%;box-sizing:border-box;mix-blend-mode:multiply}
+.occ-photo.is-ruka img{padding:0;object-fit:cover;mix-blend-mode:normal}
+/* Placeholder slot: names the product photo still to be made. */
+.occ-photo.is-pending{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:14px;box-sizing:border-box;border:1.5px dashed #d9d1c4;text-align:center;color:#1f1512;text-decoration:none}
+.occ-photo.is-pending b{font:500 16px/1.35 "IBM Plex Sans Thai",Arial,sans-serif}
+.occ-photo.is-pending small{color:#8b7f76;font:400 12px/1.4 "IBM Plex Sans Thai",Arial,sans-serif}
+a.occ-photo.is-pending:hover{border-color:#1f1512}

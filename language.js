@@ -125,6 +125,10 @@
   Object.assign(translations,{"ภาพการวางแบบจากงานจริง กดโลโก้เพื่อดูงานจริงของแต่ละแบรนด์":"Layouts from real projects. Tap a logo to see the real pieces for each brand."});
   Object.assign(translations,{"เลือกประเภทสินค้า แล้วดูว่าแบรนด์ไหนเคยทำกับเรา": "Choose a product type to see which brands made it with us.", "เลือกประเภทสินค้า": "Choose a product type", "ร่ม": "Umbrellas", "เสื้อ": "Shirts", "สมุด": "Notebooks", "ของใช้อื่น ๆ": "Other items", "หมวก": "Caps & hats", "กระเป๋าโท้ต": "Tote bag"});
   Object.assign(translations,{"จากแบบ": "From layout", "สู่ของจริง": "to the real thing", "เลือกประเภทสินค้า แล้วดูว่าแบบที่วางไว้ ออกมาเป็นงานจริงแบบไหน": "Pick a product type and see how each layout turned into the real piece."});
+  Object.assign(translations,{"ตัวอย่างสินค้าที่เหมาะกับงานนี้ กดดูสินค้าได้":"Products that suit this kind of project. Tap one to see it."});
+  Object.assign(translations,{"สายคล้องบัตร":"Lanyard","รอรูป · ยังไม่มีในแค็ตตาล็อก":"Photo pending · not in catalog yet"});
+  Object.assign(translations,{"ตรวจงาน":"Quality","ก่อนส่ง":"check"});
+  Object.assign(translations,{"เสื้อยืด":"T-shirt"});
   const textNodes = root => { const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode(node){if(!node.nodeValue.trim()||/^(SCRIPT|STYLE|NOSCRIPT)$/.test(node.parentElement?.tagName||''))return NodeFilter.FILTER_REJECT;return NodeFilter.FILTER_ACCEPT}});const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);return nodes };
   const placeholders = new WeakMap();
   const patterns = [
@@ -135,6 +139,7 @@
     [/^ยกเลิก (.+)$/, m => 'Clear ' + (translate(m) || m)],
     [/^(\d+) งานที่ทำร่วมกัน$/, m => m + (m === '1' ? ' project together' : ' projects together')],
     [/^แบบ (.+)$/, m => 'Layout: ' + (translate(m) || m)],
+    [/^รอรูป · ([A-Z]+-\d+)$/, 'Photo pending · $1'],
     [/^แก้ไข(.+)$/, m => 'Edit ' + (translate(m) || m).toLowerCase()],
     [/^บันทึก (.+)$/, 'Save $1'],
     [/^พิจารณาจาก: (.+)$/, m => 'Based on: ' + (translate(m) || m)],

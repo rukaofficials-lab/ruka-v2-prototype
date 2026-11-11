@@ -48,26 +48,43 @@
  const start = panels.findIndex(card => card.id && '#' + card.id === location.hash);
  if (start > 0) addEventListener('load', () => { locked = start; scrollTo(0, targetOf(start)); track(); });
 
+ // RUKA-styled photos for some products; the tile still opens the real product page.
+ const rukaPics = new Set(['NOTE-002', 'BAG-001', 'DRW-001', 'DRW-002', 'DRW-009', 'STA-001', 'CAP-001', 'GG-002']);
+ // Each slot is a product code, or "?name" for an item not in the catalog yet.
+ // Slots without a RUKA photo show the item's name, so the team can see which photo is still needed.
  window.rukaCatalog?.load().then(items => {
   stack.querySelectorAll('.occ-photos[data-codes]').forEach(box => {
-   const found = box.dataset.codes.split(' ').map(code => items.find(item => item.code === code)).filter(item => item && item.image);
-   if (found.length < 2) return;
-   found.slice(0, 4).forEach(item => {
-    const tile = document.createElement('a');
+   box.dataset.codes.split(' ').slice(0, 4).forEach(slot => {
+    // "?name=file" is an item not in the catalog yet that already has a RUKA photo.
+    const [rawName, photo] = slot.startsWith('?') ? slot.slice(1).split('=') : ['', ''];
+    const wanted = rawName.replace(/_/g, ' ');
+    const item = wanted ? null : items.find(entry => entry.code === slot);
+    const label = wanted || (item ? rukaCatalog.name(item) : slot);
+    const tile = document.createElement(item ? 'a' : 'span');
     tile.className = 'occ-photo';
-    tile.href = window.rukaProductUrl(item.code);
-    tile.setAttribute('aria-label', rukaCatalog.name(item));
-    const img = document.createElement('img');
-    img.src = rukaCatalog.thumb(rukaCatalog.cover(item), 520);
-    img.alt = '';
-    img.loading = 'lazy';
-    img.decoding = 'async';
-    tile.append(img);
+    if (item) tile.href = window.rukaProductUrl(item.code);
+    tile.setAttribute('aria-label', label);
+    if ((item && rukaPics.has(item.code)) || photo) {
+     tile.classList.add('is-ruka');
+     const img = document.createElement('img');
+     img.src = 'assets/services/' + (photo || item.code) + '.webp?v=20261110-f';
+     img.alt = '';
+     img.loading = 'lazy';
+     img.decoding = 'async';
+     tile.append(img);
+    } else {
+     tile.classList.add('is-pending');
+     const name = document.createElement('b');
+     name.textContent = label;
+     const hint = document.createElement('small');
+     hint.textContent = item ? 'รอรูป · ' + item.code : 'รอรูป · ยังไม่มีในแค็ตตาล็อก';
+     tile.append(name, hint);
+    }
     box.append(tile);
    });
    const note = document.createElement('p');
    note.className = 'occ-sample';
-   note.textContent = 'ตัวอย่างสินค้าที่เหมาะกับงานนี้';
+   note.textContent = 'ตัวอย่างสินค้าที่เหมาะกับงานนี้ กดดูสินค้าได้';
    box.append(note);
   });
  }).catch(() => {});

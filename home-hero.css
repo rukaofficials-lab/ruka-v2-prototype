@@ -174,3 +174,28 @@ section.trust.trust .trustTitle::before{transform:scaleX(-1)}
 /* English labels run longer: one row where there is room, an even split where there is not. */
 @media(min-width:1280px){html[lang=en] .home-hero .chips{flex-wrap:nowrap;margin-inline:-60px}}
 @media(min-width:1001px) and (max-width:1279px){html[lang=en] .home-hero .chips{max-width:540px;margin-inline:auto}}
+/* Step cards as folders: a big step number tucked into a coloured folder, with a hand-drawn note. */
+.hero-folder{position:relative;display:block;overflow:hidden;width:100%;aspect-ratio:1;border-radius:12px;background:#f7f6f2;container-type:inline-size;color:#1f1512}
+.hero-folder::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,#fff 0,#0000 60%),repeating-linear-gradient(115deg,#0000 0 14px,#00000005 14px 15px)}
+.hero-folder em{position:absolute;left:0;right:0;top:15%;z-index:1;font:italic 400 15cqw/1 Georgia,"Times New Roman",serif;letter-spacing:-.02em;text-align:center}
+.hero-folder b{position:absolute;left:0;right:0;top:27%;z-index:2;font:700 44cqw/1 "IBM Plex Sans Thai",Arial,sans-serif;letter-spacing:-.06em;text-align:center}
+.hf-back,.hf-front{position:absolute;left:19%;width:66%;border-radius:7cqw;transform:rotate(-9deg);transform-origin:50% 50%}
+.hf-back{z-index:1;top:47%;height:38%;background:color-mix(in srgb,var(--c) 55%,#fff)}
+.hf-back::before{content:"";position:absolute;left:8%;top:-11%;width:34%;height:16%;border-radius:4cqw 4cqw 0 0;background:inherit}
+.hf-front{z-index:3;top:57%;height:34%;background:var(--c);box-shadow:0 2cqw 4cqw #2b242026}
+.hf-spark{position:absolute;right:9%;top:42%;z-index:4;width:13cqw;height:13cqw;fill:none;stroke:#1f1512;stroke-width:2;stroke-linecap:round}
+.hf-loop{position:absolute;left:7%;bottom:6%;z-index:4;width:16cqw;height:16cqw;fill:none;stroke:#1f1512;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;opacity:.8}
+.hero-card:hover .hf-front{transform:rotate(-9deg) translateY(4cqw);transition:transform .3s ease}
+/* The folders name each step, so the corner stickers are no longer needed. */
+.hero-card .hero-badge{display:none}
+/* Floating step cards as sticky notes: decoration, not a sequence to read. */
+.hero-card{background:none;box-shadow:none;padding:0}
+.hero-card > span:not(.hero-note){position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.hero-note{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7cqw;width:100%;aspect-ratio:1;container-type:inline-size;background:var(--c);border-radius:2px 2px 10px 2px;box-shadow:0 1px 1px #2b242014,0 10px 18px -6px #2b242040;transform:rotate(var(--t));color:#2b2420}
+.hero-note::after{content:"";position:absolute;right:0;bottom:0;width:22%;height:22%;background:linear-gradient(135deg,#0000 50%,#00000012 50%,#ffffff55 100%);border-radius:0 0 10px 0}
+.hero-note::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#ffffff40,#0000 40%);border-radius:inherit;pointer-events:none}
+.hn-tape{position:absolute;top:-5%;left:50%;width:38%;height:12%;transform:translateX(-50%) rotate(-4deg);background:#ffffffa6;box-shadow:0 1px 2px #2b24201a}
+.hn-icon{width:28cqw;height:28cqw;fill:none;stroke:#2b2420;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.hero-card .hero-note b{display:block;overflow:visible;padding:0 8%;font:600 13cqw/1.25 "IBM Plex Sans Thai",Arial,sans-serif;white-space:normal;text-overflow:clip;text-align:center}
+.hero-card:hover .hero-note{transform:rotate(0deg) translateY(-2px);transition:transform .25s ease}
+@media(max-width:1000px){.hero-gallery{padding-top:14px!important;padding-bottom:14px!important}}
