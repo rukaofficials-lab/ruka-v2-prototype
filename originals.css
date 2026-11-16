@@ -1,0 +1,9 @@
+/* RUKA Originals teaser on the homepage. No products until the ERP has real ones. */
+.originals{padding:56px 16px;background:#fffaf1}
+.originals-inner{max-width:880px;margin:0 auto;padding:36px 32px;border:1px solid #ecdcc0;border-radius:24px;background:#fff;text-align:center}
+.originals-ey{margin:0 0 8px;font-size:13px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:#b41616}
+.originals h2{margin:0 0 10px;font:700 clamp(26px,3.4vw,34px)/1.25 Georgia,serif;color:#171717}
+.originals-sub{max-width:560px;margin:0 auto 20px;color:#5b5147;line-height:1.7}
+.originals-go{display:inline-block;padding:12px 22px;border-radius:999px;background:#b41616;color:#fff;font-weight:800;text-decoration:none}
+.originals-go:hover{background:#951010}
+@media(max-width:760px){.originals{padding:40px 16px}.originals-inner{padding:28px 18px}}

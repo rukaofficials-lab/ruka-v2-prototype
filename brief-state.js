@@ -14,4 +14,6 @@
  if(handoff==='search'){remove(['rukaHandoff','rukaBrief','rukaDraft','rukaProduct','rukaProductTech','rukaIdea','rukaIdeaBudget','rukaIdeaMood','rukaFilterIntent']);return}
  window.rukaClearBrief();
  if(occasion)try{localStorage.setItem('rukaOccasion',occasion)}catch{}
+ const code=(params.get('code')||'').trim().toUpperCase();
+ if(/^[A-Z]+-\d+$/.test(code))try{localStorage.setItem('rukaProduct',code)}catch{}
 })();

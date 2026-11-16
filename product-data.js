@@ -22,6 +22,7 @@
  function syncCategoryTabs(products){
   const live=new Set(products.map(p=>p.category));
   const absent=value=>value&&value!=='all'&&!live.has(value);
+  document.querySelectorAll('.bar .cat').forEach(tab=>{const id=((tab.getAttribute('onclick')||'').match(/"([a-z]+)"/)||[])[1];if(absent(id))hide(tab);else{tab.hidden=false;tab.style.display=''}});
   document.querySelectorAll('.category-picker [data-pick]').forEach(card=>{
    const images=products.filter(p=>p.category===card.dataset.pick).flatMap(p=>p.images?.length?p.images:[p.image]).filter(Boolean);
    const chosen=(FOLDER_PHOTOS[card.dataset.pick]||[]).map(file=>images.find(url=>url.endsWith(file))).filter(Boolean);
@@ -32,6 +33,9 @@
    ['left','right'].forEach((place,i)=>{if(items[i])photo(place,items[i])});
   });
  }
- window.rukaCatalog={clean,name,thumb,cover,load,syncCategoryTabs};
+ // Use-case chips and panels (gwp, vip, kol, running, leader) appear only when the ERP has tagged products.
+ function syncUseCases(products){document.querySelectorAll('a[data-usecase]').forEach(chip=>{chip.hidden=!products.some(p=>(p.useCases||[]).includes(chip.dataset.usecase))})}
+ window.rukaCatalog={clean,name,thumb,cover,load,syncCategoryTabs,syncUseCases};
  if(document.querySelector('.category-picker'))load().then(syncCategoryTabs).catch(()=>{});
+ if(document.querySelector('a[data-usecase]'))load().then(syncUseCases).catch(()=>{});
 })();

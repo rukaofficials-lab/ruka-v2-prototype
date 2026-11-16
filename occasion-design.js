@@ -3,7 +3,8 @@
  const stack = document.querySelector('.occ-stack');
  const rail = document.querySelector('.occ-rail');
  if (!stack || !rail) return;
- const panels = [...stack.querySelectorAll('.occ-panel')];
+ let panels = [];
+ let buttons = [];
  const wide = () => innerWidth > 1050;
  let locked = -1;
  ['wheel', 'touchmove', 'keydown'].forEach(name => addEventListener(name, () => { locked = -1; }, {passive: true}));
@@ -15,19 +16,25 @@
   const top = stack.getBoundingClientRect().top + scrollY + before;
   return top - (wide() ? 88 + index * 12 : innerWidth > 760 ? 136 : 130);
  };
- const buttons = panels.map((card, index) => {
-  card.style.setProperty('--i', index);
-  const button = document.createElement('button');
-  button.type = 'button';
-  button.textContent = card.dataset.rail || card.querySelector('h2').textContent;
-  button.onclick = () => {
-   locked = index;
-   track();
-   scrollTo({top: targetOf(index), behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
-  };
-  rail.append(button);
-  return button;
- });
+ // Hidden panels (use cases without tagged products) stay out of the list.
+ function buildRail() {
+  panels = [...stack.querySelectorAll('.occ-panel')].filter(card => !card.hidden);
+  rail.replaceChildren();
+  buttons = panels.map((card, index) => {
+   card.style.setProperty('--i', index);
+   const button = document.createElement('button');
+   button.type = 'button';
+   button.textContent = card.dataset.rail || card.querySelector('h2').textContent;
+   button.onclick = () => {
+    locked = index;
+    track();
+    scrollTo({top: targetOf(index), behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
+   };
+   rail.append(button);
+   return button;
+  });
+  track();
+ }
  function track() {
   const line = wide() ? innerHeight * .55 : 200;
   let now = 0;
@@ -42,17 +49,52 @@
  }
  let frame = 0;
  addEventListener('scroll', () => { if (!frame) frame = requestAnimationFrame(() => { frame = 0; track(); }); }, {passive: true});
- track();
+ buildRail();
 
- // Deep links such as how.html#tracking land on the right card.
- const start = panels.findIndex(card => card.id && '#' + card.id === location.hash);
- if (start > 0) addEventListener('load', () => { locked = start; scrollTo(0, targetOf(start)); track(); });
+ // Deep links such as how.html#tracking or occasion.html#running land on the right card.
+ const jumpToHash = () => {
+  const start = panels.findIndex(card => card.id && '#' + card.id === location.hash);
+  if (start > 0) { locked = start; scrollTo(0, targetOf(start)); track(); }
+ };
+ const loaded = new Promise(resolve => document.readyState === 'complete' ? resolve() : addEventListener('load', resolve, {once: true}));
+ const hasUseCases = !!stack.querySelector('[data-usecase]');
+ if (!hasUseCases) loaded.then(jumpToHash);
 
  // RUKA-styled photos for some products; the tile still opens the real product page.
  const rukaPics = new Set(['NOTE-002', 'BAG-001', 'DRW-001', 'DRW-002', 'DRW-009', 'STA-001', 'CAP-001', 'GG-002', 'TBL-005']);
- // Each slot is a product code, or "?name" for an item not in the catalog yet.
- // Slots without a RUKA photo show the item's name, so the team can see which photo is still needed.
- window.rukaCatalog?.load().then(items => {
+ const productTile = item => {
+  const tile = document.createElement('a');
+  tile.className = 'occ-photo';
+  tile.href = window.rukaProductUrl(item.code);
+  tile.setAttribute('aria-label', rukaCatalog.name(item));
+  const img = document.createElement('img');
+  if (rukaPics.has(item.code)) { tile.classList.add('is-ruka'); img.src = 'assets/services/' + item.code + '.webp?v=20261116-d'; }
+  else img.src = rukaCatalog.thumb(rukaCatalog.cover(item), 400);
+  img.alt = '';
+  img.loading = 'lazy';
+  img.decoding = 'async';
+  tile.append(img);
+  return tile;
+ };
+ const window_ = window;
+ window_.rukaCatalog?.load().then(items => {
+  // Use-case panels: products come from the ERP useCases tags; a tag with no products hides its panel.
+  stack.querySelectorAll('.occ-photos[data-usecase]').forEach(box => {
+   const tag = box.dataset.usecase;
+   const found = items.filter(item => (item.useCases || []).includes(tag) && item.image).slice(0, 8);
+   const panel = box.closest('.occ-panel');
+   panel.hidden = !found.length;
+   if (!found.length) return;
+   box.classList.toggle('occ-photos--many', found.length > 4);
+   box.replaceChildren(...found.map(productTile));
+   const note = document.createElement('p');
+   note.className = 'occ-sample';
+   note.textContent = 'ตัวอย่างสินค้าที่ติดแท็กงานนี้ใน ERP กดดูสินค้าได้';
+   box.append(note);
+  });
+
+  // Each slot is a product code, or "?name" for an item not in the catalog yet.
+  // Slots without a RUKA photo show the item's name, so the team can see which photo is still needed.
   stack.querySelectorAll('.occ-photos[data-codes]').forEach(box => {
    box.dataset.codes.split(' ').slice(0, 4).forEach(slot => {
     // "?name=file" is an item not in the catalog yet that already has a RUKA photo.
@@ -87,5 +129,6 @@
    note.textContent = 'ตัวอย่างสินค้าที่เหมาะกับงานนี้ กดดูสินค้าได้';
    box.append(note);
   });
- }).catch(() => {});
+  if (hasUseCases) { buildRail(); loaded.then(jumpToHash); }
+ }).catch(() => { if (hasUseCases) loaded.then(jumpToHash); });
 })();

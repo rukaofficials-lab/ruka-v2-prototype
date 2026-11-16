@@ -7,7 +7,7 @@ q.setAttribute('aria-label','ค้นหาสินค้า');
 q.placeholder='ค้นหาสินค้า เช่น กระบอกน้ำ งบไม่เกิน 200 บาท';
 document.querySelector('.ask').textContent='ค้นหา';
 const quick=document.querySelector('.quick');quick.replaceChildren();
-[['fast','ผลิตภายใน 1 เดือน'],['premium','งบ 600–999 บาท']].forEach(([type,label])=>{const b=document.createElement('button');b.textContent=label;b.type='button';b.onclick=()=>preset(type);quick.append(b)});
+[['budget','เริ่มจากงบต่ำสุด'],['easy','ให้ RUKA ช่วยเลือก']].forEach(([type,label])=>{const b=document.createElement('button');b.textContent=label;b.type='button';b.onclick=()=>preset(type);quick.append(b)});
 
 const filter=document.querySelector('.filters');
 filter.querySelector('h3').textContent='เลือกเงื่อนไข';
@@ -15,7 +15,7 @@ filter.querySelector('select').options[0].textContent='ทุกจำนวน�
 const toggler=document.createElement('button');toggler.type='button';toggler.className='products-filter-toggle';toggler.textContent='ตัวกรอง';toggler.setAttribute('aria-expanded','false');filter.id='products-filters';toggler.setAttribute('aria-controls',filter.id);toggler.onclick=()=>{const open=toggler.getAttribute('aria-expanded')!=='true';toggler.setAttribute('aria-expanded',String(open));filter.classList.toggle('is-open',open)};
 const shopBar=document.createElement('div');shopBar.className='shop-bar';const bar=document.querySelector('.bar');bar.before(shopBar);shopBar.append(bar,toggler,filter);const planLink=document.createElement('a');planLink.className='cat-plan';planLink.href='gift-planner.html';planLink.textContent='จัดของขวัญตามงบ →';bar.append(planLink);document.addEventListener('click',e=>{if(filter.classList.contains('is-open')&&!filter.contains(e.target)&&!toggler.contains(e.target))toggler.click()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&filter.classList.contains('is-open'))toggler.click()});
 const chips=document.createElement('div');chips.className='products-applied';chips.setAttribute('aria-label','เงื่อนไขที่เลือก');document.querySelector('.topline').after(chips);
-const radios=[...filter.querySelectorAll('input[name=budget]')],selects=[...filter.querySelectorAll('select')];
+const radios=()=>[...filter.querySelectorAll('input[name=budget]')],selects=[...filter.querySelectorAll('select')];
 const groups=[...document.querySelectorAll('.cat')].map((el,i)=>[el.getAttribute('onclick').match(/"([a-z]+)"/)[1],categories[i]]).filter(([id])=>id!=='all');
 // One continuous list: every category stays on the page, the side list jumps and tracks.
 let pending=new URLSearchParams(location.search).get('category');
@@ -55,14 +55,14 @@ render=function(wanted){savedRender('all');
  document.querySelectorAll('.cat').forEach(b=>b.setAttribute('aria-pressed',String(b.classList.contains('active'))));
  chips.replaceChildren();
  const addChip=(text,remove)=>{const b=document.createElement('button');b.type='button';b.textContent=text+' ×';b.setAttribute('aria-label','ยกเลิก '+text);b.onclick=remove;chips.append(b)};
- radios.forEach(r=>{if(r.checked)addChip(r.parentElement.textContent.trim(),()=>{r.checked=false;render()})});
+ radios().forEach(r=>{if(r.checked)addChip(r.parentElement.textContent.trim(),()=>{r.checked=false;render()})});
  selects.forEach((s,i)=>{if(s.selectedIndex)addChip((i===0?'จำนวน: ':'รับสินค้า: ')+s.selectedOptions[0].textContent,()=>{s.selectedIndex=0;render()})});
  chips.hidden=!chips.children.length;
  const box=document.getElementById('grid'),all=[...box.querySelectorAll('.card')],query=parseQuery(q.value),searching=!!(query.budget||query.words.length);
  const cards=searching?all.filter(c=>fits(c,query)):all,complete=!searching&&products.length>0&&all.length===products.length;
  searchState.hidden=!searching;searchState.replaceChildren();
  if(searching){const label=document.createElement('span');label.textContent=cards.length+' รายการ';const clear=document.createElement('button');clear.type='button';clear.textContent='ล้างการค้นหา';clear.onclick=()=>{q.value='';render();q.focus()};searchState.append(label,clear)}
- if(cards.length||complete){const parts=[];groups.forEach(([id,label])=>{const set=cards.filter(c=>c.dataset.cat===id);if(!set.length&&!complete)return;const panel=document.createElement('section');panel.className='group-panel';const h=document.createElement('h2');h.className='group-head';h.id='group-'+id;h.dataset.cat=id;h.textContent=label+' ';const n=document.createElement('span');n.textContent=set.length;h.append(n);panel.append(h);
+ if(cards.length||complete){const parts=[];groups.forEach(([id,label])=>{const set=cards.filter(c=>c.dataset.cat===id);if(!set.length&&(!complete||!products.some(p=>p[2]===id)))return;const panel=document.createElement('section');panel.className='group-panel';const h=document.createElement('h2');h.className='group-head';h.id='group-'+id;h.dataset.cat=id;h.textContent=label+' ';const n=document.createElement('span');n.textContent=set.length;h.append(n);panel.append(h);
   if(set.length){const inner=document.createElement('div');inner.className='panel-grid';inner.append(...set);panel.append(inner)}
   else{const none=document.createElement('div');none.className='group-empty';const t=document.createElement('strong');t.textContent=label;const s=document.createElement('p');s.textContent='ยังไม่มีสินค้าขึ้นเว็บในหมวดนี้ บอกสิ่งที่ต้องการ แล้วทีม Ruka จะช่วยหาให้';const b=document.createElement('a');b.href='brief.html';b.textContent='ให้ทีม Ruka ช่วยหา →';b.onclick=()=>{localStorage.setItem('rukaSearchIntent',label);localStorage.setItem('rukaHandoff','search')};none.append(t,s,b);panel.append(none)}
   parts.push(panel)});box.replaceChildren(...parts)}

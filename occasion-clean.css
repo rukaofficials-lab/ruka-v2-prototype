@@ -59,3 +59,8 @@ html body{background:#fff}
 .occ-photo.is-pending b{font:500 16px/1.35 "IBM Plex Sans Thai",Arial,sans-serif}
 .occ-photo.is-pending small{color:#8b7f76;font:400 12px/1.4 "IBM Plex Sans Thai",Arial,sans-serif}
 a.occ-photo.is-pending:hover{border-color:#1f1512}
+/* Use-case panels can hold up to 8 products */
+.occ-photos--many{grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.occ-photos--many .occ-photo{border-radius:14px}
+@media(max-width:760px){.occ-photos--many{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.occ-photos .occ-sample{grid-column:1/-1}
