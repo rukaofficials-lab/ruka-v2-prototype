@@ -17,7 +17,7 @@
 .home-hero .chip i{flex-shrink:0;width:30px;height:30px;border-radius:50%;background:#f5f4f0 center/cover}
 .home-hero .chip:hover{border-color:#2b2420}
 .hero-gallery{position:absolute;inset:0;z-index:1}
-.hero-card{position:absolute;width:clamp(128px,12.6vw,196px);padding:7px 7px 10px;box-sizing:border-box;border-radius:18px;background:#fff;box-shadow:0 12px 32px #2b24201c;color:#2b2420;text-decoration:none;text-align:left;opacity:0;transform:rotate(var(--r)) translateY(14px);transition:opacity .5s ease var(--d),transform .5s cubic-bezier(.2,.8,.3,1) var(--d)}
+.hero-card{position:absolute;width:clamp(128px,12.6vw,196px);padding:7px 7px 10px;box-sizing:border-box;border-radius:18px;background:#fff;box-shadow:0 12px 32px #2b24201c;color:#2b2420;text-decoration:none;text-align:left;opacity:0;transform:rotate(var(--r)) translateY(14px);transition:opacity .35s ease calc(var(--d)*.6),transform .35s cubic-bezier(.2,.8,.3,1) calc(var(--d)*.6)}
 .hero-card.is-ready{opacity:1;transform:rotate(var(--r))}
 .hero-card.is-ready:hover{transform:rotate(0deg) scale(1.04);transition-delay:0s;z-index:3}
 .hero-card img{display:block;width:100%;aspect-ratio:1/.92;border-radius:12px;object-fit:contain;background:#fff}

@@ -49,7 +49,7 @@
  if (start > 0) addEventListener('load', () => { locked = start; scrollTo(0, targetOf(start)); track(); });
 
  // RUKA-styled photos for some products; the tile still opens the real product page.
- const rukaPics = new Set(['NOTE-002', 'BAG-001', 'DRW-001', 'DRW-002', 'DRW-009', 'STA-001', 'CAP-001', 'GG-002']);
+ const rukaPics = new Set(['NOTE-002', 'BAG-001', 'DRW-001', 'DRW-002', 'DRW-009', 'STA-001', 'CAP-001', 'GG-002', 'TBL-005']);
  // Each slot is a product code, or "?name" for an item not in the catalog yet.
  // Slots without a RUKA photo show the item's name, so the team can see which photo is still needed.
  window.rukaCatalog?.load().then(items => {
@@ -67,7 +67,7 @@
     if ((item && rukaPics.has(item.code)) || photo) {
      tile.classList.add('is-ruka');
      const img = document.createElement('img');
-     img.src = 'assets/services/' + (photo || item.code) + '.webp?v=20261110-f';
+     img.src = 'assets/services/' + (photo || item.code) + '.webp?v=20261116-d';
      img.alt = '';
      img.loading = 'lazy';
      img.decoding = 'async';

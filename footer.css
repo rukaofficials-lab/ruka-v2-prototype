@@ -26,5 +26,5 @@ html body .site-footer .footer-legal a:hover{color:#fff}
 /* The closing line fills in like the headings above it. */
 html.js-footer .footer-cta h2,html.js-footer .footer-cta h2 span{color:#ffffff4d;transition:color .55s ease}
 html.js-footer .site-footer.is-in .footer-cta h2{color:#fff}
-html.js-footer .site-footer.is-in .footer-cta h2 span{color:#f4c04a;transition-delay:.35s}
+html.js-footer .site-footer.is-in .footer-cta h2 span{color:#f4c04a;transition-delay:.12s}
 @media(prefers-reduced-motion:reduce){html.js-footer .footer-cta h2,html.js-footer .footer-cta h2 span{transition:none}}

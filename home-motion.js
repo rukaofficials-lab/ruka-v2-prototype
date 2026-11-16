@@ -21,7 +21,7 @@
     active.clear();
     elements.forEach(el => { el.style.removeProperty('translate'); el.style.removeProperty('opacity'); });
     if(storyHead) storyHead.style.removeProperty('opacity');
-    if(hero) { hero.style.removeProperty('scale'); hero.style.removeProperty('opacity'); hero.style.removeProperty('filter'); }
+    if(hero) { hero.style.removeProperty('scale'); hero.style.removeProperty('opacity'); }
     document.querySelectorAll('.brandOrb').forEach(el => el.style.removeProperty('translate'));
   };
   const render = () => {
@@ -37,22 +37,21 @@
       // Keep forms and controls fully clear while the visitor is interacting.
       const p = hero.contains(document.activeElement) ? 0 : departure;
       hero.style.scale = String(1 - p * .055);
-      hero.style.opacity = String(1 - p * .55);
-      hero.style.filter = p > 0 ? `blur(${(p * 2).toFixed(2)}px)` : 'none';
+      hero.style.opacity = String(1 - p * .35);
     }
     // Read positions before writes. offset geometry is unaffected by CSS translate.
     const readings = [...active].map(el => {
       const top = el.getBoundingClientRect().top - (parseFloat(el.dataset.motionY) || 0);
       const stagger = el.matches('.brandCard') ? ([...el.parentElement.children].indexOf(el) % 2) * .055 : 0;
-      const progress = Math.max(0, Math.min(1, (height * (.96 - stagger) - top) / (height * .26)));
+      const progress = Math.max(0, Math.min(1, (height * (.96 - stagger) - top) / (height * .14)));
       return {el, progress};
     });
     readings.forEach(({el, progress}) => {
       const eased = 1 - Math.pow(1 - progress, 3);
-      const y = (1 - eased) * (innerWidth < 680 ? 18 : 30);
+      const y = (1 - eased) * (innerWidth < 680 ? 10 : 16);
       el.dataset.motionY = String(y);
       el.style.translate = `0 ${y.toFixed(2)}px`;
-      el.style.opacity = String(.45 + .55 * eased);
+      el.style.opacity = String(.8 + .2 * eased);
     });
   };
   const schedule = () => { if (!preference.matches && !frame) frame = requestAnimationFrame(render); };
