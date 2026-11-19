@@ -29,6 +29,8 @@
     }
     if (!p) throw new Error('Product not found');
     selected = clean(p.name) + (p.code ? ' (' + p.code + ')' : '');
+    // English lines in the static HTML are for agents without JavaScript; people switch language with the EN button.
+    document.querySelectorAll('.details .name-en, .details .lead-en').forEach((el) => el.remove());
     // Search basics for each product: title, description, canonical link and structured data.
     // Pages built by scripts/build-seo.py already carry all of this in the HTML; only fill it in on the plain /product template.
     if (!document.getElementById('product-ld')) {
