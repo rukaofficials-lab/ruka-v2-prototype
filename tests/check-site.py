@@ -12,8 +12,9 @@ class Links(HTMLParser):
                 continue
             url = urlsplit(value)
             if not url.scheme and not url.netloc and url.path:
-                target = ROOT / unquote(url.path)
-                if not target.exists():
+                target = ROOT / unquote(url.path).lstrip('/')
+                # cleanUrls: /products/BAG-001 is served from products/BAG-001.html
+                if not target.exists() and not target.with_name(target.name + '.html').exists():
                     errors.append(f'{page.name}: missing {value}')
 for page in ROOT.glob('*.html'):
     source = page.read_text()

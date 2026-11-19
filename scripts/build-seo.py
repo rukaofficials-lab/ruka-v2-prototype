@@ -123,6 +123,27 @@ def product_page(template, p):
     return page
 
 
+def product_markdown(p):
+    # Served by middleware.js when an agent asks for text/markdown.
+    rows = [('Code / รหัส', p['code']), ('English name', p['nameEn']), ('Starting price / ราคาเริ่มต้น', (price_th(p) + ' per ' + p['unit'] + ' (estimate)') if p.get('price') else 'Price on request / สอบถามราคา'),
+            ('MOQ / ขั้นต่ำ', f"{p['moq']} {p['unit']}"), ('Lead time / ระยะผลิต', p['lead'] + ' (estimate, confirmed per job)'), ('Logo technique', p['printType']),
+            ('Material / วัสดุ', p['material']), ('Size / ขนาด', p['size']), ('Colours / สี', p['colors']), ('Note', p['note'])]
+    body = '\n'.join(f'- **{k}:** {v}' for k, v in rows if v)
+    img = f"\n![{p['name']}]({p['image']})\n" if p.get('image') else ''
+    return f"""# {p['name']} — {p['nameEn'] or p['code']}
+
+Custom-made with your logo by RUKA (บริษัท รุกะ เวิลด์ จำกัด). สั่งทำพร้อมใส่โลโก้แบรนด์
+{img}
+{body}
+
+## Order / สั่งทำ
+- Start a brief: {SITE}/brief
+- Contact: {SITE}/contact · {PHONE} · {EMAIL} · LINE {LINE}
+- Page: {SITE}/products/{p['code']}
+- All products: {SITE}/products · Catalog JSON: {SITE}/catalog.json
+"""
+
+
 def static_cards(products):
     out = []
     for p in products:
@@ -139,10 +160,11 @@ def main():
     template = open('product.html', encoding='utf8').read()
     os.makedirs('products', exist_ok=True)
     for old in os.listdir('products'):
-        if old.endswith('.html'):
+        if old.endswith('.html') or old.endswith('.md'):
             os.remove(os.path.join('products', old))
     for p in products:
         open(f'products/{p["code"]}.html', 'w', encoding='utf8').write(product_page(template, p))
+        open(f'products/{p["code"]}.md', 'w', encoding='utf8').write(product_markdown(p))
 
     catalog = {
         'name': 'RUKA public product catalog', 'updated': date.today().isoformat(), 'currency': 'THB', 'site': SITE,
@@ -215,6 +237,7 @@ def main():
 ## Products ({len(products)})
 """ + '\n'.join(lines) + '\n'
     open('llms.txt', 'w', encoding='utf8').write(llms)
+    open('index.md', 'w', encoding='utf8').write(llms)  # the homepage for agents that send Accept: text/markdown
     print(f'{len(products)} products from {source}')
 
 
