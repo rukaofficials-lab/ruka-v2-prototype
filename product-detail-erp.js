@@ -30,7 +30,8 @@
     if (!p) throw new Error('Product not found');
     selected = clean(p.name) + (p.code ? ' (' + p.code + ')' : '');
     // Search basics for each product: title, description, canonical link and structured data.
-    {
+    // Pages built by scripts/build-seo.py already carry all of this in the HTML; only fill it in on the plain /product template.
+    if (!document.getElementById('product-ld')) {
      const label = rukaCatalog.name(p);
      const url = location.origin + '/products/' + encodeURIComponent(p.code);
      const about = `${label} สั่งทำพร้อมใส่โลโก้ ${p.material ? 'วัสดุ' + p.material + ' ' : ''}ขั้นต่ำ ${p.moq || ''} ${p.unit || 'ชิ้น'} จาก RUKA`.replace(/\s+/g, ' ');

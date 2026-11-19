@@ -63,7 +63,7 @@ html[lang=en] .how-ruka-head h2{font-size:clamp(28px,min(3vw,6vh),44px);max-widt
 .how-win-tabs .on{border-color:#2b2420;color:#2b2420}
 .how-win-body{display:flex;flex:1;flex-direction:column;justify-content:center;min-height:0;padding-top:10px}
 .how-win .how-card{padding:0;background:none}
-.how-win .how-card h4{display:none}
+.how-win .how-card h3{display:none}
 .how-win .how-field{display:none}
 .how-win .how-typing{margin-bottom:10px;padding:10px 14px}
 .how-reply{display:flex;align-items:center;gap:9px;margin:0;font:400 14px/1.4 "IBM Plex Sans Thai",Arial,sans-serif;color:#2b2420}
@@ -79,7 +79,7 @@ html[lang=en] .how-ruka-head h2{font-size:clamp(28px,min(3vw,6vh),44px);max-widt
 .how-stop.is-active .how-panel{opacity:1;visibility:visible;transform:none;transition-delay:.18s}
 .how-stop.is-active::after{content:"ตัวอย่าง";position:absolute;right:18px;top:20px;color:#9a8f87;font:500 12px/1.4 "IBM Plex Sans Thai",Arial,sans-serif}
 .how-card{padding:clamp(16px,2vw,24px);border-radius:18px;background:#fff}
-.how-card h4{margin:0 0 14px;color:#6c625c;font:500 13.5px/1.4 "IBM Plex Sans Thai",Arial,sans-serif}
+.how-card h3{margin:0 0 14px;color:#6c625c;font:500 13.5px/1.4 "IBM Plex Sans Thai",Arial,sans-serif}
 .how-field{display:flex;justify-content:space-between;gap:14px;padding:11px 0;border-top:1px solid #f0ece5;font:400 15px/1.4 "IBM Plex Sans Thai",Arial,sans-serif}
 .how-field em{color:#7a6f68;font-style:normal}
 .how-field b{font-weight:500}
@@ -159,7 +159,7 @@ html[lang=en] .how-ruka-head h2{font-size:clamp(28px,min(3vw,6vh),44px);max-widt
  .how-stop-icon,.how-stop-sum,.how-win-head,.how-win-tabs,.how-reply{display:none}
  .how-win{padding:14px}
  .how-win .how-field{display:flex}
- .how-win .how-card h4{display:block}
+ .how-win .how-card h3{display:block}
  .how-win .how-mock{grid-template-columns:minmax(0,130px) minmax(0,1fr)}
  .how-win .how-mock-photo{width:100%}
  .how-win .how-check{display:flex}
