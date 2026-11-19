@@ -81,11 +81,12 @@
   // Use-case panels: products come from the ERP useCases tags; a tag with no products hides its panel.
   stack.querySelectorAll('.occ-photos[data-usecase]').forEach(box => {
    const tag = box.dataset.usecase;
-   const found = items.filter(item => (item.useCases || []).includes(tag) && item.image).slice(0, 8);
+   // Four tiles per panel, RUKA photos first.
+   const found = items.filter(item => (item.useCases || []).includes(tag) && item.image)
+    .sort((x, y) => rukaPics.has(y.code) - rukaPics.has(x.code)).slice(0, 4);
    const panel = box.closest('.occ-panel');
    panel.hidden = !found.length;
    if (!found.length) return;
-   box.classList.toggle('occ-photos--many', found.length > 4);
    box.replaceChildren(...found.map(productTile));
    const note = document.createElement('p');
    note.className = 'occ-sample';
